@@ -1,0 +1,69 @@
+<div class="body">
+  <div class="d-flex justify-content-center">
+    <div class="my-5">
+      <h3 class="text-center text-danger mt-5">
+        <samp class="text-warning">S</samp>e
+        <samp class="text-warning">C</samp>onnecter
+      </h3>
+      <hr />
+      <form class="mt-5" [formGroup]="conectedUser" (ngSubmit)="login()">
+        <div>
+          <label class="text-white">E-mail:</label><br />
+          <input
+            type="e-mail"
+            placeholder="Votre E-mail"
+            class="form-control"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              conectedUser.controls.email.invalid &&
+              conectedUser.controls.email.touched
+            "
+          >
+            <small
+              *ngIf="conectedUser.controls.email.errors?.pattern"
+              class="text-danger"
+              >* Veuillez entrer une adresse e-mail valide</small
+            >
+            <small
+              *ngIf="conectedUser.controls.email.errors?.required"
+              class="text-danger"
+              >* L'email est obligatoire.</small
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="text-white">Mot de passe:</label><br />
+          <input
+            type="password"
+            placeholder="Votre mot de passe"
+            class="form-control"
+            formControlName="password"
+          />
+          <div
+            *ngIf="
+              conectedUser.controls.password.invalid &&
+              conectedUser.controls.password.touched
+            "
+          >
+            <small
+              *ngIf="conectedUser.controls.password.errors?.required"
+              class="text-danger"
+              >* Le Mot de passe est obligatoire.</small
+            >
+          </div>
+        </div>
+
+        <button
+          class="btn btn-outline-warning w-100 mt-2"
+          [disabled]="conectedUser.invalid"
+        >
+          Se Connecter
+        </button>
+        <div class="text-center"><a href="register" te>Cree un compte</a></div>
+      </form>
+    </div>
+  </div>
+</div>

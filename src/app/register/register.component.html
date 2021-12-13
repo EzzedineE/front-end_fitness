@@ -1,0 +1,152 @@
+<div class="body">
+  <div class="d-flex justify-content-center">
+    <div class="my-5">
+      <h3 class="text-center text-danger">
+        <samp class="text-warning">I</samp>dentifiez-<samp class="text-warning"
+          >V</samp
+        >ous
+      </h3>
+      <hr />
+      <form [formGroup]="userForm" (ngSubmit)="register()">
+        <div>
+          <label class="text-white"> Nom:</label><br />
+          <input
+            type="text"
+            placeholder="Votre nom"
+            class="form-control"
+            formControlName="nom"
+          />
+        </div>
+        <div
+          *ngIf="userForm.controls.nom.invalid && userForm.controls.nom.touched"
+        >
+          <small
+            *ngIf="userForm.controls.nom.errors?.required"
+            class="text-danger"
+            >* Le nom est obligatoire.</small
+          >
+        </div>
+
+        <div>
+          <label class="text-white">Prenom:</label><br />
+          <input
+            type="text"
+            placeholder="Votre prenom"
+            class="form-control"
+            formControlName="prenom"
+          />
+          <div
+            *ngIf="
+              userForm.controls.prenom.invalid &&
+              userForm.controls.prenom.touched
+            "
+          >
+            <small
+              *ngIf="userForm.controls.prenom.errors?.required"
+              class="text-danger"
+              >* Le prenom est obligatoire.</small
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="text-white">Date De Naissance:</label><br />
+          <input
+            type="date"
+            placeholder="Date De Naissance"
+            class="form-control"
+            formControlName="date"
+          />
+          <div
+            *ngIf="
+              userForm.controls.date.invalid && userForm.controls.date.touched
+            "
+          >
+            <small
+              *ngIf="userForm.controls.date.errors?.required"
+              class="text-danger"
+              >* La date de naissance est obligatoire.</small
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="text-white">Address</label><br />
+          <input
+            type="text"
+            placeholder="Address"
+            class="form-control"
+            formControlName="address"
+          />
+        </div>
+        <div
+          *ngIf="
+            userForm.controls.address.invalid &&
+            userForm.controls.address.touched
+          "
+        >
+          <small
+            *ngIf="userForm.controls.address.errors?.required"
+            class="text-danger"
+            >* L'address est obligatoire.</small
+          >
+        </div>
+
+        <div>
+          <label class="text-white">E-mail:</label><br />
+          <input
+            type="e-mail"
+            placeholder="Votre E-mail"
+            class="form-control"
+            formControlName="email"
+          />
+          <div
+            *ngIf="
+              userForm.controls.email.invalid && userForm.controls.email.touched
+            "
+          >
+            <small
+              *ngIf="userForm.controls.email.errors?.pattern"
+              class="text-danger"
+              >* Veuillez entrer une adresse e-mail valide</small
+            >
+            <small
+              *ngIf="userForm.controls.email.errors?.required"
+              class="text-danger"
+              >* L'email est obligatoire.</small
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="text-white">Mot de passe:</label><br />
+          <input
+            type="password"
+            placeholder="Votre mot de passe"
+            class="form-control"
+            formControlName="password"
+          />
+          <div
+            *ngIf="
+              userForm.controls.password.invalid &&
+              userForm.controls.password.touched
+            "
+          >
+            <small
+              *ngIf="userForm.controls.password.errors?.required"
+              class="text-danger"
+              >* Le Mot de passe est obligatoire.</small
+            >
+          </div>
+        </div>
+
+        <button
+          class="btn btn-outline-warning w-100 mt-4"
+          [disabled]="userForm.invalid"
+        >
+          S'identifiez
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

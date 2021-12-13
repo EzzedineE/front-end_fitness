@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="body">
+  <div class="d-flex justify-content-center">
+    <div class="my-5">
+      <h3 class="text-center text-danger">
+        <samp class="text-warning">A</samp>jouter
+        <samp class="text-warning">C</samp>lub
+      </h3>
+      <hr />
+      <form [formGroup]="clubForm" (ngSubmit)="add()">
+        <div>
+          <label class="text-white"> Nom</label><br />
+          <input
+            type="text"
+            placeholder="Nom du club"
+            class="form-control"
+            formControlName="nom"
+          />
+        </div>
+
+        <div>
+          <label class="text-white">Address</label><br />
+          <input
+            type="text"
+            placeholder="Address du club"
+            class="form-control"
+            formControlName="address"
+          />
+        </div>
+
+        <div>
+          <label class="text-white">Description</label><br />
+          <textarea
+            type="text"
+            placeholder="Description"
+            class="form-control"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <div>
+          <label class="text-white">Facebook</label><br />
+          <input
+            type="text"
+            placeholder="Facebook"
+            class="form-control"
+            formControlName="facebook"
+          />
+        </div>
+        <div>
+          <label class="text-white">Instagram</label><br />
+          <input
+            type="text"
+            placeholder="Instagram"
+            class="form-control"
+            formControlName="instagram"
+          />
+        </div>
+        <div>
+          <label class="text-white">E-mail</label><br />
+          <input
+            type="text"
+            placeholder="E-mail"
+            class="form-control"
+            formControlName="email"
+          />
+        </div>
+        <div>
+          <label class="text-white">Telephone</label><br />
+          <input
+            type="text"
+            placeholder="Telephone"
+            class="form-control"
+            formControlName="tel"
+          />
+        </div>
+        <div>
+          <label class="text-white">Images</label><br />
+          <input
+            type="file"
+            multiple
+            class="form-control"
+            formControlName="images"
+            multiple
+            (change)="detectFiles($event)"
+          />
+        </div>
+        <div class="mb-3 text-center">
+          <div>
+            <img
+              *ngFor="let url of urls"
+              [src]="url"
+              class="rounded mb-3"
+              width="120"
+              height="150"
+            />
+          </div>
+        </div>
+
+        <button class="btn btn-outline-warning w-100 mt-4">S'identifiez</button>
+      </form>
+    </div>
+  </div>
+</div>

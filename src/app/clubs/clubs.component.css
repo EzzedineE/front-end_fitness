@@ -1,0 +1,13 @@
+.body {
+  background-image: url(../images/download.jpg);
+}
+.form-control {
+  width: 500px;
+}
+.light1 {
+  font-size: 10px;
+}
+.club:hover {
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
