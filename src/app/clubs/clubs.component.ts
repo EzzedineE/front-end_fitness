@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Club } from '../modeles/clubModeles';
+import { AuthService } from '../service/auth.service';
 import { ClubService } from '../service/club.service';
 
 @Component({
@@ -8,10 +10,15 @@ import { ClubService } from '../service/club.service';
   styleUrls: ['./clubs.component.css'],
 })
 export class ClubsComponent implements OnInit {
+  user = this.serviceUser.getuser();
   clubs: Club[];
   rechercher: string = '';
   charger: boolean;
-  constructor(private Service: ClubService) {}
+  constructor(
+    private Service: ClubService,
+    private serviceUser: AuthService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.charger = false;
@@ -29,11 +36,13 @@ export class ClubsComponent implements OnInit {
     if (confirm('voulez vous supprimer')) {
       this.Service.deleteClub(id).subscribe(
         (res: any) => {
-          console.log(res);
           this.clubs = this.clubs.filter((club) => club._id != id);
+          this.toastr.success('Club Supprimer');
+          console.log(res);
         },
         (err: any) => {
           console.log(err);
+          this.toastr.error(err);
         }
       );
     }

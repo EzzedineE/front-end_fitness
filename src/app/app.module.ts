@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
@@ -16,6 +15,9 @@ import { AddClubComponent } from './add-club/add-club.component';
 import { ClubsComponent } from './clubs/clubs.component';
 import { ClubComponent } from './club/club.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { BlogsComponent } from './add-blogs/blogs.component';
+import { RegisterComponent } from './register/register.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     ClubsComponent,
     ClubComponent,
     FilterPipe,
+    BlogsComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,11 @@ import { FilterPipe } from './pipes/filter.pipe';
     ReactiveFormsModule,
     CommonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      timeOut: 1000,
+      progressBar: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

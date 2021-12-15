@@ -30,7 +30,11 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res: any) => {
           this.services.setUser(res.user);
-          this.router.navigate(['']);
+          let message = this.toastr.success('connexion success').onHidden;
+          message.subscribe(() => {
+            this.router.navigate(['']);
+          });
+          console.log(res.user);
         },
         (err) => {
           this.toastr.error(

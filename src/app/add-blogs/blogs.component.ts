@@ -2,48 +2,43 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Club } from '../modeles/clubModeles';
-import { ClubService } from '../service/club.service';
+import { Blog } from '../modeles/blogModele';
+import { BlogService } from '../service/blog.service';
 
 @Component({
-  selector: 'app-add-club',
-  templateUrl: './add-club.component.html',
-  styleUrls: ['./add-club.component.css'],
+  selector: 'app-blogs',
+  templateUrl: './blogs.component.html',
+  styleUrls: ['./blogs.component.css'],
 })
-export class AddClubComponent implements OnInit {
+export class BlogsComponent implements OnInit {
   id: string;
-  club: Club;
-  clubForm: FormGroup;
+  blog: Blog;
+  blogForm: FormGroup;
   imgURL: any;
   selectedFiles: any;
   urls = new Array<string>();
   constructor(
-    private services: ClubService,
-    private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router,
+    private services: BlogService
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.club = new Club();
-    this.clubForm = new FormGroup({
-      nom: new FormControl(this.club.nom),
-      address: new FormControl(this.club.address),
-      description: new FormControl(this.club.description),
+    this.blog = new Blog();
+    this.blogForm = new FormGroup({
+      titre: new FormControl(this.blog.titre),
+      description: new FormControl(this.blog.description),
       images: new FormControl(null, { validators: [Validators.required] }),
-      facebook: new FormControl(this.club.facebook),
-      instagram: new FormControl(this.club.instagram),
-      email: new FormControl(this.club.email),
-      tel: new FormControl(this.club.tel),
     });
     if (this.id) {
-      this.services.getOneClub(this.id).subscribe(
+      this.services.getOneBlog(this.id).subscribe(
         (res: any) => {
-          console.log(res);
+          this.blog = res;
+          console.log(this.blog.description);
 
-          this.club = res;
-          this.clubForm.patchValue(this.club);
+          this.blogForm.patchValue(this.blog);
         },
         (err: any) => {
           console.log(err);
@@ -65,27 +60,22 @@ export class AddClubComponent implements OnInit {
     }
   }
   add() {
-    const newPub = this.clubForm.value;
+    const newPub = this.blogForm.value;
     const upload = new FormData();
-    upload.append('nom', newPub.nom);
+    upload.append('titre', newPub.titre);
     upload.append('description', newPub.description);
-    upload.append('address', newPub.address);
-    upload.append('facebook', newPub.facebook);
-    upload.append('instagram', newPub.instagram);
-    upload.append('email', newPub.email);
-    upload.append('tel', newPub.tel);
     if (this.selectedFiles) {
       for (let file of this.selectedFiles) {
         upload.append('images', file);
       }
     }
-    if (this.club._id) {
-      this.services.modifClub(this.club._id, upload).subscribe(
+    if (this.blog._id) {
+      this.services.modifBlog(this.blog._id, upload).subscribe(
         (res) => {
           console.log(res);
           let message = this.toastr.success('Modification valider').onHidden;
           message.subscribe(() => {
-            this.router.navigate(['clubs']);
+            this.router.navigate(['blogs']);
           });
 
           this.toastr.success('Ajout valider');
@@ -95,11 +85,11 @@ export class AddClubComponent implements OnInit {
         }
       );
     } else {
-      this.services.addClub(upload).subscribe(
+      this.services.addBlog(upload).subscribe(
         (res) => {
-          let message = this.toastr.success('Ajout club valider').onHidden;
+          let message = this.toastr.success('Ajout blog valider').onHidden;
           message.subscribe(() => {
-            this.router.navigate(['clubs']);
+            this.router.navigate(['blogs']);
           });
         },
         (err) => {

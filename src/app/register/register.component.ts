@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
       Validators.required,
     ]),
     password: new FormControl('', [Validators.required]),
+    role: new FormControl('user'),
   });
   constructor(
     private services: AuthService,
@@ -29,11 +30,15 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
   register() {
-    this.services.register(this.userForm.value).subscribe(
+    const newUser = this.userForm.value;
+    newUser.role = 'user';
+    this.services.register(newUser).subscribe(
       (res) => {
         console.log(res);
-        console.log('res');
-        this.router.navigate(['register']);
+        let message = this.toastr.success('inscription valide').onHidden;
+        message.subscribe(() => {
+          this.router.navigate(['/login']);
+        });
       },
       (err) => {
         this.toastr.error('E-mail Existant', 'error');

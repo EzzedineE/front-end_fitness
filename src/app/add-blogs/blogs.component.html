@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="body">
+  <div class="d-flex justify-content-center">
+    <div class="my-5">
+      <h3 class="text-center text-danger">
+        <samp class="text-warning">A</samp>jouter
+        <samp class="text-warning">B</samp>log
+      </h3>
+      <hr />
+      <form [formGroup]="blogForm" (ngSubmit)="add()">
+        <div>
+          <label class="text-white"> Titre</label><br />
+          <input
+            type="text"
+            placeholder="Titre du blog"
+            class="form-control"
+            formControlName="titre"
+          />
+        </div>
+        <div>
+          <label class="text-white">Description</label><br />
+          <input
+            type="text"
+            placeholder="Description"
+            class="form-control"
+            formControlName="description"
+          />
+        </div>
+
+        <div>
+          <label class="text-white">Images</label><br />
+          <input
+            type="file"
+            multiple
+            class="form-control"
+            formControlName="images"
+            multiple
+            (change)="detectFiles($event)"
+          />
+        </div>
+
+        <button class="btn btn-outline-warning w-100 mt-4">Ajouter</button>
+      </form>
+    </div>
+  </div>
+</div>

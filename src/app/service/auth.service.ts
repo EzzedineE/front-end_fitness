@@ -16,7 +16,17 @@ export class AuthService {
       password,
     });
   }
+  getAllUser() {
+    return this.http.get('http://localhost:3000/api/user/');
+  }
+  getOneUserBd(id: string) {
+    return this.http.get(`http://localhost:4000/api/user/${id}`);
+  }
+
   setUser(user: User) {
     localStorage.setItem('userConecter', JSON.stringify(user));
+  }
+  getuser() {
+    return JSON.parse(localStorage.getItem('userConecter') || 'null');
   }
 }

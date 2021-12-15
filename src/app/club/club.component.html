@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-img-overlay">
-      <a href="" class="d-flex justify-content-end">'<<'Retour</a>
+      <a href="/clubs" class="d-flex justify-content-end">'<<'Retour</a>
       <h1 class="card-title text-uppercase fs-1 d-flex justify-content-center">
         <b>{{ club.nom! }}</b>
       </h1>
@@ -97,6 +97,19 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </button>
+</div>
+
+<div class="container mb-5 d-flex mt-5">
+  <input
+    type="text"
+    placeholder="Commentaire"
+    class="rounded-pill form-control border"
+    [(ngModel)]="Commentaire"
+  />
+  <button class="btn btn-primary">Envoyer</button>
+</div>
+<div *ngFor="let coment of Commentaire; let j = index">
+  <div>{{ user.nom! }}</div>
 </div>
 <!-- ******************************************************************************** -->
 <app-footer></app-footer>
