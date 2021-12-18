@@ -18,6 +18,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { BlogsComponent } from './add-blogs/blogs.component';
 import { RegisterComponent } from './register/register.component';
 import { BlogComponent } from './blog/blog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { BlogComponent } from './blog/blog.component';
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

@@ -98,18 +98,64 @@
     <span class="sr-only">Next</span>
   </button>
 </div>
-
-<div class="container mb-5 d-flex mt-5">
-  <input
-    type="text"
-    placeholder="Commentaire"
-    class="rounded-pill form-control border"
-    [(ngModel)]="Commentaire"
-  />
-  <button class="btn btn-primary">Envoyer</button>
-</div>
-<div *ngFor="let coment of Commentaire; let j = index">
-  <div>{{ user.nom! }}</div>
-</div>
+<form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">
+  <div class="container mb-5 d-flex mt-5">
+    <input
+      type="text"
+      placeholder="Commentaire"
+      class="rounded-pill form-control border"
+      formControlName="commentaire"
+    />
+    <button class="btn btn-outline-primary">Envoyer</button>
+  </div>
+</form>
+<ngb-accordion #acc="ngbAccordion">
+  <ngb-panel id="toggle-1" title="Commentaire">
+    <ng-template ngbPanelContent>
+      <div *ngFor="let comment of commentaires; let k = index">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 border">
+            <h1>{{ comment.nom }} {{ comment.prenom }}</h1>
+            <p *ngIf="!commentaires[k].answered">
+              {{ comment.commentaire }}
+            </p>
+            <form
+              [formGroup]="modifForm"
+              (ngSubmit)="envoyerModif(k)"
+              *ngIf="commentaires[k].answered"
+            >
+              <div class="container my-5 d-flex">
+                <input
+                  type="text"
+                  placeholder="Commentaire"
+                  class="rounded-pill form-control border"
+                  formControlName="commentaire"
+                />
+                <button class="btn btn-outline-primary">Envoyer</button>
+              </div>
+            </form>
+            <div>
+              <small>
+                <a class="text-decoration-none" (click)="modifier(k)">
+                  <i class="bi bi-pencil-square"></i>Modifier</a
+                ></small
+              >
+              <small>
+                <a
+                  class="text-decoration-none text-danger"
+                  (click)="delete(comment._id)"
+                >
+                  <i class="bi bi-trash-fill"></i>Supprimer</a
+                ></small
+              >
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
 <!-- ******************************************************************************** -->
 <app-footer></app-footer>

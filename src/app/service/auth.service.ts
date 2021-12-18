@@ -16,6 +16,9 @@ export class AuthService {
       password,
     });
   }
+  logout() {
+    localStorage.removeItem('userConecter');
+  }
   getAllUser() {
     return this.http.get('http://localhost:3000/api/user/');
   }

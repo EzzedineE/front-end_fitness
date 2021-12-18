@@ -54,7 +54,7 @@
       <button
         class="btn btn-outline-warning"
         type="submit"
-        routerLink="/login"
+        routerLink=""
         *ngIf="!user"
       >
         Inscription
@@ -62,8 +62,8 @@
       <button
         class="btn btn-outline-warning"
         type="submit"
-        routerLink="/login"
         *ngIf="user"
+        (click)="logout()"
       >
         Deconecter
       </button>
