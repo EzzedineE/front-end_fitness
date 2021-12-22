@@ -1,0 +1,11 @@
+.genre:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.Vetement {
+  height: 500px;
+  width: 100%;
+}
+/* .Vetement1 {
+  background: rgb(204, 202, 202);
+} */

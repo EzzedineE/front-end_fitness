@@ -19,6 +19,11 @@ import { BlogsComponent } from './add-blogs/blogs.component';
 import { RegisterComponent } from './register/register.component';
 import { BlogComponent } from './blog/blog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProduitComponent } from './produit/produit.component';
+import { AddProduitComponent } from './add-produit/add-produit.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { RouterModule } from '@angular/router';
+import { CategoriePipe } from './pipes/categorie.pipe';
 
 @NgModule({
   declarations: [
@@ -34,8 +39,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FilterPipe,
     BlogsComponent,
     BlogComponent,
+    ProduitComponent,
+    AddProduitComponent,
+    CategoriePipe,
   ],
   imports: [
+    RouterModule,
+    CarouselModule,
     BrowserModule,
     NgbModule,
     AppRoutingModule,

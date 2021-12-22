@@ -13,6 +13,7 @@ import { ClubService } from '../service/club.service';
 export class AddClubComponent implements OnInit {
   id: string;
   club: Club;
+  clubModif: Club;
   clubForm: FormGroup;
   imgURL: any;
   selectedFiles: any;
@@ -27,15 +28,16 @@ export class AddClubComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.club = new Club();
+
     this.clubForm = new FormGroup({
       nom: new FormControl(this.club.nom),
       address: new FormControl(this.club.address),
-      description: new FormControl(this.club.description),
-      images: new FormControl(null, { validators: [Validators.required] }),
       facebook: new FormControl(this.club.facebook),
       instagram: new FormControl(this.club.instagram),
       email: new FormControl(this.club.email),
       tel: new FormControl(this.club.tel),
+      description: new FormControl(this.club.description),
+      images: new FormControl(null, { validators: [Validators.required] }),
     });
     if (this.id) {
       this.services.getOneClub(this.id).subscribe(
@@ -43,7 +45,11 @@ export class AddClubComponent implements OnInit {
           console.log(res);
 
           this.club = res;
-          this.clubForm.patchValue(this.club);
+          this.clubModif = res;
+          this.clubModif.images = '';
+          this.clubForm.patchValue(this.clubModif);
+          // this.clubForm.get('images')?.setValue('');
+          console.log(this.clubForm.value);
         },
         (err: any) => {
           console.log(err);

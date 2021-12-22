@@ -21,4 +21,7 @@ export class ClubService {
   deleteClub(id: string) {
     return this.http.delete(`http://localhost:3000/api/club/${id}`);
   }
+  getImage(imgURL: string) {
+    return this.http.get(`http://localhost:3000/static/${imgURL}`);
+  }
 }

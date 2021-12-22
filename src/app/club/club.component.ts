@@ -23,7 +23,7 @@ export class ClubComponent implements OnInit {
     answered: new FormControl(false),
   });
   modifForm: FormGroup;
-  club: Club;
+  club: Club = new Club();
   id: string;
   commentaires: Commentaire[];
   commen: Commentaire;
