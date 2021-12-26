@@ -1,3 +1,14 @@
 .video {
   width: 100%;
 }
+.blogs1 {
+  color: rgb(95, 94, 94);
+}
+.aa {
+  line-height: 1em;
+}
+.phone {
+  background-image: url(../../assets/images/phone.png);
+  background-size: cover;
+  height: 700px;
+}

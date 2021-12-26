@@ -1,6 +1,6 @@
-.body {
-  background-image: url(../images/add.jpg);
-}
+/* .body {
+  background-image: url(../../assets/images/4_1.jpg);
+} */
 .form-control {
   width: 500px;
 }
@@ -10,4 +10,16 @@
 .club:hover {
   -webkit-transform: scale(1.03);
   transform: scale(1.03);
+}
+
+.container .text {
+  z-index: 1;
+  position: absolute;
+  font-family: Georgia;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 70%;
+  color: white;
+  width: 70%;
 }

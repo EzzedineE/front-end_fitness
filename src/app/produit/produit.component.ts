@@ -4,7 +4,6 @@ import {
   NgbSlideEvent,
   NgbSlideEventSource,
 } from '@ng-bootstrap/ng-bootstrap';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ToastrService } from 'ngx-toastr';
 import { Produit } from '../modeles/produit';
 import { AuthService } from '../service/auth.service';

@@ -8,6 +8,8 @@ export class User {
   date: Date;
   role: string;
 
+  aimer: boolean;
+
   constructor(
     _id: string = '',
     nom: string = '',
@@ -16,7 +18,8 @@ export class User {
     password: string = '',
     adress: string = '',
     date: Date,
-    role: string = 'user'
+    role: string = 'user',
+    aimer: boolean = false
   ) {
     (this._id = _id),
       (this.nom = nom),
@@ -26,5 +29,6 @@ export class User {
       (this.adress = adress),
       (this.date = date),
       (this.role = role);
+    this.aimer = aimer;
   }
 }

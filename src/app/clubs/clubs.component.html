@@ -1,8 +1,66 @@
 <app-header></app-header>
+<!-- <div><img src="../../assets/images/img2.webp" alt="" class="w-100 px-5" /></div> -->
+
+<div class="container">
+  <img src="../../assets/images/img2.webp" class="w-100" />
+  <div class="text">
+    <h1>Top salles de sport</h1>
+    <p class="d-flex justify-content-start">
+      Beaucoup de Perssone sautent le pas et veulent pratiquer une activité
+      sportive, pour se sentir bien moralement et physiquement. Cependant, il
+      est difficile de faire son choix avec les nombreuses salles de sport qui
+      ouvrent chaque année : plus de 4 000 clubs en France ! Certaines proposent
+      des concepts innovants, des disciplines originales, des prix attractifs,
+      etc. de quoi trouver son bonheur.
+    </p>
+  </div>
+  <div>
+    <p>
+      Que vous soyez un grand ou petit sportif, la plupart des salles de sport
+      ne nécessitent pas une condition physique particulière.
+    </p>
+    <p>
+      Si vous n’êtes pas sûr de votre choix, vous pouvez prendre une salle de
+      sport avec un forfait sans engagement. De plus, en dehors du prix du
+      forfait, n’oubliez pas de prendre en compte les frais d’inscription qui
+      peuvent grimper pour certaines salles.
+    </p>
+    <p>
+      D’ailleurs, tous les forfaits n’incluent pas toutes les prestations et des
+      coûts supplémentaires peuvent être demandés, notamment pour l’accès aux
+      douches, l'accès aux zones bien-être, etc.
+    </p>
+    <p>
+      Le plus important est que vous devez vous demander ce que vous souhaitez
+      car toutes les salles ne proposent pas les mêmes prestations : coachs,
+      cours collectifs, cours de fitness, remise en forme, espace cardio, salle
+      de musculation, gym, pilates, zumba, boxe, crossfit, yoga, piscine, sauna,
+      hammam, etc.
+    </p>
+    <p>
+      Nous vous proposons différents classements pour trouver votre salle de
+      sport en prenant en compte :
+    </p>
+    <ul>
+      <li>le prix</li>
+      <li>les horaires</li>
+      <li>les activités</li>
+    </ul>
+    <h2>Quelle est la meilleure salle de sport ?</h2>
+    <p>
+      Nous vous proposons un classement indicatif de plusieurs types de salles
+      de sports et pour tous les sportifs : les low-cost, les high-tech, les
+      contemporaines, etc. En effet, la meilleure salle de sport pour vous doit
+      être ouverte à vos heures de disponibilité, être près de chez vous, avoir
+      un prix cohérent avec votre budget et disposer des activités que vous
+      souhaitez exercer.
+    </p>
+  </div>
+</div>
 <div class="body">
   <div class="row d-flex justify-content-center">
     <div>
-      <div class="d-flex justify-content-center container mb-5">
+      <div class="d-flex justify-content-center container m-5">
         <input
           type="text"
           placeholder="Rechercher"
@@ -11,7 +69,11 @@
         />
       </div>
 
-      <a class="nav-link text-white mx-5" aria-current="page" href="/add-club"
+      <a
+        class="nav-link text-dark mx-5"
+        aria-current="page"
+        href="/add-club"
+        *ngIf="user.role == 'admin'"
         >Ajouter une salle</a
       >
     </div>
@@ -23,50 +85,68 @@
     </div>
     <ng-template #listClubs>
       <div
-        class="card col col-md-4 col-sm-6 col-12 m-3 club"
-        style="width: 18rem"
+        class="row d-flex"
         *ngFor="let club of clubs | filter: rechercher; let i = index"
       >
-        <img
-          [routerLink]="['/club', club._id]"
-          src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
-          class="card-img-top"
-          height="180"
-        />
-
-        <div class="card-body">
-          <div class="bg-dark">
-            <h2 class="card-title text-center text-white">{{ club.nom! }}</h2>
+        <div class="col-sm-3 col-sm-3"></div>
+        <div class="col-sm-6 col-sm-6">
+          <div class="d-flex p-3">
+            <img
+              [routerLink]="['/club', club._id]"
+              src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
+              class="rounded-circle"
+              height="50"
+              width="50"
+            />
+            <h2 class="fs-1">{{ club.nom! }}</h2>
           </div>
-          <!-- /////////////////////////// -->
+          <div>
+            <a href="http://localhost:3000/static/' + club.images[0]"
+              ><img
+                [routerLink]="['/club', club._id]"
+                src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
+                class="w-100"
+            /></a>
+            <div class="border">{{ club?.description! }}</div>
+          </div>
+          <div>
+            <p>{{ club?.likes }} Perssone ont aimez cette club</p>
+            <small
+              class="border px-5 rounded-pill d-flex justify-content-between"
+            >
+              <a
+                class="text-decoration-none text-primary"
+                (click)="like(club._id)"
+                *ngIf="!userConect?.mylikes.includes(club?._id)"
+                ><i class="bi bi-hand-thumbs-up-fill"></i> J'aime</a
+              >
+              <a
+                class="text-decoration-none text-primary"
+                (click)="dislike(club._id)"
+                *ngIf="userConect?.mylikes.includes(club?._id)"
+                ><i class="bi bi-hand-thumbs-down-fill"></i>Je n'aime plus</a
+              >
 
-          <!-- /////////////////////////// -->
-          <small class="card-text">
-            <i class="bi bi-instagram"></i> {{ club.instagram! }}
-          </small>
-          <p class="card-text">
-            <i class="bi bi-facebook text-primary"></i> {{ club.facebook! }}
-          </p>
-        </div>
-        <a href="">J'aime</a>
-        <div class="card-body d-flex justify-content-between align-items-end">
-          <small>
-            <a
-              class="text-decoration-none"
-              [routerLink]="['/add-club', club._id]"
+              <a
+                class="text-decoration-none"
+                [routerLink]="['/add-club', club._id]"
+                *ngIf="user.role == 'admin'"
+              >
+                <i class="bi bi-pencil-square"></i>Modifier</a
+              >
+              <a
+                class="text-decoration-none text-danger"
+                (click)="delete(club._id)"
+                *ngIf="user.role == 'admin'"
+              >
+                <i class="bi bi-trash-fill"></i>Supprimer</a
+              ></small
             >
-              <i class="bi bi-pencil-square"></i>Modifier</a
-            ></small
-          >
-          <small>
-            <a
-              class="text-decoration-none text-danger"
-              (click)="delete(club._id)"
-            >
-              <i class="bi bi-trash-fill"></i>Supprimer</a
-            ></small
-          >
+          </div>
+          <hr />
         </div>
+
+        <div class="col-sm-3 col-sm-3"></div>
       </div>
     </ng-template>
   </div>

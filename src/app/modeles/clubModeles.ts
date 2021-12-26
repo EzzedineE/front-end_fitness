@@ -8,6 +8,7 @@ export class Club {
   instagram: string;
   email: string;
   tel: number;
+
   constructor(
     _id: string = '',
     nom: string = '',

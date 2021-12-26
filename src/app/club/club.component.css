@@ -1,3 +1,7 @@
-.body {
-  background-image: url(../images/img2.webp);
+.obliqu {
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-size: 10rem;
+}
+.bg {
+  background-color: rgba(255, 230, 0, 0.555);
 }
