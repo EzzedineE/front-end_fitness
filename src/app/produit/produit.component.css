@@ -2,10 +2,22 @@
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-.Vetement {
-  height: 500px;
-  width: 100%;
+
+.vetement {
+  background-image: url(../../assets/images/vetement1.jpg);
+  background-attachment: fixed;
+  background-size: cover;
 }
-/* .Vetement1 {
-  background: rgb(204, 202, 202);
-} */
+.produit {
+  background-image: url(../../assets/images/produit.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+.material {
+  background-image: url(../../assets/images/material2.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+.car {
+  background-color: rgba(250, 250, 250, 0.678);
+}

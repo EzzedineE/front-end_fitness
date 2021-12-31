@@ -44,7 +44,6 @@ import { CategoriePipe } from './pipes/categorie.pipe';
   ],
   imports: [
     RouterModule,
-
     BrowserModule,
     NgbModule,
     AppRoutingModule,

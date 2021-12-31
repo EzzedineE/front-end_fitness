@@ -82,6 +82,15 @@ export class ClubsComponent implements OnInit {
         console.log(err);
       }
     );
+    this.Service.getClub().subscribe(
+      (res: any) => {
+        this.clubs = res;
+        this.charger = true;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
   dislike(id: string) {
     let aa = this.userConect._id;
@@ -93,5 +102,19 @@ export class ClubsComponent implements OnInit {
         console.log(err);
       }
     );
+    this.Service.getClub().subscribe(
+      (res: any) => {
+        this.clubs = res;
+        this.charger = true;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  totop() {
+    console.log('tesssssst');
+    window.scrollTo(0, 0);
   }
 }

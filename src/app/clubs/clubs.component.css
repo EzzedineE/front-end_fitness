@@ -1,6 +1,8 @@
-/* .body {
-  background-image: url(../../assets/images/4_1.jpg);
-} */
+.body {
+  background-image: url(../../assets/images/img2.webp);
+  background-attachment: fixed;
+  background-size: cover;
+}
 .form-control {
   width: 500px;
 }
@@ -22,4 +24,10 @@
   top: 70%;
   color: white;
   width: 70%;
+}
+.aaa {
+  background-color: rgba(255, 255, 255, 0.61);
+}
+.navbar {
+  background-attachment: fixed;
 }

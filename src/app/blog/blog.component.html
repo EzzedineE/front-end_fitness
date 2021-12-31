@@ -55,11 +55,13 @@
     </div>
     <div *ngFor="let blog of blogs; let i = index" class="my-5 border p-3">
       <div class="bg-danger px-3 d-flex justify-content-between">
-        <h1 class="text-white fst-italic fs-2">{{ blog.titre! }}</h1>
-        <small class="text-white">{{ blog.createdAt! | date: "medium" }}</small>
+        <h1 class="text-white fst-italic fs-2">{{ blog?.titre! }}</h1>
+        <small class="text-white">{{
+          blog?.createdAt! | date: "medium"
+        }}</small>
       </div>
 
-      <p class="rounded-top my-1 fs-4">{{ blog.description! }}</p>
+      <p class="rounded-top my-1 fs-4">{{ blog?.description! }}</p>
       <video controls class="video">
         <source
           src="{{ 'http://localhost:3000/static/' + blog.images[0] }}"
@@ -75,5 +77,6 @@
   </div>
   <div class="col-2"></div>
 </div>
+<div></div>
 
 <app-footer></app-footer>

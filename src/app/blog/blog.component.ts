@@ -20,7 +20,6 @@ export class BlogComponent implements OnInit {
       (res: any) => {
         this.blogs = res;
         this.charger = true;
-        console.log(this.blogs[0].createdAt);
       },
       (err) => {
         console.log(err);

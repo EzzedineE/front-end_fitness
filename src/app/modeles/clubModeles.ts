@@ -8,6 +8,7 @@ export class Club {
   instagram: string;
   email: string;
   tel: number;
+  cours: [];
 
   constructor(
     _id: string = '',
@@ -18,7 +19,8 @@ export class Club {
     facebook: string = '',
     instagram: string = '',
     email: string = '',
-    tel: number = 0
+    tel: number = 0,
+    cours: [] = []
   ) {
     (this.nom = nom), (this.description = description);
     (this._id = _id),
@@ -27,6 +29,7 @@ export class Club {
       (this.facebook = facebook),
       (this.instagram = instagram),
       (this.email = email),
-      (this.tel = tel);
+      (this.tel = tel),
+      (this.cours = cours);
   }
 }

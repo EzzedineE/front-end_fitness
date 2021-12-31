@@ -31,10 +31,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   register() {
     const newUser = this.userForm.value;
-    newUser.role = 'user';
+    newUser.role = 'admin';
     this.services.register(newUser).subscribe(
       (res) => {
-        console.log(res);
         let message = this.toastr.success('inscription valide').onHidden;
         message.subscribe(() => {
           this.router.navigate(['/login']);

@@ -73,6 +73,35 @@
             formControlName="tel"
           />
         </div>
+        <button
+          type="button"
+          (click)="addCour()"
+          class="btn btn-outline-warning w-100"
+        >
+          Add Cour
+        </button>
+        <div
+          class="styled-input my-3 inpute"
+          formArrayName="cours"
+          *ngFor="let cour of cours.controls; let i = index"
+        >
+          <label class="text-white">cour</label><br />
+          <div class="row">
+            <input
+              [formControlName]="i"
+              type="text"
+              placeholder="cour"
+              class="form-control w-75"
+            />
+            <button
+              class="btn btn-outline-warning w-25"
+              (click)="delete(i)"
+              aria-label="Example icon button with a delete icon"
+            >
+              supprimer
+            </button>
+          </div>
+        </div>
         <div>
           <label class="text-white">Images</label><br />
           <input

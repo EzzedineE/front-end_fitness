@@ -24,4 +24,17 @@ export class ClubService {
   getImage(imgURL: string) {
     return this.http.get(`http://localhost:3000/static/${imgURL}`);
   }
+
+  getHoraire() {
+    return this.http.get('http://localhost:3000/api/horaire/');
+  }
+  sendMessage(body: any) {
+    return this.http.post('http://localhost:3000/api/email/text', body);
+  }
+  addForfait(forfait: any) {
+    return this.http.post('http://localhost:3000/api/forfait/', forfait);
+  }
+  getForfait() {
+    return this.http.get('http://localhost:3000/api/forfait/');
+  }
 }

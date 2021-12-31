@@ -7,7 +7,10 @@ export class User {
   adress: string;
   date: Date;
   role: string;
-
+  nomClub: string;
+  nomForfait: string;
+  prixForfait: number;
+  dateInscription: Date;
   aimer: boolean;
 
   constructor(
@@ -18,7 +21,11 @@ export class User {
     password: string = '',
     adress: string = '',
     date: Date,
-    role: string = 'user',
+    role: string = 'admin',
+    nomClub: string = '',
+    nomForfait: string = '',
+    prixForfait: number = 0,
+    dateInscription: Date = new Date(),
     aimer: boolean = false
   ) {
     (this._id = _id),
@@ -28,7 +35,11 @@ export class User {
       (this.password = password),
       (this.adress = adress),
       (this.date = date),
-      (this.role = role);
-    this.aimer = aimer;
+      (this.role = role),
+      (this.aimer = aimer),
+      (this.nomClub = nomClub),
+      (this.nomForfait = nomForfait),
+      (this.dateInscription = dateInscription),
+      (this.prixForfait = prixForfait);
   }
 }

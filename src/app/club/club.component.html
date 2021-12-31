@@ -1,250 +1,433 @@
-<app-header></app-header>
-<div class="body">
-  <div class="card bg-dark text-white">
-    <div class="container">
-      <img src="../../assets/images/img2.webp" class="w-100" />
-      <div class="text">
-        <h1><u>Top salles de sport</u></h1>
-        <p class="d-flex justify-content-start">
-          Beaucoup de Perssone sautent le pas et veulent pratiquer une activité
-          sportive, pour se sentir bien moralement et physiquement. Cependant,
-          il est difficile de faire son choix avec les nombreuses salles de
-          sport qui ouvrent chaque année : plus de 4 000 clubs en France !
-          Certaines proposent des concepts innovants, des disciplines
-          originales, des prix attractifs, etc. de quoi trouver son bonheur.
-        </p>
-      </div>
-    </div>
-
-    <div class="card-img-overlay">
-      <a href="/clubs" class="d-flex justify-content-end">'<<'Retour</a>
-      <h1 class="card-title text-center obliqu mt-5">
-        <b class="">{{ club?.nom! }}</b>
-      </h1>
-      <h2 class="card-title text-center fs-1 pt-5 text-uppercase mt-5">
-        BIENVENUE À {{ club?.nom! }}
-      </h2>
-      <h3 class="text-warning text-center fs-1 mt-5">
-        Salle de sport et de Fitness
-      </h3>
-      <div class="text-center">
-        <a href="#Apropos-1" class="btn btn-outline-warning w-25 mt-5 mx-3"
-          >LA SALLE</a
-        >
-        <a href="" class="btn btn-outline-warning w-25 mt-5 mx-3">CONTACT</a>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="d-flex bg-dark p-3" id="Apropos-1">
-  <div class="container">
-    <h1
-      class="
-        mt-4
-        card-title
-        text-white text-uppercase
-        fs-1
-        d-flex
-        justify-content-center
-      "
-    >
-      <b>{{ club.nom }}</b>
-    </h1>
-
-    <p class="text-white"><b>Info</b></p>
-    <a class="col-md-6 mt-5 text-white my-5" href="{{ club.facebook! }}">
-      <i class="bi bi-facebook"></i> {{ club.facebook! }} </a
-    ><br />
-    <a
-      class="col-md-6 fw-light text-white my-5"
-      id="bbb"
-      href="{{ club.instagram! }}"
-    >
-      <i class="bi bi-instagram"></i> {{ club.instagram! }} </a
-    ><br />
-    <a class="col-md-6 text-white"
-      ><i class="bi bi-telephone"></i> {{ club.tel! }}</a
-    ><br />
-    <a class="col-md-6 .fs-6 text-white">
-      <i class="bi bi-geo-alt-fill"></i> {{ club.address! }} </a
-    ><br />
-  </div>
-</div>
-<!-- ******************************************************************************** -->
-
-<div class="container bg-light mt-2 border rounded">
-  <div>
-    {{ club.description }}
-  </div>
-</div>
-
-<form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">
-  <div class="container mb-5 d-flex mt-5">
-    <input
-      type="text"
-      placeholder="Commentaire"
-      class="rounded-pill form-control border"
-      formControlName="commentaire"
-    />
-    <button class="btn btn-outline-primary">Envoyer</button>
-  </div>
-</form>
-
-<ngb-accordion #acc="ngbAccordion">
-  <ngb-panel id="toggle-1" title="Commentaire">
-    <ng-template ngbPanelContent>
-      <div *ngFor="let comment of commentaires; let k = index">
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-8 border">
-            <h1>{{ comment.nom }} {{ comment.prenom }}</h1>
-            <p *ngIf="!commentaires[k].answered">
-              {{ comment.commentaire }}
-            </p>
-            <form
-              [formGroup]="modifForm"
-              (ngSubmit)="envoyerModif(k)"
-              *ngIf="commentaires[k].answered"
-            >
-              <div class="container my-5 d-flex">
-                <input
-                  type="text"
-                  placeholder="Commentaire"
-                  class="rounded-pill form-control border"
-                  formControlName="commentaire"
-                />
-                <button class="btn btn-outline-primary">Envoyer</button>
-              </div>
-            </form>
-
+<div class="body1">
+  <app-header></app-header>
+  <div class="body">
+    <div class="card bg-dark text-white">
+      <div class="container">
+        <img
+          src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
+          class="w-100"
+          height="500"
+        />
+        <div class="text">
+          <div class="container mt-2">
             <div>
-              <small>
-                <a class="text-decoration-none" (click)="modifier(k)">
-                  <i class="bi bi-pencil-square"></i>Modifier</a
-                ></small
-              >
-              <small>
-                <a
-                  class="text-decoration-none text-danger"
-                  (click)="delete(comment._id)"
-                >
-                  <i class="bi bi-trash-fill"></i>Supprimer</a
-                ></small
-              >
+              {{ club.description }}
             </div>
           </div>
-          <div class="col-2"></div>
         </div>
       </div>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>
-<!-- ******************************************************************************** -->
-<div class="bg">
-  <div class="container">
-    <!-- SECTION HEADER -->
-    <div class="section-header">
-      <h2 class="white-text">Entrez en contact</h2>
-      <div class="white-text section-legend">Contact</div>
-    </div>
-    <!-- / END SECTION HEADER -->
-    <div class="row">
-      <div class="pirate_forms_wrap">
-        <form method="post" class="pirate_forms">
-          <div class="pirate_forms_three_inputs_wrap row">
-            <div
-              class="
-                col-sm-4 col-lg-4
-                form_field_wrap
-                contact_name_wrap
-                pirate_forms_three_inputs
-              "
-            >
-              <label for="pirate-forms-contact-name"></label>
-              <input
-                id="pirate-forms-contact-name"
-                class="form-control"
-                type="text"
-                placeholder="Nom"
-              />
-            </div>
-            <div
-              class="
-                col-sm-4 col-lg-4
-                form_field_wrap
-                contact_email_wrap
-                pirate_forms_three_inputs
-              "
-            >
-              <label for="pirate-forms-contact-email"></label>
-              <input class="form-control" type="email" placeholder="E-mail" />
-            </div>
-            <div
-              class="
-                col-sm-4 col-lg-4
-                form_field_wrap
-                contact_subject_wrap
-                pirate_forms_three_inputs
-              "
-            >
-              <label for="pirate-forms-contact-subject"></label>
-              <input class="form-control" type="text" placeholder="Objet" />
-            </div>
-          </div>
-          <div
-            class="
-              col-sm-12 col-lg-12
-              form_field_wrap
-              contact_message_wrap
-              mt-3
-            "
+      <div class="card-img-overlay">
+        <a href="/clubs" class="d-flex justify-content-end">'<<'Retour</a>
+        <h1 class="card-title text-center obliqu mt-5">
+          <b class="">{{ club?.nom! }}</b>
+        </h1>
+        <h2 class="card-title text-center fs-1 pt-5 text-uppercase mt-5">
+          BIENVENUE À {{ club?.nom! }}
+        </h2>
+        <h3 class="text-warning text-center fs-1 mt-5">
+          Salle de sport et de Fitness
+        </h3>
+        <div class="text-center">
+          <a class="btn btn-outline-warning w-25 mt-5 mx-3" (click)="salle()"
+            >LA SALLE</a
           >
-            <textarea class="form-control" placeholder="Message"></textarea>
-          </div>
-          <div
-            class="
-              mt-2
-              form_field_wrap
-              contact_submit_wrap
-              d-flex
-              justify-content-end
-            "
+          <a class="btn btn-outline-warning w-25 mt-5 mx-3" (click)="contact()"
+            >CONTACT</a
           >
-            <button class="btn btn-outline-dark" type="submit">
-              envoyer le message
-            </button>
-          </div>
-
-          <input
-            id="contact-referrer"
-            name="contact-referrer"
-            class="form-control"
-            type="hidden"
-            value="https://www.galaxygym.tn/"
-          />
-          <div class="form_field_wrap hidden" style="display: none">
-            <label for="form_honeypot">Leave blank to submit</label>
-            <input
-              id="form_honeypot"
-              name="honeypot"
-              class="form-control"
-              type="text"
-              value=""
-              placeholder=""
-            />
-          </div>
-          <input
-            id="wordpress-nonce"
-            name="wordpress-nonce"
-            class="form-control"
-            type="hidden"
-            value="e54db8244d"
-          />
-        </form>
-        <div class="pirate_forms_clearfix"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- horair -->
+  <div class="row horaire text-white">
+    <div class="col-sm-6 col-lg-6">
+      <h1 class="text-center">HORAIRES DE TRAVAIL</h1>
+      <div class="row">
+        <div class="col-sm-3 col-lg-3"></div>
+        <div class="row col-sm-4 col-lg-4">
+          <ul class="col-sm-8 col-lg-8">
+            <li>Lundi</li>
+            <li>Mardi</li>
+            <li>Mercredi</li>
+            <li>Jeudi</li>
+            <li>Vendredi</li>
+            <li>Samedi</li>
+            <li>Dimanche</li>
+          </ul>
+        </div>
+        <div class="row col-sm-4 col-lg-4">
+          <ul class="col-sm-8 col-lg-8 jour">
+            <li>07:00 - 21:00</li>
+            <li>07:00 - 21:00</li>
+            <li>07:00 - 21:00</li>
+            <li>07:00 - 21:00</li>
+            <li>07:00 - 21:00</li>
+            <li>08:00 - 16:00</li>
+            <li>08:00 - 16:00</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- cours -->
+    <!-- <div class="col-sm-6 col-lg-6 text-white text-center">
+      <h1 class="text-center">LES COURS</h1>
+      <div *ngFor="let cour of strCopy; let i = index">
+        <ul>
+          <li>{{ cour }}</li>
+        </ul>
+      </div>
+    </div> -->
+    <!-- forfait -->
+    <div>
+      <button
+        *ngIf="user.role == 'admin'"
+        class="btn btn-outline-warning w-100"
+        (click)="open(content)"
+      >
+        Les forfait
+      </button>
+      <div>
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h1 class="modal-title" id="modal-basic">Nos forfait</h1>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="forfaitForm">
+              <div class="form-group">
+                <div>
+                  <label>titre</label>
+                  <input
+                    formControlName="titre"
+                    class="form-control"
+                    type="text"
+                    ngbDatepicker
+                  />
+                </div>
+                <div>
+                  <label>prix</label>
+                  <input
+                    formControlName="prix"
+                    class="form-control"
+                    type="number"
+                    ngbDatepicker
+                  />
+                </div>
+                <div>
+                  <label for="dateOfBirth">periode</label>
+                  <input
+                    formControlName="période"
+                    class="form-control"
+                    type="number"
+                    ngbDatepicker
+                  />
+                </div>
+                <div>
+                  <label for="dateOfBirth">description</label>
+                  <input
+                    formControlName="description"
+                    class="form-control"
+                    type="text"
+                    ngbDatepicker
+                  />
+                </div>
+                <div>
+                  <label for="dateOfBirth">machine</label>
+                  <textarea
+                    formControlName="machine"
+                    class="form-control"
+                    type="text"
+                    ngbDatepicker
+                  ></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="testmodal()"
+            >
+              Save
+            </button>
+          </div>
+        </ng-template>
+      </div>
+      <div class="row d-flex p-3">
+        <div
+          class="bg-dark col-lg-3 col-sm-3 col-md-3"
+          *ngFor="let forfait of forfaits"
+        >
+          <h1>Nos forfait</h1>
+          <div class="mkd-price-table-inner">
+            <ul>
+              <li class="mkd-table-prices">
+                <div class="mkd-price-in-table">
+                  <h2>
+                    <span class="mkd-price-currency"
+                      ><sup class="">TND</sup>{{ forfait.prix }}</span
+                    >
+                  </h2>
+                </div>
+              </li>
+              <li class="mkd-pt-price-period">
+                <!-- <h2>
+                  <span
+                    class="mkd-pt-price-period-content"
+                    >{{forfait.période}}</span
+                  >
+                </h2> -->
+              </li>
+              <li class="mkd-table-title">
+                <h2 style="font-size: 19px" class="mkd-title-content">
+                  Abonnement
+                </h2>
+              </li>
+              <li class="mkd-table-content">
+                <ul>
+                  <li>
+                    <h3>Frais d’inscription : 35 TND</h3>
+                  </li>
+                  <li>
+                    <h3>
+                      Accès illimité à tous les cours sauf Pilates (Machines)
+                    </h3>
+                  </li>
+                  <li><h3>Prélèvement automatique</h3></li>
+                </ul>
 
-<app-footer></app-footer>
+                <ng-template #content2 let-modal>
+                  <div class="modal-header">
+                    <ul>
+                      <li>
+                        <h1 class="modal-title">Valider votre opperation</h1>
+                      </li>
+                      <li class="d-flex">
+                        <h4>nom :</h4>
+                        <p>{{ user.nom }} {{ user.prenom }}</p>
+                      </li>
+                      <li class="d-flex">
+                        <h4>Club</h4>
+                        <p>{{ club.nom }}</p>
+                      </li>
+                      <li class="d-flex">
+                        <h4>forfait</h4>
+                        <p>{{ user.nom }}</p>
+                      </li>
+                    </ul>
+
+                    <button
+                      type="button"
+                      class="close"
+                      aria-label="Close"
+                      (click)="modal.dismiss('Cross click')"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body"></div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-outline-dark"
+                      (click)="validation(user, forfait)"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </ng-template>
+                <button
+                  class="btn btn-outline-warning w-100"
+                  (click)="makePayment(user, forfait, content2, club)"
+                >
+                  Inscription
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="container">
+      <form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">
+        <div class="container d-flex my-2">
+          <input
+            type="text"
+            placeholder="Commentaire"
+            class="rounded-pill form-control border"
+            formControlName="commentaire"
+          />
+          <button class="btn btn-outline-primary">Envoyer</button>
+        </div>
+      </form>
+      <p>
+        <a
+          class="text-primary mx-4 fs-5"
+          (click)="collapse.toggle()"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample"
+        >
+          commentaire
+        </a>
+      </p>
+      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            <div *ngFor="let comment of commentaires; let k = index">
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                  <h1>{{ comment.nom }} {{ comment.prenom }}</h1>
+                  <p *ngIf="!commentaires[k].answered">
+                    {{ comment.commentaire }}
+                  </p>
+                  <form
+                    [formGroup]="modifForm"
+                    (ngSubmit)="envoyerModif(k)"
+                    *ngIf="commentaires[k].answered"
+                  >
+                    <div class="container d-flex">
+                      <input
+                        type="text"
+                        placeholder="Commentaire"
+                        class="rounded-pill form-control border"
+                        formControlName="commentaire"
+                      />
+                      <button class="btn btn-outline-primary">Envoyer</button>
+                    </div>
+                  </form>
+                  <div>
+                    <small>
+                      <a class="text-decoration-none" (click)="modifier(k)">
+                        <i class="bi bi-pencil-square"></i>Modifier</a
+                      ></small
+                    >
+                    <small>
+                      <a
+                        class="text-decoration-none text-danger"
+                        (click)="delete(comment._id)"
+                      >
+                        <i class="bi bi-trash-fill"></i>Supprimer</a
+                      ></small
+                    >
+                  </div>
+                </div>
+                <div class="col-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="white-text">Entrez en contact</h2>
+        <div class="white-text section-legend">Contact</div>
+      </div>
+      <div class="row">
+        <div class="pirate_forms_wrap">
+          <form
+            method="post"
+            class="pirate_forms"
+            [formGroup]="send"
+            (ngSubmit)="sendEmail()"
+          >
+            <div class="pirate_forms_three_inputs_wrap row">
+              <div
+                class="
+                  col-sm-12 col-lg-12
+                  form_field_wrap
+                  contact_subject_wrap
+                  pirate_forms_three_inputs
+                "
+              >
+                <label for="pirate-forms-contact-subject"></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Objet"
+                  formControlName="object"
+                />
+              </div>
+            </div>
+            <div
+              class="
+                col-sm-12 col-lg-12
+                form_field_wrap
+                contact_message_wrap
+                mt-3
+              "
+            >
+              <textarea
+                class="form-control"
+                placeholder="Message"
+                formControlName="message"
+              ></textarea>
+            </div>
+            <div
+              class="
+                mt-2
+                form_field_wrap
+                contact_submit_wrap
+                d-flex
+                justify-content-end
+              "
+            >
+              <button class="btn btn-outline-dark" type="submit">
+                envoyer le message
+              </button>
+            </div>
+          </form>
+          <div class="pirate_forms_clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex p-3 horaire">
+    <div class="container">
+      <h1
+        class="
+          mt-4
+          card-title
+          text-white text-uppercase
+          fs-1
+          d-flex
+          justify-content-center
+        "
+      >
+        <b>{{ club?.nom }}</b>
+      </h1>
+      <p class="text-white"><b>Info</b></p>
+      <a class="col-md-6 mt-5 text-white my-5" href="club.facebook! ">
+        <i class="bi bi-facebook"></i> {{ club?.facebook! }} </a
+      ><br />
+      <a
+        class="col-md-6 fw-light text-white my-5"
+        id="bbb"
+        href="{{ club.instagram! }}"
+      >
+        <i class="bi bi-instagram"></i> {{ club.instagram! }} </a
+      ><br />
+      <a class="col-md-6 text-white"
+        ><i class="bi bi-telephone"></i> {{ club.tel! }}</a
+      ><br />
+      <a class="col-md-6 .fs-6 text-white">
+        <i class="bi bi-geo-alt-fill"></i> {{ club.address! }} </a
+      ><br />
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Club } from '../modeles/clubModeles';
@@ -37,6 +37,7 @@ export class AddClubComponent implements OnInit {
       email: new FormControl(this.club.email),
       tel: new FormControl(this.club.tel),
       description: new FormControl(this.club.description),
+      cours: new FormArray([new FormControl('')]),
       images: new FormControl(null, { validators: [Validators.required] }),
     });
     if (this.id) {
@@ -70,6 +71,15 @@ export class AddClubComponent implements OnInit {
       }
     }
   }
+  addCour() {
+    this.cours.push(new FormControl('', [Validators.required]));
+  }
+  get cours() {
+    return this.clubForm.get('cours') as FormArray;
+  }
+  delete(i: number) {
+    this.cours.controls.splice(i, 1);
+  }
   add() {
     const newPub = this.clubForm.value;
     const upload = new FormData();
@@ -80,6 +90,7 @@ export class AddClubComponent implements OnInit {
     upload.append('instagram', newPub.instagram);
     upload.append('email', newPub.email);
     upload.append('tel', newPub.tel);
+    upload.append('cours', newPub.cours);
     if (this.selectedFiles) {
       for (let file of this.selectedFiles) {
         upload.append('images', file);

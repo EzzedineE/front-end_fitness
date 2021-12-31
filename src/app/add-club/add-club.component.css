@@ -1,6 +1,7 @@
 .body {
-  background-image: url(../../assets/images/add.jpg);
-  height: 700px;
+  background-image: url(../../assets/images/home.jpg);
+  background-size: cover;
+  background-attachment: fixed;
 }
 .form-control {
   width: 500px;
