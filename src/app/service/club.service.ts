@@ -37,4 +37,16 @@ export class ClubService {
   getForfait() {
     return this.http.get('http://localhost:3000/api/forfait/');
   }
+  abonnement(id: string, prix: any, condidat: any) {
+    return this.http.post(`http://localhost:3000/api/club/payment/${id}`, {
+      prix,
+      condidat,
+    });
+  }
+  addCour(id: string, body: any) {
+    return this.http.post(`http://localhost:3000/api/club/cours/${id}`, body);
+  }
+  getCour() {
+    return this.http.get(`http://localhost:3000/api/cours/cour`);
+  }
 }

@@ -25,9 +25,340 @@
   color: white;
   width: 70%;
 }
-.aaa {
+/* .aaa {
   background-color: rgba(255, 255, 255, 0.61);
-}
+} */
 .navbar {
   background-attachment: fixed;
+}
+.body1 {
+  background-color: rgba(8, 8, 8, 0.527);
+}
+.genre:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.vetement {
+  background-image: url(../../assets/images/vetement1.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+.produit {
+  background-image: url(../../assets/images/produit.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+.material {
+  background-image: url(../../assets/images/material2.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+.car {
+  background-color: rgba(250, 250, 250, 0.678);
+}
+html {
+  scroll-behavior: smooth;
+}
+.navbar {
+  overflow: hidden;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
+.menu {
+  color: black;
+}
+.menu:hover {
+  color: rgb(202, 41, 116);
+  text-decoration: none;
+}
+.btn-connect {
+  color: rgb(202, 41, 116);
+  border-color: rgb(202, 41, 116);
+}
+.btn-connect:hover {
+  color: white;
+  background-color: rgb(202, 41, 116);
+}
+.btn-insc {
+  color: white;
+  background-color: rgb(202, 41, 116);
+}
+.btn-insc:hover {
+  color: white;
+}
+.acceil {
+  background: url(../../assets/images/galleryy/14.jpg) center no-repeat;
+  height: 100vh;
+  background-size: cover;
+  padding-top: 300px;
+}
+.title {
+  color: white;
+}
+.btn-acceil {
+  color: rgb(202, 41, 116);
+  width: 200px;
+}
+.info {
+  background-color: rgb(202, 41, 116);
+  color: white;
+}
+.title-service {
+  background-color: rgb(202, 41, 116);
+  height: 100px;
+  color: white;
+}
+.img-service {
+  width: 100%;
+}
+.btn-service {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(202, 41, 116);
+  color: white;
+}
+.stat-service {
+  border-style: solid;
+  border-color: #000000 #f75454;
+  margin-top: -10px;
+}
+.a {
+  font-size: 0.75rem;
+  color: grey;
+}
+.contact {
+  width: 500px;
+}
+.input-contact {
+  width: 500px;
+}
+.btn-contact {
+  color: white;
+  background-color: rgb(202, 41, 116);
+}
+.menu-footer {
+  color: white;
+}
+.menu-footer:hover {
+  color: white;
+}
+.fab {
+  color: white;
+}
+
+.input-2 {
+  width: 100%;
+}
+.btn-con {
+  width: 100%;
+  background-color: rgb(202, 41, 116);
+  color: white;
+}
+.oublier {
+  color: black;
+}
+
+@media screen and (max-width: 842px) {
+  .title-service {
+    font-size: 30px;
+  }
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #131313;
+}
+
+.container {
+  position: relative;
+}
+
+.container .card {
+  /* position: relative; */
+  /* width: 320px; */
+  height: 450px;
+  background: #232323;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.container .card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #9bdc28;
+  clip-path: circle(150px at 80% 20%);
+  transition: 0.5s ease-in-out;
+}
+
+.container .card:hover:before {
+  clip-path: circle(300px at 80% -20%);
+}
+
+.container .card:after {
+  content: "Nike";
+  position: absolute;
+  top: 30%;
+  left: -20%;
+  font-size: 12em;
+  font-weight: 800;
+  font-style: italic;
+  color: rgba(255, 255, 25, 0.05);
+}
+
+.container .card .imgBx {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10000;
+  width: 100%;
+  height: 220px;
+  transition: 0.5s;
+}
+
+.container .card:hover .imgBx {
+  top: 0%;
+  transform: translateY(0%);
+}
+
+.container .card .imgBx img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  width: 270px;
+}
+
+.container .card .contentBx {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  transition: 1s;
+  z-index: 10;
+}
+
+.container .card:hover .contentBx {
+  height: 210px;
+}
+
+.container .card .contentBx h2 {
+  /* position: relative; */
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  margin: 0;
+}
+
+.container .card .contentBx .address,
+.container .card .contentBx .tel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.container .card:hover .contentBx .address {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.5s;
+}
+
+.container .card:hover .contentBx .tel {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.6s;
+}
+
+.container .card .contentBx .address h3,
+.container .card .contentBx .tel h3 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: 10px;
+}
+
+.container .card .contentBx .address span {
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  font-size: 14px;
+  display: inline-block;
+  color: #111;
+  background: #fff;
+  margin: 0 5px;
+  transition: 0.5s;
+  color: #111;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container .card .contentBx .address span:hover {
+  background: #9bdc28;
+}
+
+.container .card .contentBx .tel span {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.container .card .contentBx .tel span:nth-child(2) {
+  background: #9bdc28;
+}
+
+.container .card .contentBx .tel span:nth-child(3) {
+  background: #03a9f4;
+}
+
+.container .card .contentBx .tel span:nth-child(4) {
+  background: #e91e63;
+}
+
+.container .card .contentBx a {
+  /* display: inline-block; */
+  padding: 10px 20px;
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #111;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 0.5s;
+  margin-top: 0;
+}
+
+.container .card:hover .contentBx a {
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: 0.75s;
 }

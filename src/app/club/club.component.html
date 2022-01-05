@@ -1,431 +1,489 @@
 <div class="body1">
   <app-header></app-header>
   <div class="body">
-    <div class="card bg-dark text-white">
-      <div class="container">
-        <img
-          src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
-          class="w-100"
-          height="500"
-        />
-        <div class="text">
-          <div class="container mt-2">
+    <div>
+      <div class="bg-dark text-white">
+        <div class="p-5 m-5">
+          <div class="d-flex justify-content-end">
+            <a class="a" href="/clubs"><span>Retour</span> </a>
+          </div>
+          <h1 class="card-title text-center obliqu mt-5">
+            <b class="">{{ club?.nom! }}</b>
+          </h1>
+          <h2 class="card-title text-center fs-1 pt-5 text-uppercase mt-5">
+            BIENVENUE À {{ club?.nom! }}
+          </h2>
+          <h3 class="text-warning text-center fs-1 mt-5">
+            Salle de sport et de Fitness
+          </h3>
+          <div>
+            <button
+              *ngIf="user.role == 'admin'"
+              class="btn btn-outline-warning w-100 container"
+              (click)="open(content)"
+            >
+              Les forfait
+            </button>
             <div>
-              {{ club.description }}
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h1 class="modal-title" id="modal-basic">Nos forfait</h1>
+                  <button
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="forfaitForm">
+                    <div class="form-group">
+                      <div>
+                        <label>titre</label>
+                        <input
+                          formControlName="titre"
+                          class="form-control"
+                          type="text"
+                          ngbDatepicker
+                        />
+                      </div>
+                      <div>
+                        <label>prix</label>
+                        <input
+                          formControlName="prix"
+                          class="form-control"
+                          type="number"
+                          ngbDatepicker
+                        />
+                      </div>
+                      <div>
+                        <label for="dateOfBirth">periode</label>
+                        <input
+                          formControlName="période"
+                          class="form-control"
+                          type="number"
+                          ngbDatepicker
+                        />
+                      </div>
+                      <div>
+                        <label for="dateOfBirth">description</label>
+                        <input
+                          formControlName="description"
+                          class="form-control"
+                          type="text"
+                          ngbDatepicker
+                        />
+                      </div>
+                      <div>
+                        <label for="dateOfBirth">machine</label>
+                        <textarea
+                          formControlName="machine"
+                          class="form-control"
+                          type="text"
+                          ngbDatepicker
+                        ></textarea>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    (click)="testmodal()"
+                  >
+                    Save
+                  </button>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>
       </div>
-      <div class="card-img-overlay">
-        <a href="/clubs" class="d-flex justify-content-end">'<<'Retour</a>
-        <h1 class="card-title text-center obliqu mt-5">
-          <b class="">{{ club?.nom! }}</b>
-        </h1>
-        <h2 class="card-title text-center fs-1 pt-5 text-uppercase mt-5">
-          BIENVENUE À {{ club?.nom! }}
-        </h2>
-        <h3 class="text-warning text-center fs-1 mt-5">
-          Salle de sport et de Fitness
-        </h3>
-        <div class="text-center">
-          <a class="btn btn-outline-warning w-25 mt-5 mx-3" (click)="salle()"
-            >LA SALLE</a
-          >
-          <a class="btn btn-outline-warning w-25 mt-5 mx-3" (click)="contact()"
-            >CONTACT</a
-          >
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- horair -->
-  <div class="row horaire text-white">
-    <div class="col-sm-6 col-lg-6">
-      <h1 class="text-center">HORAIRES DE TRAVAIL</h1>
-      <div class="row">
-        <div class="col-sm-3 col-lg-3"></div>
-        <div class="row col-sm-4 col-lg-4">
-          <ul class="col-sm-8 col-lg-8">
-            <li>Lundi</li>
-            <li>Mardi</li>
-            <li>Mercredi</li>
-            <li>Jeudi</li>
-            <li>Vendredi</li>
-            <li>Samedi</li>
-            <li>Dimanche</li>
-          </ul>
-        </div>
-        <div class="row col-sm-4 col-lg-4">
-          <ul class="col-sm-8 col-lg-8 jour">
-            <li>07:00 - 21:00</li>
-            <li>07:00 - 21:00</li>
-            <li>07:00 - 21:00</li>
-            <li>07:00 - 21:00</li>
-            <li>07:00 - 21:00</li>
-            <li>08:00 - 16:00</li>
-            <li>08:00 - 16:00</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- cours -->
-    <!-- <div class="col-sm-6 col-lg-6 text-white text-center">
-      <h1 class="text-center">LES COURS</h1>
-      <div *ngFor="let cour of strCopy; let i = index">
-        <ul>
-          <li>{{ cour }}</li>
-        </ul>
-      </div>
-    </div> -->
-    <!-- forfait -->
-    <div>
-      <button
-        *ngIf="user.role == 'admin'"
-        class="btn btn-outline-warning w-100"
-        (click)="open(content)"
+    <!-- images -->
+    <div class="text-center w-100">
+      <ngb-carousel
+        #carousel
+        [interval]="3000"
+        [pauseOnHover]="pauseOnHover"
+        [pauseOnFocus]="pauseOnFocus"
+        (slide)="onSlide($event)"
       >
-        Les forfait
-      </button>
-      <div>
-        <ng-template #content let-modal>
-          <div class="modal-header">
-            <h1 class="modal-title" id="modal-basic">Nos forfait</h1>
-            <button
-              type="button"
-              class="close"
-              aria-label="Close"
-              (click)="modal.dismiss('Cross click')"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form [formGroup]="forfaitForm">
-              <div class="form-group">
-                <div>
-                  <label>titre</label>
-                  <input
-                    formControlName="titre"
-                    class="form-control"
-                    type="text"
-                    ngbDatepicker
-                  />
-                </div>
-                <div>
-                  <label>prix</label>
-                  <input
-                    formControlName="prix"
-                    class="form-control"
-                    type="number"
-                    ngbDatepicker
-                  />
-                </div>
-                <div>
-                  <label for="dateOfBirth">periode</label>
-                  <input
-                    formControlName="période"
-                    class="form-control"
-                    type="number"
-                    ngbDatepicker
-                  />
-                </div>
-                <div>
-                  <label for="dateOfBirth">description</label>
-                  <input
-                    formControlName="description"
-                    class="form-control"
-                    type="text"
-                    ngbDatepicker
-                  />
-                </div>
-                <div>
-                  <label for="dateOfBirth">machine</label>
-                  <textarea
-                    formControlName="machine"
-                    class="form-control"
-                    type="text"
-                    ngbDatepicker
-                  ></textarea>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-dark"
-              (click)="testmodal()"
-            >
-              Save
-            </button>
-          </div>
-        </ng-template>
-      </div>
-      <div class="row d-flex p-3">
-        <div
-          class="bg-dark col-lg-3 col-sm-3 col-md-3"
-          *ngFor="let forfait of forfaits"
+        <ng-template
+          ngbSlide
+          *ngFor="let img of club?.images; index as i"
+          class="d-flex justify-content-center w-100"
         >
-          <h1>Nos forfait</h1>
-          <div class="mkd-price-table-inner">
-            <ul>
-              <li class="mkd-table-prices">
-                <div class="mkd-price-in-table">
-                  <h2>
-                    <span class="mkd-price-currency"
-                      ><sup class="">TND</sup>{{ forfait.prix }}</span
-                    >
-                  </h2>
-                </div>
-              </li>
-              <li class="mkd-pt-price-period">
-                <!-- <h2>
+          <a
+            href="http://localhost:3000/static/{{ img }}"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
+            <div class="picsum-img-wrapper">
+              <img
+                src="{{ 'http://localhost:3000/static/' + img }}"
+                height="500"
+                class="container w-100"
+              />
+            </div>
+          </a>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="container">
+      <h2 class="text-center">Ajout cours</h2>
+      <form [formGroup]="formCour" (ngSubmit)="addCour()" class="row">
+        <div class="col-6">
+          <label class="text-white"> Titre</label><br />
+          <input
+            type="text"
+            placeholder="Titre"
+            class="form-control"
+            formControlName="titre"
+          />
+        </div>
+        <div class="col-6">
+          <label class="text-white">Jour</label><br />
+          <input
+            type="text"
+            placeholder="Jour"
+            class="form-control"
+            formControlName="date"
+          />
+        </div>
+        <div class="col-6">
+          <label class="text-white">Heure</label><br />
+          <input
+            type="text"
+            placeholder="Heure"
+            class="form-control"
+            formControlName="heure"
+          />
+        </div>
+        <div class="col-6">
+          <label class="text-white">Description</label><br />
+          <input
+            type="text"
+            placeholder="Description"
+            class="form-control"
+            formControlName="description"
+          />
+        </div>
+
+        <button class="btn btn-outline-warning w-100 mt-4">Ajouter</button>
+      </form>
+    </div>
+    <!-- horair -->
+    <section class="pt-3 bg-dark">
+      <div class="row horaire container text-start">
+        <div class="col-md-6 col-sm-12 col-lg-6">
+          <h1 class="container text-start">HORAIRES DE TRAVAIL</h1>
+
+          <ul class="jour">
+            <li>Lundi {{ club?.toutJour }}</li>
+            <li>Mardi {{ club?.toutJour }}</li>
+            <li>Mercredi {{ club?.toutJour }}</li>
+            <li>Jeudi {{ club?.toutJour }}</li>
+            <li>Vendredi {{ club?.toutJour }}</li>
+            <li>Samedi {{ club?.weekend }}</li>
+            <li>Dimanche {{ club?.weekend }}</li>
+          </ul>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-lg-6">
+          <h1 class="container text-start">planing</h1>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col-1">lundi</th>
+                <th scope="col-1">mardi</th>
+                <th scope="col-1">Mercredi</th>
+                <th scope="col-1">Jeudi</th>
+                <th scope="col-1">Vendredi</th>
+                <th scope="col-1">Samedi</th>
+                <th scope="col-1">Dimanche</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let obj of club?.cours; index as m">
+                <td *ngIf="obj?.date == 'lundi'">
+                  {{ obj?.titre }}{{ obj?.heure }}
+                </td>
+                <td *ngIf="obj?.date == 'mardi'">
+                  {{ obj?.titre }}{{ obj?.heure }}
+                </td>
+                <td *ngIf="obj?.date == 'mercredi'">
+                  {{ obj?.titre }}{{ obj?.heure }}
+                </td>
+                <td *ngIf="obj?.date == 'jeudi'">
+                  {{ obj?.titre }}{{ obj?.heure }}
+                </td>
+                <td *ngIf="obj?.date == 'vendredi'">
+                  {{ obj?.titre }}{{ obj?.heure }}
+                </td>
+                <td *ngIf="obj?.date == 'samedi'">
+                  {{ obj.titre }}{{ obj?.heure }}
+                </td>
+                <td *ngIf="obj?.date == 'dimanche'">
+                  {{ obj.titre }}{{ obj.heure }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section></section>
+    <div>
+      <div class="text-white">
+        <div class="row d-flex p-3" *ngIf="date > dateINS">
+          <div
+            class="bg-dark col-lg-3 col-sm-3 col-md-3"
+            *ngFor="let forfait of forfaits"
+          >
+            <h1>Nos forfait</h1>
+            <div class="mkd-price-table-inner">
+              <ul>
+                <li class="mkd-table-prices">
+                  <div class="mkd-price-in-table">
+                    <h2>
+                      <span class="mkd-price-currency"
+                        ><sup class="">TND</sup>{{ forfait.prix }}
+                      </span>
+                    </h2>
+                  </div>
+                </li>
+                <li class="mkd-pt-price-period">
+                  <!-- <h2>
                   <span
                     class="mkd-pt-price-period-content"
                     >{{forfait.période}}</span
                   >
                 </h2> -->
-              </li>
-              <li class="mkd-table-title">
-                <h2 style="font-size: 19px" class="mkd-title-content">
-                  Abonnement
-                </h2>
-              </li>
-              <li class="mkd-table-content">
-                <ul>
-                  <li>
-                    <h3>Frais d’inscription : 35 TND</h3>
-                  </li>
-                  <li>
-                    <h3>
-                      Accès illimité à tous les cours sauf Pilates (Machines)
-                    </h3>
-                  </li>
-                  <li><h3>Prélèvement automatique</h3></li>
-                </ul>
+                </li>
+                <li class="mkd-table-title">
+                  <h2 style="font-size: 19px" class="mkd-title-content">
+                    Abonnement
+                  </h2>
+                </li>
+                <li class="mkd-table-content">
+                  <ul>
+                    <li>
+                      <h3>Frais d’inscription : 35 TND</h3>
+                    </li>
+                    <li>
+                      <h3>
+                        Accès illimité à tous les cours sauf Pilates (Machines)
+                      </h3>
+                    </li>
+                    <li><h3>Prélèvement automatique</h3></li>
+                  </ul>
 
-                <ng-template #content2 let-modal>
-                  <div class="modal-header">
-                    <ul>
-                      <li>
-                        <h1 class="modal-title">Valider votre opperation</h1>
-                      </li>
-                      <li class="d-flex">
-                        <h4>nom :</h4>
-                        <p>{{ user.nom }} {{ user.prenom }}</p>
-                      </li>
-                      <li class="d-flex">
-                        <h4>Club</h4>
-                        <p>{{ club.nom }}</p>
-                      </li>
-                      <li class="d-flex">
-                        <h4>forfait</h4>
-                        <p>{{ user.nom }}</p>
-                      </li>
-                    </ul>
+                  <ng-template #content2 let-modal>
+                    <div class="modal-header">
+                      <ul>
+                        <li>
+                          <h1 class="modal-title">Valider votre opperation</h1>
+                        </li>
+                        <li class="d-flex">
+                          <h4>nom :</h4>
+                          <p>{{ user.nom }} {{ user.prenom }}</p>
+                        </li>
+                        <li class="d-flex">
+                          <h4>Club</h4>
+                          <p>{{ club?.nom }}</p>
+                        </li>
+                        <li class="d-flex">
+                          <h4>forfait</h4>
+                          <p>{{ user.nom }}</p>
+                        </li>
+                      </ul>
 
-                    <button
-                      type="button"
-                      class="close"
-                      aria-label="Close"
-                      (click)="modal.dismiss('Cross click')"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body"></div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-outline-dark"
-                      (click)="validation(user, forfait)"
-                    >
-                      Save
-                    </button>
-                  </div>
-                </ng-template>
-                <button
-                  class="btn btn-outline-warning w-100"
-                  (click)="makePayment(user, forfait, content2, club)"
-                >
-                  Inscription
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="container">
-      <form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">
-        <div class="container d-flex my-2">
-          <input
-            type="text"
-            placeholder="Commentaire"
-            class="rounded-pill form-control border"
-            formControlName="commentaire"
-          />
-          <button class="btn btn-outline-primary">Envoyer</button>
-        </div>
-      </form>
-      <p>
-        <a
-          class="text-primary mx-4 fs-5"
-          (click)="collapse.toggle()"
-          [attr.aria-expanded]="!isCollapsed"
-          aria-controls="collapseExample"
-        >
-          commentaire
-        </a>
-      </p>
-      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-        <div class="card">
-          <div class="card-body">
-            <div *ngFor="let comment of commentaires; let k = index">
-              <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                  <h1>{{ comment.nom }} {{ comment.prenom }}</h1>
-                  <p *ngIf="!commentaires[k].answered">
-                    {{ comment.commentaire }}
-                  </p>
-                  <form
-                    [formGroup]="modifForm"
-                    (ngSubmit)="envoyerModif(k)"
-                    *ngIf="commentaires[k].answered"
-                  >
-                    <div class="container d-flex">
-                      <input
-                        type="text"
-                        placeholder="Commentaire"
-                        class="rounded-pill form-control border"
-                        formControlName="commentaire"
-                      />
-                      <button class="btn btn-outline-primary">Envoyer</button>
-                    </div>
-                  </form>
-                  <div>
-                    <small>
-                      <a class="text-decoration-none" (click)="modifier(k)">
-                        <i class="bi bi-pencil-square"></i>Modifier</a
-                      ></small
-                    >
-                    <small>
-                      <a
-                        class="text-decoration-none text-danger"
-                        (click)="delete(comment._id)"
+                      <button
+                        type="button"
+                        class="close"
+                        aria-label="Close"
+                        (click)="modal.dismiss('Cross click')"
                       >
-                        <i class="bi bi-trash-fill"></i>Supprimer</a
-                      ></small
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-outline-dark"
+                        (click)="validation(user, forfait)"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </ng-template>
+                  <button
+                    class="btn btn-outline-warning w-100"
+                    (click)="makePayment(user, forfait, content2, club)"
+                  >
+                    Inscription
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">
+          <div class="container d-flex my-2">
+            <input
+              type="text"
+              placeholder="Commentaire"
+              class="rounded-pill form-control border"
+              formControlName="commentaire"
+            />
+            <button class="btn btn-outline-warning rounded-pill">
+              Envoyer
+            </button>
+          </div>
+        </form>
+        <p>
+          <a
+            class="text-warning mx-4 fs-5"
+            (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+          >
+            commentaire
+          </a>
+        </p>
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+          <div class="card">
+            <div class="card-body">
+              <div *ngFor="let comment of commentaires; let k = index">
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <h1>{{ comment.nom }} {{ comment.prenom }}</h1>
+                    <p *ngIf="!commentaires[k].answered">
+                      {{ comment.commentaire }}
+                    </p>
+                    <form
+                      [formGroup]="modifForm"
+                      (ngSubmit)="envoyerModif(k)"
+                      *ngIf="commentaires[k].answered"
                     >
+                      <div class="container d-flex">
+                        <input
+                          type="text"
+                          placeholder="Commentaire"
+                          class="rounded-pill form-control border"
+                          formControlName="commentaire"
+                        />
+                        <button class="btn btn-outline-warning">Envoyer</button>
+                      </div>
+                    </form>
+                    <div>
+                      <small>
+                        <a class="text-decoration-none" (click)="modifier(k)">
+                          <i class="bi bi-pencil-square"></i>Modifier</a
+                        ></small
+                      >
+                      <small>
+                        <a
+                          class="text-decoration-none text-danger"
+                          (click)="delete(comment._id)"
+                        >
+                          <i class="bi bi-trash-fill"></i>Supprimer</a
+                        ></small
+                      >
+                    </div>
                   </div>
+                  <div class="col-2"></div>
                 </div>
-                <div class="col-2"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="bg">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="white-text">Entrez en contact</h2>
-        <div class="white-text section-legend">Contact</div>
-      </div>
-      <div class="row">
-        <div class="pirate_forms_wrap">
-          <form
-            method="post"
-            class="pirate_forms"
-            [formGroup]="send"
-            (ngSubmit)="sendEmail()"
-          >
-            <div class="pirate_forms_three_inputs_wrap row">
-              <div
-                class="
-                  col-sm-12 col-lg-12
-                  form_field_wrap
-                  contact_subject_wrap
-                  pirate_forms_three_inputs
-                "
-              >
-                <label for="pirate-forms-contact-subject"></label>
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Objet"
-                  formControlName="object"
-                />
+    <div class="bg">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="text-white">Entrez en contact</h2>
+          <div class="text-white section-legend">Contact</div>
+        </div>
+        <div class="row">
+          <div class="pirate_forms_wrap">
+            <form
+              method="post"
+              class="pirate_forms"
+              [formGroup]="send"
+              (ngSubmit)="sendEmail()"
+            >
+              <div class="pirate_forms_three_inputs_wrap row">
+                <div
+                  class="col-sm-12 col-lg-12 form_field_wrap contact_subject_wrap pirate_forms_three_inputs"
+                >
+                  <label for="pirate-forms-contact-subject"></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Objet"
+                    formControlName="object"
+                  />
+                </div>
               </div>
-            </div>
-            <div
-              class="
-                col-sm-12 col-lg-12
-                form_field_wrap
-                contact_message_wrap
-                mt-3
-              "
-            >
-              <textarea
-                class="form-control"
-                placeholder="Message"
-                formControlName="message"
-              ></textarea>
-            </div>
-            <div
-              class="
-                mt-2
-                form_field_wrap
-                contact_submit_wrap
-                d-flex
-                justify-content-end
-              "
-            >
-              <button class="btn btn-outline-dark" type="submit">
-                envoyer le message
-              </button>
-            </div>
-          </form>
-          <div class="pirate_forms_clearfix"></div>
+              <div
+                class="col-sm-12 col-lg-12 form_field_wrap contact_message_wrap mt-3"
+              >
+                <textarea
+                  class="form-control"
+                  placeholder="Message"
+                  formControlName="message"
+                ></textarea>
+              </div>
+              <div
+                class="mt-2 form_field_wrap contact_submit_wrap d-flex justify-content-end"
+              >
+                <button class="btn btn-outline-dark" type="submit">
+                  envoyer le message
+                </button>
+              </div>
+            </form>
+            <div class="pirate_forms_clearfix"></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="d-flex p-3 horaire">
-    <div class="container">
-      <h1
-        class="
-          mt-4
-          card-title
-          text-white text-uppercase
-          fs-1
-          d-flex
-          justify-content-center
-        "
-      >
-        <b>{{ club?.nom }}</b>
-      </h1>
-      <p class="text-white"><b>Info</b></p>
-      <a class="col-md-6 mt-5 text-white my-5" href="club.facebook! ">
-        <i class="bi bi-facebook"></i> {{ club?.facebook! }} </a
-      ><br />
-      <a
-        class="col-md-6 fw-light text-white my-5"
-        id="bbb"
-        href="{{ club.instagram! }}"
-      >
-        <i class="bi bi-instagram"></i> {{ club.instagram! }} </a
-      ><br />
-      <a class="col-md-6 text-white"
-        ><i class="bi bi-telephone"></i> {{ club.tel! }}</a
-      ><br />
-      <a class="col-md-6 .fs-6 text-white">
-        <i class="bi bi-geo-alt-fill"></i> {{ club.address! }} </a
-      ><br />
+    <div class="d-flex p-3 horaire">
+      <div class="container">
+        <h1
+          class="mt-4 card-title text-white text-uppercase fs-1 d-flex justify-content-center"
+        >
+          <b>{{ club?.nom }}</b>
+        </h1>
+        <p class="text-white"><b>Info</b></p>
+        <a class="col-md-6 mt-5 text-white my-5" href="club?.facebook! ">
+          <i class="bi bi-facebook"></i> {{ club?.facebook! }} </a
+        ><br />
+        <a
+          class="col-md-6 fw-light text-white my-5"
+          id="bbb"
+          href="{{ club?.instagram! }}"
+        >
+          <i class="bi bi-instagram"></i> {{ club?.instagram! }} </a
+        ><br />
+        <a class="col-md-6 text-white"
+          ><i class="bi bi-telephone"></i> {{ club?.tel! }}</a
+        ><br />
+        <a class="col-md-6 .fs-6 text-white">
+          <i class="bi bi-geo-alt-fill"></i> {{ club?.address! }} </a
+        ><br />
+      </div>
     </div>
   </div>
 

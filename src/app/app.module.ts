@@ -23,6 +23,7 @@ import { ProduitComponent } from './produit/produit.component';
 import { AddProduitComponent } from './add-produit/add-produit.component';
 import { RouterModule } from '@angular/router';
 import { CategoriePipe } from './pipes/categorie.pipe';
+import { TestTemplateComponent } from './test-template/test-template.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CategoriePipe } from './pipes/categorie.pipe';
     ProduitComponent,
     AddProduitComponent,
     CategoriePipe,
+    TestTemplateComponent,
   ],
   imports: [
     RouterModule,

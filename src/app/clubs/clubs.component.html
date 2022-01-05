@@ -1,9 +1,43 @@
 <app-header></app-header>
-<div class="container aaa">
-  <img src="../../assets/images/img2.webp" class="w-100" />
-  <div class="text">
-    <h1>Top salles de sport</h1>
-    <p class="d-flex justify-content-start">
+<app-header></app-header>
+<div class="section-navbar"></div>
+
+<div class="text-center acceil col-md" id="acceil-1">
+  <h2 class="title mb-5">Achetez vos produits avec le chariot intelligent</h2>
+  <a
+    class="btn btn-light btn-acceil"
+    aria-current="page"
+    href="/add-club"
+    *ngIf="user.role == 'admin'"
+    >Ajouter une salle</a
+  >
+</div>
+<!-- end section acceil -->
+<!-- begin section  a propos-->
+<div class="Apropos container-fluid" id="Apropos-1">
+  <div class="text my-5 text-center">
+    <h1>A propos Fitness</h1>
+  </div>
+  <div class="row d-flex justify-content-evenly">
+    <img
+      class="col-md-2 img-apropos mx-5 rounded-circle"
+      src="../../assets/images/cardio.png"
+      alt=""
+    />
+    <img
+      class="col-md-2 img-apropos mx-5 rounded-circle"
+      src="../../assets/images/fitness.jpg"
+      alt=""
+    />
+    <img
+      class="col-md-2 img-apropos mx-5 rounded-circle"
+      src="../../assets/images/images.jpg"
+      alt=""
+    />
+  </div>
+  <div class="container text-center">
+    <p>
+      Il s'agit d'un chariot intelligent a ecran integre dedie pour les clients
       Beaucoup de Perssone sautent le pas et veulent pratiquer une activité
       sportive, pour se sentir bien moralement et physiquement. Cependant, il
       est difficile de faire son choix avec les nombreuses salles de sport qui
@@ -11,8 +45,6 @@
       des concepts innovants, des disciplines originales, des prix attractifs,
       etc. de quoi trouver son bonheur.
     </p>
-  </div>
-  <div class="aaa">
     <p>
       Que vous soyez un grand ou petit sportif, la plupart des salles de sport
       ne nécessitent pas une condition physique particulière.
@@ -35,122 +67,154 @@
       de musculation, gym, pilates, zumba, boxe, crossfit, yoga, piscine, sauna,
       hammam, etc.
     </p>
-    <p>
-      Nous vous proposons différents classements pour trouver votre salle de
-      sport en prenant en compte :
-    </p>
-    <ul>
-      <li>le prix</li>
-      <li>les horaires</li>
-      <li>les activités</li>
-    </ul>
-    <h2>Quelle est la meilleure salle de sport ?</h2>
-    <p>
-      Nous vous proposons un classement indicatif de plusieurs types de salles
-      de sports et pour tous les sportifs : les low-cost, les high-tech, les
-      contemporaines, etc. En effet, la meilleure salle de sport pour vous doit
-      être ouverte à vos heures de disponibilité, être près de chez vous, avoir
-      un prix cohérent avec votre budget et disposer des activités que vous
-      souhaitez exercer.
-    </p>
+  </div>
+
+  <div class="container-fluid my-5">
+    <div class="row justify-content-md-center">
+      <div class="col-md-2 text-center border info">
+        <img src="../../assets/images/fitness1.jpg" alt="" class="w-100 h-75" />
+
+        <p>Cardio</p>
+      </div>
+      <div class="col-md-2 text-center border info mx-2">
+        <img
+          class="col-md-2 img-apropos mx-5"
+          src="../../assets/images/fitness2.jpg"
+          alt=""
+          class="w-100 h-75"
+        />
+        <p>Fitness</p>
+      </div>
+      <div class="col-md-2 text-center border info mx-2">
+        <img
+          class="col-md-2 img-apropos mx-5"
+          src="../../assets/images/musculation.jpg"
+          alt=""
+          class="w-100 h-75"
+        />
+        <p>Musculation</p>
+      </div>
+      <div class="col-md-2 text-center border info mx-2">
+        <img
+          class="col-md-2 img-apropos mx-5"
+          src="../../assets/images/boxing.jpg"
+          alt=""
+          class="w-100 h-75"
+        />
+        <p>Boxing</p>
+      </div>
+    </div>
   </div>
 </div>
-<div class="body">
-  <div class="row d-flex justify-content-center">
-    <div class="aaa">
-      <div class="d-flex justify-content-center container m-5">
-        <input
-          type="text"
-          placeholder="Rechercher"
-          class="rounded-pill form-control border"
-          [(ngModel)]="rechercher"
-        />
-      </div>
-
-      <a
-        class="btn btn-outline-warning w-100 mt-4"
-        aria-current="page"
-        href="/add-club"
-        *ngIf="user.role == 'admin'"
-      >
-        Ajouter une salle
-      </a>
+<!-- end section  a propos-->
+<div class="d-flex justify-content-center container m-5">
+  <input
+    type="text"
+    placeholder="Rechercher"
+    class="rounded-pill form-control border"
+    [(ngModel)]="rechercher"
+  />
+</div>
+<div class="d-flex justify-content-center">
+  <div *ngIf="!charger; else listClubs">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
+  </div>
 
-    <div *ngIf="!charger; else listClubs">
-      <div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-    <ng-template #listClubs>
+  <ng-template #listClubs>
+    <div class="container row">
       <div
-        class="row d-flex"
-        *ngFor="let club of clubs | filter: rechercher; let i = index"
+        *ngFor="let club of clubs; let i = index"
+        class="col-md-4 col-sm-4 my-3"
       >
-        <div class="col-sm-3 col-sm-3"></div>
-        <div class="col-sm-6 col-sm-6">
-          <div class="d-flex p-3 text-white">
-            <img
-              onClick="totop()"
-              [routerLink]="['/club', club._id]"
-              src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
-              class="rounded-circle"
-              height="50"
-              width="50"
-            />
-            <h2 class="fs-1 text-white">{{ club.nom! }}</h2>
+        <div class="card">
+          <div class="imgBx">
+            <img src="{{ 'http://localhost:3000/static/' + club.images[0] }}" />
           </div>
-          <div>
-            <a
-              ><img
-                [routerLink]="['/club', club._id]"
-                src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
-                class="w-100"
-                height="500"
-            /></a>
-            <div class="border text-white">{{ club?.description! }}</div>
-          </div>
-          <div class="text-white">
-            <p>{{ club?.likes }} Perssone ont aimez cette club</p>
-            <small
-              class="border px-5 rounded-pill d-flex justify-content-between"
-            >
-              <a
-                class="text-decoration-none text-primary"
-                (click)="like(club._id)"
-                *ngIf="!userConect?.mylikes.includes(club?._id)"
-                ><i class="bi bi-hand-thumbs-up-fill"></i> J'aime</a
-              >
-              <a
-                class="text-decoration-none text-primary"
-                (click)="dislike(club._id)"
-                *ngIf="userConect?.mylikes.includes(club?._id)"
-                ><i class="bi bi-hand-thumbs-down-fill"></i>Je n'aime plus</a
-              >
+          <div class="contentBx">
+            <h2>{{ club.nom }}</h2>
+            <div class="address">
+              <h3>Address: {{ club.address }}</h3>
+            </div>
+            <div class="tel">
+              <h3>{{ club?.likes }} Perssone ont aimez cette club</h3>
+            </div>
 
-              <a
-                class="text-decoration-none"
-                [routerLink]="['/add-club', club._id]"
-                *ngIf="user.role == 'admin'"
-              >
-                <i class="bi bi-pencil-square"></i>Modifier</a
-              >
-              <a
-                class="text-decoration-none text-danger"
-                (click)="delete(club._id)"
-                *ngIf="user.role == 'admin'"
-              >
-                <i class="bi bi-trash-fill"></i>Supprimer</a
-              ></small
-            >
+            <a [routerLink]="['/club', club._id]">Voire plus</a>
           </div>
-          <hr />
         </div>
 
-        <div class="col-sm-3 col-sm-3"></div>
+        <p class="d-flex justify-content-center">
+          <a
+            class="text-decoration-none text-dark mx-3"
+            (click)="like(club._id)"
+            *ngIf="!userConect?.mylikes.includes(club?._id)"
+            ><i class="bi bi-hand-thumbs-up-fill"></i> J'aime</a
+          >
+          <a
+            class="text-decoration-none text-dark mx-3"
+            (click)="dislike(club._id)"
+            *ngIf="userConect?.mylikes.includes(club?._id)"
+            ><i class="bi bi-hand-thumbs-down-fill"></i>Je n'aime plus</a
+          >
+
+          <a
+            class="text-decoration-none text-dark mx-3"
+            [routerLink]="['/add-club', club._id]"
+            *ngIf="user.role == 'admin'"
+          >
+            <i class="bi bi-pencil-square"></i>Modifier</a
+          >
+          <a
+            class="text-decoration-none text-dark mx-3"
+            (click)="delete(club._id)"
+            *ngIf="user.role == 'admin'"
+          >
+            <i class="bi bi-trash-fill"></i>Supprimer</a
+          >
+        </p>
       </div>
-    </ng-template>
-  </div>
+    </div>
+  </ng-template>
 </div>
 
-<app-footer></app-footer>
+<div class="d-flex justify-content-center bg-light mt-4" id="connect-1">
+  <div class="contact p-4 my-5">
+    <h3 class="text-center">Conectez Nous</h3>
+    <form
+      method="post"
+      class="pirate_forms"
+      [formGroup]="send"
+      (ngSubmit)="sendEmail()"
+    >
+      <div class="pirate_forms_three_inputs_wrap row">
+        <div
+          class="col-sm-12 col-lg-12 form_field_wrap contact_subject_wrap pirate_forms_three_inputs"
+        >
+          <label for="pirate-forms-contact-subject"></label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Objet"
+            formControlName="object"
+          />
+        </div>
+        <div
+          class="col-sm-12 col-lg-12 form_field_wrap contact_message_wrap mt-3"
+        >
+          <textarea
+            class="form-control"
+            placeholder="Message"
+            formControlName="message"
+          ></textarea>
+        </div>
+      </div>
+      <button class="btn btn-contact" type="submit">envyer</button>
+    </form>
+  </div>
+</div>
+<!-- end contact -->
+<!-- begin footer -->
+
+<app-footer></app-footer> -->

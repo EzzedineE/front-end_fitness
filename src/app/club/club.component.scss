@@ -1,0 +1,74 @@
+.obliqu {
+  font-family: Brush Script MT, Brush Script Std, cursive;
+  font-size: 10rem;
+}
+/* .bg {
+  background-color: rgba(8, 8, 8, 0.527);
+}
+.horaire {
+  background-color: rgba(8, 8, 8, 0.527);
+} */
+.jour {
+  list-style: none;
+}
+/* .body1 {
+  background-image: url(../../assets/images/img2.webp);
+  background-attachment: fixed;
+  background-size: cover;
+} */
+/* .body {
+  background-color: rgba(8, 8, 8, 0.527);
+} */
+/* .an-2 {
+  font-weight: 900;
+  font-size: 7vw;
+} */
+.input {
+  width: 50px;
+}
+
+.wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.a {
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all 0.35s;
+  color: #fff;
+}
+
+.a span {
+  position: relative;
+  z-index: 2;
+}
+
+.a:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #ffcc00;
+  transition: all 0.35s;
+}
+
+.a:hover {
+  color: #fff;
+}
+
+.a:hover:after {
+  width: 100%;
+}

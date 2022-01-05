@@ -22,17 +22,8 @@ export class UserService {
     });
   }
   abonnement(id: string, body: any) {
-    console.log(id, body);
     return this.http.post(`http://localhost:3000/api/user/abonnement/${id}`, {
       body,
     });
-    // .subscribe(
-    //   (res: any) => {
-    //     console.log(res);
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
   }
 }

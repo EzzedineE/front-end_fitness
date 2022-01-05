@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {
   NgbCarousel,
@@ -18,6 +19,9 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./clubs.component.css'],
 })
 export class ClubsComponent implements OnInit {
+  i: number;
+  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  club: Club = new Club();
   user = this.serviceUser.getuser();
   clubs: Club[];
   rechercher: string = '';
@@ -27,6 +31,11 @@ export class ClubsComponent implements OnInit {
   users: User[];
   userConect: any;
   id: string;
+  forfait: any;
+  send = new FormGroup({
+    object: new FormControl(''),
+    message: new FormControl(''),
+  });
 
   constructor(
     private Service: ClubService,
@@ -51,6 +60,28 @@ export class ClubsComponent implements OnInit {
       (res: any) => {
         this.userConect = res;
         // console.log(this.userConect.mylikes);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    this.Service.getForfait().subscribe(
+      (res: any) => {
+        this.forfait = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  sendEmail() {
+    this.Service.sendMessage({
+      to: 'ezzedine.elechi@gmail.com',
+      subject: this.send.value.object,
+      text: this.send.value.message,
+    }).subscribe(
+      (res) => {
+        console.log(res);
       },
       (err) => {
         console.log(err);

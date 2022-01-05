@@ -1,4 +1,4 @@
-import { APP_ID, Component, OnInit } from '@angular/core';
+import { APP_ID, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,28 +8,54 @@ import { User } from '../modeles/userModele';
 import { AuthService } from '../service/auth.service';
 import { ClubService } from '../service/club.service';
 import { CommentaireService } from '../service/commentaire.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbModal,
+  ModalDismissReasons,
+  NgbCarousel,
+  NgbSlideEvent,
+  NgbSlideEventSource,
+} from '@ng-bootstrap/ng-bootstrap';
 import { Forfait } from '../modeles/forfait';
 import { UserService } from '../service/user.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-club',
   templateUrl: './club.component.html',
-  styleUrls: ['./club.component.css'],
+  styleUrls: ['./club.component.scss'],
 })
 export class ClubComponent implements OnInit {
+  cours: any;
+  images = [62, 83, 466, 965, 982, 1043, 738].map(
+    (n) => `https://picsum.photos/id/${n}/900/500`
+  );
+  paused = false;
+  unpauseOnArrow = false;
+  pauseOnIndicator = false;
+  pauseOnHover = true;
+  pauseOnFocus = true;
+  @ViewChild('carousel', { static: true }) carousel: NgbCarousel;
+  date: any;
+  dateINS: any;
   newDate = new Date();
   title = 'testProj';
   paymentHandler: any = null;
   closeResult = '';
   public isCollapsed = true;
   user: User = this.ServiceUser.getuser();
+  aaa: any;
 
   commentaireForm = new FormGroup({
     commentaire: new FormControl(''),
     nom: new FormControl(this.user.nom),
     prenom: new FormControl(this.user.prenom),
     answered: new FormControl(false),
+  });
+
+  formCour = new FormGroup({
+    titre: new FormControl(''),
+    date: new FormControl(''),
+    heure: new FormControl(''),
+    description: new FormControl(''),
   });
 
   forfaitForm = new FormGroup({
@@ -44,10 +70,10 @@ export class ClubComponent implements OnInit {
     message: new FormControl(''),
   });
   modifForm: FormGroup;
-  club: Club = new Club();
+  club: any;
   id: string;
   commentaires: Commentaire[];
-  forfaits: Forfait[];
+  forfaits: any;
   commen: Commentaire;
   id1: string;
   strCopy: any;
@@ -60,21 +86,51 @@ export class ClubComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal
   ) {}
-  ngOnInit(): void {
-    console.log(this.user.dateInscription);
+  addCour() {
+    let mybody = this.formCour.value;
+    let myclub = this.route.snapshot.params['id'];
+    this.Service.addCour(myclub, mybody).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  togglePaused() {
+    if (this.paused) {
+      this.carousel.cycle();
+    } else {
+      this.carousel.pause();
+    }
+    this.paused = !this.paused;
+  }
 
-    // get club
+  onSlide(slideEvent: NgbSlideEvent) {
+    if (
+      this.unpauseOnArrow &&
+      slideEvent.paused &&
+      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT ||
+        slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)
+    ) {
+      this.togglePaused();
+    }
+    if (
+      this.pauseOnIndicator &&
+      !slideEvent.paused &&
+      slideEvent.source === NgbSlideEventSource.INDICATOR
+    ) {
+      this.togglePaused();
+    }
+  }
+  ngOnInit(): void {
+    this.date = moment(this.newDate).format('DD/MM/YYYY');
+    this.dateINS = moment(this.user.dateInscription).format('DD/MM/YYYY');
     this.invokeStripe();
     this.id = this.route.snapshot.params['id'];
     this.Service.getOneClub(this.id).subscribe(
       (res: any) => {
-        // this.strCopy = JSON.stringify(res.cours[0]).split(',');
-        // for (let i = 0; i <= res.cours.length + 1; i++) {
-        //   this.strCopy[i] = this.strCopy[i].split('[').join('');
-        //   this.strCopy[i] = this.strCopy[i].split(']').join('');
-        //   this.strCopy[i] = this.strCopy[i].split('"').join('');
-        // }
-
         this.club = res;
       },
       (err) => {
@@ -221,7 +277,7 @@ export class ClubComponent implements OnInit {
   //  payment
   makePayment(myuser: any, forfait: any, content: any, club: any) {
     this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
+      .open(content, { ariaLabelledBy: 'modal-basic-title ' })
       .result.then(
         (result) => {
           this.closeResult = `Closed with: ${result}`;
@@ -245,24 +301,37 @@ export class ClubComponent implements OnInit {
     });
   }
   validation(myuser: any, forfait: Forfait) {
-    var res = new Date();
-    console.log(forfait.période);
+    var res = this.newDate;
 
     res.setDate(res.getDate() + forfait.période * 30);
     let myclub = this.route.snapshot.params['id'];
+    console.log(this.user);
+
     let mybody = {
       nomClub: myclub,
-      type: forfait.titre,
+      nomForfait: forfait.titre,
       prix: forfait.prix,
       dateInscription: res,
     };
-    console.log(mybody);
 
     this.serviceUsers.abonnement(myuser._id, mybody).subscribe(
       (res: any) => {
+        this.aaa = res;
+        this.ServiceUser.setUser(this.aaa);
+
+        console.log(this.aaa);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    this.Service.abonnement(myclub, forfait.prix, this.user.nom).subscribe(
+      (res: any) => {
+        this.aaa = res;
         console.log(res);
       },
-      (err: any) => {
+      (err) => {
         console.log(err);
       }
     );
