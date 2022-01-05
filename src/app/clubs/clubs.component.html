@@ -135,10 +135,13 @@
           <div class="contentBx">
             <h2>{{ club.nom }}</h2>
             <div class="address">
-              <h3>Address: {{ club.address }}</h3>
+              <h3>
+                <i class="bi bi-pin-map-fill"></i>
+                Address: {{ club.address }}
+              </h3>
             </div>
             <div class="tel">
-              <h3>{{ club?.likes }} Perssone ont aimez cette club</h3>
+              <h3>{{ club?.likes }} personnes ont aimez cette club</h3>
             </div>
 
             <a [routerLink]="['/club', club._id]">Voire plus</a>
@@ -150,13 +153,13 @@
             class="text-decoration-none text-dark mx-3"
             (click)="like(club._id)"
             *ngIf="!userConect?.mylikes.includes(club?._id)"
-            ><i class="bi bi-hand-thumbs-up-fill"></i> J'aime</a
+            ><i class="bi bi-hand-thumbs-up-fill"></i>{{ club?.likes }}</a
           >
           <a
             class="text-decoration-none text-dark mx-3"
             (click)="dislike(club._id)"
             *ngIf="userConect?.mylikes.includes(club?._id)"
-            ><i class="bi bi-hand-thumbs-down-fill"></i>Je n'aime plus</a
+            ><i class="bi bi-hand-thumbs-down-fill"></i>{{ club?.likes }}</a
           >
 
           <a

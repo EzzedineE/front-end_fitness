@@ -177,63 +177,122 @@
       </form>
     </div>
     <!-- horair -->
-    <section class="pt-3 bg-dark">
-      <div class="row horaire container text-start">
-        <div class="col-md-6 col-sm-12 col-lg-6">
-          <h1 class="container text-start">HORAIRES DE TRAVAIL</h1>
+    <section class="py-3 bg-dark text-white containe">
+      <div class="container d-flex justify-content-center">
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <h1 class="container text-center fs-1">HORAIRES DE TRAVAIL</h1>
 
-          <ul class="jour">
-            <li>Lundi {{ club?.toutJour }}</li>
-            <li>Mardi {{ club?.toutJour }}</li>
-            <li>Mercredi {{ club?.toutJour }}</li>
-            <li>Jeudi {{ club?.toutJour }}</li>
-            <li>Vendredi {{ club?.toutJour }}</li>
-            <li>Samedi {{ club?.weekend }}</li>
-            <li>Dimanche {{ club?.weekend }}</li>
+          <ul class="jour container pt-5">
+            <li class="row">
+              <p class="col-2"></p>
+              <p class="col-4">Lundi</p>
+              <p class="col-4">{{ club?.toutJour }}</p>
+              <p class="col-2"></p>
+            </li>
+            <li class="row">
+              <p class="col-2"></p>
+              <p class="col-4">Mardi</p>
+              <p class="col-4">{{ club?.toutJour }}</p>
+              <p class="col-2"></p>
+            </li>
+            <li class="row">
+              <p class="col-2"></p>
+              <p class="col-4">Mercredi</p>
+              <p class="col-4">{{ club?.toutJour }}</p>
+              <p class="col-2"></p>
+            </li>
+            <li class="row">
+              <p class="col-2"></p>
+              <p class="col-4">Jeudi</p>
+              <p class="col-4">{{ club?.toutJour }}</p>
+              <p class="col-2"></p>
+            </li>
+
+            <li class="row">
+              <p class="col-2"></p>
+              <p class="col-4">Vendredi</p>
+              <p class="col-4">{{ club?.toutJour }}</p>
+              <p class="col-2"></p>
+            </li>
+            <li class="row">
+              <p class="col-2"></p>
+              <p class="col-4">Samedi</p>
+              <p class="col-4">{{ club?.toutJour }}</p>
+              <p class="col-2"></p>
+            </li>
+            <li class="row">
+              <p class="col-2"></p>
+              <p class="col-4">Dimanche</p>
+              <p class="col-4">{{ club?.toutJour }}</p>
+              <p class="col-2"></p>
+            </li>
           </ul>
         </div>
 
-        <div class="col-md-6 col-sm-12 col-lg-6">
-          <h1 class="container text-start">planing</h1>
+        <div class="col-md-6 col-sm-6 col-lg-6">
+          <h1 class="container text-center fs-1 container">planing</h1>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col-1">lundi</th>
-                <th scope="col-1">mardi</th>
-                <th scope="col-1">Mercredi</th>
-                <th scope="col-1">Jeudi</th>
-                <th scope="col-1">Vendredi</th>
-                <th scope="col-1">Samedi</th>
-                <th scope="col-1">Dimanche</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let obj of club?.cours; index as m">
-                <td *ngIf="obj?.date == 'lundi'">
-                  {{ obj?.titre }}{{ obj?.heure }}
-                </td>
-                <td *ngIf="obj?.date == 'mardi'">
-                  {{ obj?.titre }}{{ obj?.heure }}
-                </td>
-                <td *ngIf="obj?.date == 'mercredi'">
-                  {{ obj?.titre }}{{ obj?.heure }}
-                </td>
-                <td *ngIf="obj?.date == 'jeudi'">
-                  {{ obj?.titre }}{{ obj?.heure }}
-                </td>
-                <td *ngIf="obj?.date == 'vendredi'">
-                  {{ obj?.titre }}{{ obj?.heure }}
-                </td>
-                <td *ngIf="obj?.date == 'samedi'">
-                  {{ obj.titre }}{{ obj?.heure }}
-                </td>
-                <td *ngIf="obj?.date == 'dimanche'">
-                  {{ obj.titre }}{{ obj.heure }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="d-flex justify-content-center">
+            <table class="table text-white">
+              <thead>
+                <tr>
+                  <th>lundi</th>
+                  <th>mardi</th>
+                  <th>Mercredi</th>
+                  <th>Jeudi</th>
+                  <th>Vendredi</th>
+                  <th>Samedi</th>
+                  <th>Dimanche</th>
+                </tr>
+              </thead>
+              <tbody class="text-white">
+                <tr>
+                  <td class="bg-primary">
+                    <tr *ngFor="let obj of semaines?.LUNDI">
+                      <p>{{ obj?.titre }}</p>
+                      <p>{{ obj?.heure }}</p>
+                    </tr>
+                  </td>
+                  <td class="bg-primary">
+                    <tr *ngFor="let obj of semaines?.MARDI">
+                      <p>{{ obj?.titre }}</p>
+                      <p>{{ obj?.heure }}</p>
+                    </tr>
+                  </td>
+                  <td class="bg-primary">
+                    <tr *ngFor="let obj of semaines?.MERCREDI">
+                      <p>{{ obj?.titre }}</p>
+                      <p>{{ obj?.heure }}</p>
+                    </tr>
+                  </td>
+                  <td class="bg-primary">
+                    <tr *ngFor="let obj of semaines?.JEUDI">
+                      <p>{{ obj?.titre }}</p>
+                      <p>{{ obj?.heure }}</p>
+                    </tr>
+                  </td>
+                  <td class="bg-primary">
+                    <tr *ngFor="let obj of semaines?.VENDREDI">
+                      <p>{{ obj?.titre }}</p>
+                      <p>{{ obj?.heure }}</p>
+                    </tr>
+                  </td>
+                  <td class="bg-primary">
+                    <tr *ngFor="let obj of semaines?.SAMEDI">
+                      <p>{{ obj?.titre }}</p>
+                      <p>{{ obj?.heure }}</p>
+                    </tr>
+                  </td>
+                  <td class="bg-primary">
+                    <tr *ngFor="let obj of semaines?.DIMANCHE">
+                      <p>{{ obj?.titre }}</p>
+                      <p>{{ obj?.heure }}</p>
+                    </tr>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>

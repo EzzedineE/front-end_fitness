@@ -28,6 +28,16 @@ export class ClubComponent implements OnInit {
   images = [62, 83, 466, 965, 982, 1043, 738].map(
     (n) => `https://picsum.photos/id/${n}/900/500`
   );
+  semaines = {
+    LUNDI: [],
+    MARDI: [],
+    MERCREDI: [],
+    JEUDI: [],
+    VENDREDI: [],
+    SAMEDI: [],
+    DIMANCHE: [],
+  };
+
   paused = false;
   unpauseOnArrow = false;
   pauseOnIndicator = false;
@@ -132,6 +142,30 @@ export class ClubComponent implements OnInit {
     this.Service.getOneClub(this.id).subscribe(
       (res: any) => {
         this.club = res;
+        this.club.cours.forEach((c) => {
+          if (c.date.toUpperCase() == 'LUNDI') {
+            this.semaines.LUNDI.push(c);
+          }
+          if (c.date.toUpperCase() == 'MARDI') {
+            this.semaines.MARDI.push(c);
+          }
+          if (c.date.toUpperCase() == 'MERCREDI') {
+            this.semaines.MERCREDI.push(c);
+          }
+          if (c.date.toUpperCase() == 'JEUDI') {
+            this.semaines.JEUDI.push(c);
+          }
+          if (c.date.toUpperCase() == 'VENDREDI') {
+            this.semaines.VENDREDI.push(c);
+          }
+          if (c.date.toUpperCase() == 'SAMEDI') {
+            this.semaines.SAMEDI.push(c);
+          }
+          if (c.date.toUpperCase() == 'DIMANCHE') {
+            this.semaines.DIMANCHE.push(c);
+          }
+        });
+        console.log(this.semaines);
       },
       (err) => {
         console.log(err);
