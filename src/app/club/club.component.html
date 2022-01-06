@@ -24,7 +24,7 @@
             >
               Les forfait
             </button>
-            <div>
+            <div class="">
               <ng-template #content let-modal>
                 <div class="modal-header">
                   <h1 class="modal-title" id="modal-basic">Nos forfait</h1>
@@ -133,54 +133,51 @@
         </ng-template>
       </ngb-carousel>
     </div>
-    <div class="container">
-      <h2 class="text-center">Ajout cours</h2>
+    <div class="container mb-5">
+      <h2 class="text-center text-warning mt-5">Ajout cours</h2>
       <form [formGroup]="formCour" (ngSubmit)="addCour()" class="row">
         <div class="col-6">
-          <label class="text-white"> Titre</label><br />
-          <input
-            type="text"
-            placeholder="Titre"
-            class="form-control"
-            formControlName="titre"
-          />
+          <label class=""> Titre</label>
+          <input type="text" class="form-control" formControlName="titre" />
         </div>
         <div class="col-6">
-          <label class="text-white">Jour</label><br />
-          <input
-            type="text"
-            placeholder="Jour"
-            class="form-control"
+          <label class=""> Titre</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
             formControlName="date"
-          />
+          >
+            <option value="LUNDI">Lundi</option>
+            <option value="MARDI">Mardi</option>
+            <option value="MERCREDI">Mercredi</option>
+            <option value="JEUDI">Jeudi</option>
+            <option value="VENDREDI">Vendredi</option>
+            <option value="SAMEDI">Samedi</option>
+            <option value="DIMANCHE">Dimanche</option>
+          </select>
+        </div>
+
+        <div class="col-6">
+          <label class="">Heure</label>
+          <input type="text" class="form-control" formControlName="heure" />
         </div>
         <div class="col-6">
-          <label class="text-white">Heure</label><br />
+          <label class="">Description</label>
           <input
             type="text"
-            placeholder="Heure"
-            class="form-control"
-            formControlName="heure"
-          />
-        </div>
-        <div class="col-6">
-          <label class="text-white">Description</label><br />
-          <input
-            type="text"
-            placeholder="Description"
             class="form-control"
             formControlName="description"
           />
         </div>
 
-        <button class="btn btn-outline-warning w-100 mt-4">Ajouter</button>
+        <button class="btn btn-outline-warning w-25 mt-4">Ajouter</button>
       </form>
     </div>
     <!-- horair -->
-    <section class="py-3 bg-dark text-white containe">
-      <div class="container d-flex justify-content-center">
-        <div class="col-md-6 col-sm-6 col-lg-6">
-          <h1 class="container text-center fs-1">HORAIRES DE TRAVAIL</h1>
+    <section class="bg-dark text-white containe">
+      <div class="d-flex justify-content-center row">
+        <div class="col-md-4 col-sm-4 col-lg-4">
+          <h1 class="text-center fs-1">HORAIRES DE TRAVAIL</h1>
 
           <ul class="jour container pt-5">
             <li class="row">
@@ -229,64 +226,103 @@
           </ul>
         </div>
 
-        <div class="col-md-6 col-sm-6 col-lg-6">
-          <h1 class="container text-center fs-1 container">planing</h1>
-
-          <div class="d-flex justify-content-center">
-            <table class="table text-white">
-              <thead>
+        <div class="col-md-8 col-sm-8 col-lg-8">
+          <h1 class="container text-center fs-1 container">Planing</h1>
+          <div class="d-flex justify-content-center pt-5">
+            <table class="table">
+              <thead class="text-white">
                 <tr>
-                  <th>lundi</th>
-                  <th>mardi</th>
-                  <th>Mercredi</th>
-                  <th>Jeudi</th>
-                  <th>Vendredi</th>
-                  <th>Samedi</th>
-                  <th>Dimanche</th>
+                  <th class="text-center">lundi</th>
+                  <th class="text-center">mardi</th>
+                  <th class="text-center">Mercredi</th>
+                  <th class="text-center">Jeudi</th>
+                  <th class="text-center">Vendredi</th>
+                  <th class="text-center">Samedi</th>
+                  <th class="text-center">Dimanche</th>
                 </tr>
               </thead>
               <tbody class="text-white">
                 <tr>
-                  <td class="bg-primary">
-                    <tr *ngFor="let obj of semaines?.LUNDI">
-                      <p>{{ obj?.titre }}</p>
-                      <p>{{ obj?.heure }}</p>
+                  <td>
+                    <tr
+                      *ngFor="let obj of semaines?.LUNDI"
+                      class="lh-1 d-flex justify-content-center"
+                    >
+                      <div class="badge bg-primary mt-1 w-100">
+                        <p class="text-center">{{ obj?.titre }}</p>
+                        <small>{{ obj?.heure }}</small>
+                      </div>
                     </tr>
                   </td>
-                  <td class="bg-primary">
-                    <tr *ngFor="let obj of semaines?.MARDI">
-                      <p>{{ obj?.titre }}</p>
-                      <p>{{ obj?.heure }}</p>
+                  <td>
+                    <tr
+                      *ngFor="let obj of semaines?.MARDI"
+                      class="lh-1 d-flex justify-content-center"
+                    >
+                      <div class="badge bg-primary mt-1 w-100">
+                        <p class="text-center">{{ obj?.titre }}</p>
+                        <small>{{ obj?.heure }}</small>
+                      </div>
                     </tr>
                   </td>
-                  <td class="bg-primary">
-                    <tr *ngFor="let obj of semaines?.MERCREDI">
-                      <p>{{ obj?.titre }}</p>
-                      <p>{{ obj?.heure }}</p>
+
+                  <td>
+                    <tr
+                      *ngFor="let obj of semaines?.MERCREDI"
+                      class="lh-1 d-flex justify-content-center"
+                    >
+                      <div class="badge bg-primary mt-1 w-100">
+                        <p class="text-center">{{ obj?.titre }}</p>
+                        <small>{{ obj?.heure }}</small>
+                      </div>
                     </tr>
                   </td>
-                  <td class="bg-primary">
-                    <tr *ngFor="let obj of semaines?.JEUDI">
-                      <p>{{ obj?.titre }}</p>
-                      <p>{{ obj?.heure }}</p>
+
+                  <td>
+                    <tr
+                      *ngFor="let obj of semaines?.JEUDI"
+                      class="lh-1 d-flex justify-content-center"
+                    >
+                      <div class="badge bg-primary mt-1 w-100">
+                        <p class="text-center">{{ obj?.titre }}</p>
+                        <small>{{ obj?.heure }}</small>
+                      </div>
                     </tr>
                   </td>
-                  <td class="bg-primary">
-                    <tr *ngFor="let obj of semaines?.VENDREDI">
-                      <p>{{ obj?.titre }}</p>
-                      <p>{{ obj?.heure }}</p>
+
+                  <td>
+                    <tr
+                      *ngFor="let obj of semaines?.VENDREDI"
+                      class="lh-1 d-flex justify-content-center"
+                    >
+                      <div class="badge bg-primary mt-1 w-100">
+                        <p class="text-center">{{ obj?.titre }}</p>
+                        <small>{{ obj?.heure }}</small>
+                      </div>
                     </tr>
                   </td>
-                  <td class="bg-primary">
-                    <tr *ngFor="let obj of semaines?.SAMEDI">
-                      <p>{{ obj?.titre }}</p>
-                      <p>{{ obj?.heure }}</p>
+
+                  <td>
+                    <tr
+                      *ngFor="let obj of semaines?.SAMEDI"
+                      class="lh-1 d-flex justify-content-center"
+                    >
+                      <div class="badge bg-primary mt-1 w-100">
+                        <p class="text-center">{{ obj?.titre }}</p>
+                        <small>{{ obj?.heure }}</small>
+                      </div>
                     </tr>
                   </td>
-                  <td class="bg-primary">
-                    <tr *ngFor="let obj of semaines?.DIMANCHE">
-                      <p>{{ obj?.titre }}</p>
-                      <p>{{ obj?.heure }}</p>
+
+                  <td>
+                    <tr
+                      *ngFor="let obj of semaines?.DIMANCHE"
+                      class="lh-1 d-flex justify-content-center"
+                    >
+                      <div class="badge bg-primary mt-1 w-100">
+                        <p class="text-center">{{ obj?.titre }}</p>
+                        <small>{{ obj?.heure }}</small>
+                      </div>
                     </tr>
                   </td>
                 </tr>
@@ -297,253 +333,224 @@
       </div>
     </section>
 
-    <section></section>
-    <div>
-      <div class="text-white">
-        <div class="row d-flex p-3" *ngIf="date > dateINS">
-          <div
-            class="bg-dark col-lg-3 col-sm-3 col-md-3"
-            *ngFor="let forfait of forfaits"
-          >
-            <h1>Nos forfait</h1>
-            <div class="mkd-price-table-inner">
-              <ul>
-                <li class="mkd-table-prices">
-                  <div class="mkd-price-in-table">
-                    <h2>
-                      <span class="mkd-price-currency"
-                        ><sup class="">TND</sup>{{ forfait.prix }}
-                      </span>
-                    </h2>
-                  </div>
-                </li>
-                <li class="mkd-pt-price-period">
-                  <!-- <h2>
-                  <span
-                    class="mkd-pt-price-period-content"
-                    >{{forfait.période}}</span
-                  >
-                </h2> -->
-                </li>
-                <li class="mkd-table-title">
-                  <h2 style="font-size: 19px" class="mkd-title-content">
-                    Abonnement
-                  </h2>
-                </li>
-                <li class="mkd-table-content">
-                  <ul>
-                    <li>
-                      <h3>Frais d’inscription : 35 TND</h3>
-                    </li>
-                    <li>
-                      <h3>
-                        Accès illimité à tous les cours sauf Pilates (Machines)
-                      </h3>
-                    </li>
-                    <li><h3>Prélèvement automatique</h3></li>
-                  </ul>
+    <section>
+      <h1 class="text-center mt-5 text-warning">Nos Forfaits</h1>
+      <div class="row d-flex justify-content-center">
+        <div
+          class="card text-white bg-dark m-3 col-md-4 col-lg-4 forfait-card"
+          *ngFor="let forfait of club?.forfaits"
+          style="max-width: 19rem"
+        >
+          <h1 class="card-header text-center">Forfait {{ forfait.titre }}</h1>
+          <div class="card-body">
+            <h5 class="card-title">
+              prix:{{ forfait.prix }}<sup class="">TND</sup>
+            </h5>
+            <h6>Periode: {{ forfait["période"] }} mois</h6>
+            <h6>Accès illimité à {{ forfait.machine }}</h6>
+            <p class="card-text">
+              {{ forfait.description }}
+            </p>
+          </div>
+          <div>
+            <ng-template #content2 let-modal>
+              <div class="modal-header">
+                <ul>
+                  <li>
+                    <h1 class="modal-title">Valider votre opperation</h1>
+                  </li>
+                  <li class="d-flex">
+                    <h4>nom :</h4>
+                    <p>{{ user.nom }} {{ user.prenom }}</p>
+                  </li>
+                  <li class="d-flex">
+                    <h4>Club</h4>
+                    <p>{{ club?.nom }}</p>
+                  </li>
+                  <li class="d-flex">
+                    <h4>forfait</h4>
+                    <p>{{ user.nom }}</p>
+                  </li>
+                </ul>
 
-                  <ng-template #content2 let-modal>
-                    <div class="modal-header">
-                      <ul>
-                        <li>
-                          <h1 class="modal-title">Valider votre opperation</h1>
-                        </li>
-                        <li class="d-flex">
-                          <h4>nom :</h4>
-                          <p>{{ user.nom }} {{ user.prenom }}</p>
-                        </li>
-                        <li class="d-flex">
-                          <h4>Club</h4>
-                          <p>{{ club?.nom }}</p>
-                        </li>
-                        <li class="d-flex">
-                          <h4>forfait</h4>
-                          <p>{{ user.nom }}</p>
-                        </li>
-                      </ul>
-
-                      <button
-                        type="button"
-                        class="close"
-                        aria-label="Close"
-                        (click)="modal.dismiss('Cross click')"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body"></div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-outline-dark"
-                        (click)="validation(user, forfait)"
-                      >
-                        Save
-                      </button>
-                    </div>
-                  </ng-template>
-                  <button
-                    class="btn btn-outline-warning w-100"
-                    (click)="makePayment(user, forfait, content2, club)"
-                  >
-                    Inscription
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">
-          <div class="container d-flex my-2">
-            <input
-              type="text"
-              placeholder="Commentaire"
-              class="rounded-pill form-control border"
-              formControlName="commentaire"
-            />
-            <button class="btn btn-outline-warning rounded-pill">
-              Envoyer
-            </button>
-          </div>
-        </form>
-        <p>
-          <a
-            class="text-warning mx-4 fs-5"
-            (click)="collapse.toggle()"
-            [attr.aria-expanded]="!isCollapsed"
-            aria-controls="collapseExample"
-          >
-            commentaire
-          </a>
-        </p>
-        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-          <div class="card">
-            <div class="card-body">
-              <div *ngFor="let comment of commentaires; let k = index">
-                <div class="row">
-                  <div class="col-2"></div>
-                  <div class="col-8">
-                    <h1>{{ comment.nom }} {{ comment.prenom }}</h1>
-                    <p *ngIf="!commentaires[k].answered">
-                      {{ comment.commentaire }}
-                    </p>
-                    <form
-                      [formGroup]="modifForm"
-                      (ngSubmit)="envoyerModif(k)"
-                      *ngIf="commentaires[k].answered"
-                    >
-                      <div class="container d-flex">
-                        <input
-                          type="text"
-                          placeholder="Commentaire"
-                          class="rounded-pill form-control border"
-                          formControlName="commentaire"
-                        />
-                        <button class="btn btn-outline-warning">Envoyer</button>
-                      </div>
-                    </form>
-                    <div>
-                      <small>
-                        <a class="text-decoration-none" (click)="modifier(k)">
-                          <i class="bi bi-pencil-square"></i>Modifier</a
-                        ></small
-                      >
-                      <small>
-                        <a
-                          class="text-decoration-none text-danger"
-                          (click)="delete(comment._id)"
-                        >
-                          <i class="bi bi-trash-fill"></i>Supprimer</a
-                        ></small
-                      >
-                    </div>
-                  </div>
-                  <div class="col-2"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bg">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="text-white">Entrez en contact</h2>
-          <div class="text-white section-legend">Contact</div>
-        </div>
-        <div class="row">
-          <div class="pirate_forms_wrap">
-            <form
-              method="post"
-              class="pirate_forms"
-              [formGroup]="send"
-              (ngSubmit)="sendEmail()"
-            >
-              <div class="pirate_forms_three_inputs_wrap row">
-                <div
-                  class="col-sm-12 col-lg-12 form_field_wrap contact_subject_wrap pirate_forms_three_inputs"
+                <button
+                  type="button"
+                  class="close"
+                  aria-label="Close"
+                  (click)="modal.dismiss('Cross click')"
                 >
-                  <label for="pirate-forms-contact-subject"></label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Objet"
-                    formControlName="object"
-                  />
-                </div>
-              </div>
-              <div
-                class="col-sm-12 col-lg-12 form_field_wrap contact_message_wrap mt-3"
-              >
-                <textarea
-                  class="form-control"
-                  placeholder="Message"
-                  formControlName="message"
-                ></textarea>
-              </div>
-              <div
-                class="mt-2 form_field_wrap contact_submit_wrap d-flex justify-content-end"
-              >
-                <button class="btn btn-outline-dark" type="submit">
-                  envoyer le message
+                  <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-            </form>
-            <div class="pirate_forms_clearfix"></div>
+              <div class="modal-body"></div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-outline-dark"
+                  (click)="validation(user, forfait)"
+                >
+                  Save
+                </button>
+              </div>
+            </ng-template>
+            <button
+              class="btn btn-outline-warning w-100"
+              (click)="makePayment(user, forfait, content2, club)"
+            >
+              Inscription
+            </button>
           </div>
         </div>
       </div>
-    </div>
-    <div class="d-flex p-3 horaire">
+      <section class="border container my-5 rounded">
+        <div class="container">
+          <form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">
+            <div class="container d-flex my-2">
+              <input
+                type="text"
+                placeholder="Commentaire"
+                class="rounded-pill form-control border"
+                formControlName="commentaire"
+              />
+              <button class="btn btn-outline-warning rounded-pill">
+                Envoyer
+              </button>
+            </div>
+          </form>
+          <p>
+            <a
+              class="text-warning mx-4 fs-5"
+              (click)="collapse.toggle()"
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample"
+            >
+              Commentaire
+            </a>
+          </p>
+          <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <div class="card">
+              <div class="card-body">
+                <div *ngFor="let comment of commentaires; let k = index">
+                  <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                      <h1>{{ comment.nom }} {{ comment.prenom }}</h1>
+                      <p *ngIf="!commentaires[k].answered">
+                        {{ comment.commentaire }}
+                      </p>
+                      <form
+                        [formGroup]="modifForm"
+                        (ngSubmit)="envoyerModif(k)"
+                        *ngIf="commentaires[k].answered"
+                      >
+                        <div class="container d-flex">
+                          <input
+                            type="text"
+                            placeholder="Commentaire"
+                            class="rounded-pill form-control border"
+                            formControlName="commentaire"
+                          />
+                          <button class="btn btn-outline-warning">
+                            Envoyer
+                          </button>
+                        </div>
+                      </form>
+                      <div>
+                        <small>
+                          <a class="text-decoration-none" (click)="modifier(k)">
+                            <i class="bi bi-pencil-square"></i>Modifier</a
+                          ></small
+                        >
+                        <small>
+                          <a
+                            class="text-decoration-none text-danger"
+                            (click)="delete(comment._id)"
+                          >
+                            <i class="bi bi-trash-fill"></i>Supprimer</a
+                          ></small
+                        >
+                      </div>
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <section class="bg-secondary py-5">
+      <div class="">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="mt-5 text-warning">Contacter La Salle</h2>
+          </div>
+          <div class="row">
+            <div class="pirate_forms_wrap">
+              <form
+                method="post"
+                class="pirate_forms"
+                [formGroup]="send"
+                (ngSubmit)="sendEmail()"
+              >
+                <div class="pirate_forms_three_inputs_wrap row">
+                  <div
+                    class="col-sm-12 col-lg-12 form_field_wrap contact_subject_wrap pirate_forms_three_inputs"
+                  >
+                    <label for="pirate-forms-contact-subject"></label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Objet"
+                      formControlName="object"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-sm-12 col-lg-12 form_field_wrap contact_message_wrap mt-3"
+                >
+                  <textarea
+                    class="form-control"
+                    placeholder="Message"
+                    formControlName="message"
+                  ></textarea>
+                </div>
+                <div
+                  class="mt-2 form_field_wrap contact_submit_wrap d-flex justify-content-start"
+                >
+                  <button class="btn btn-outline-dark" type="submit">
+                    envoyer le message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-dark border py-5">
       <div class="container">
-        <h1
-          class="mt-4 card-title text-white text-uppercase fs-1 d-flex justify-content-center"
-        >
+        <h1 class="text-white text-uppercase fs-1">
           <b>{{ club?.nom }}</b>
         </h1>
         <p class="text-white"><b>Info</b></p>
-        <a class="col-md-6 mt-5 text-white my-5" href="club?.facebook! ">
-          <i class="bi bi-facebook"></i> {{ club?.facebook! }} </a
-        ><br />
-        <a
-          class="col-md-6 fw-light text-white my-5"
-          id="bbb"
-          href="{{ club?.instagram! }}"
-        >
-          <i class="bi bi-instagram"></i> {{ club?.instagram! }} </a
-        ><br />
-        <a class="col-md-6 text-white"
-          ><i class="bi bi-telephone"></i> {{ club?.tel! }}</a
-        ><br />
-        <a class="col-md-6 .fs-6 text-white">
-          <i class="bi bi-geo-alt-fill"></i> {{ club?.address! }} </a
-        ><br />
+        <div class="row">
+          <a class="text-white col-md-3 col-lg-3" href="club?.facebook! ">
+            <i class="bi bi-facebook"></i> {{ club?.facebook! }} </a
+          ><br />
+          <a class="text-white col-md-3 col-lg-3" href="{{ club?.instagram! }}">
+            <i class="bi bi-instagram"></i> {{ club?.instagram! }}
+          </a>
+          <a class="text-white col-md-3 col-lg-3"
+            ><i class="bi bi-telephone"></i> {{ club?.tel! }}</a
+          >
+          <a class=". text-white col-md-3 col-lg-3">
+            <i class="bi bi-geo-alt-fill"></i> {{ club?.address! }}
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 
   <app-footer></app-footer>

@@ -31,12 +31,7 @@ export class ClubService {
   sendMessage(body: any) {
     return this.http.post('http://localhost:3000/api/email/text', body);
   }
-  addForfait(forfait: any) {
-    return this.http.post('http://localhost:3000/api/forfait/', forfait);
-  }
-  getForfait() {
-    return this.http.get('http://localhost:3000/api/forfait/');
-  }
+
   abonnement(id: string, prix: any, condidat: any) {
     return this.http.post(`http://localhost:3000/api/club/payment/${id}`, {
       prix,
@@ -48,5 +43,14 @@ export class ClubService {
   }
   getCour() {
     return this.http.get(`http://localhost:3000/api/cours/cour`);
+  }
+  addForfait(id: string, body: any) {
+    return this.http.post(
+      `http://localhost:3000/api/club/forfaits/${id}`,
+      body
+    );
+  }
+  getForfait() {
+    return this.http.get('http://localhost:3000/api/forfait/forfait');
   }
 }

@@ -165,7 +165,6 @@ export class ClubComponent implements OnInit {
             this.semaines.DIMANCHE.push(c);
           }
         });
-        console.log(this.semaines);
       },
       (err) => {
         console.log(err);
@@ -205,8 +204,9 @@ export class ClubComponent implements OnInit {
   }
   // add forfait
   testmodal() {
-    let frais = this.forfaitForm.value;
-    this.Service.addForfait(frais).subscribe(
+    let mybody = this.forfaitForm.value;
+    let myclub = this.route.snapshot.params['id'];
+    this.Service.addForfait(myclub, mybody).subscribe(
       (res) => {
         console.log(res);
       },

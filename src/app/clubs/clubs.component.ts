@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -47,15 +48,13 @@ export class ClubsComponent implements OnInit {
 
   ngOnInit(): void {
     this.charger = false;
-    this.Service.getClub().subscribe(
-      (res: any) => {
-        this.clubs = res;
-        this.charger = true;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.getClubs();
+    this.getOneUser();
+    this.getForfait();
+  }
+
+  //getOneUser Function
+  getOneUser() {
     this.seviceUser.getOneUser(this.seviceUser.getuser()._id).subscribe(
       (res: any) => {
         this.userConect = res;
@@ -65,6 +64,9 @@ export class ClubsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  getForfait() {
     this.Service.getForfait().subscribe(
       (res: any) => {
         this.forfait = res;
@@ -74,6 +76,21 @@ export class ClubsComponent implements OnInit {
       }
     );
   }
+
+  //get All clubs function
+  getClubs() {
+    this.Service.getClub().subscribe(
+      (res: any) => {
+        this.clubs = res;
+        this.charger = true;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  //send mail function
   sendEmail() {
     this.Service.sendMessage({
       to: 'ezzedine.elechi@gmail.com',
@@ -88,6 +105,8 @@ export class ClubsComponent implements OnInit {
       }
     );
   }
+
+  //delete club function
   delete(id: string) {
     if (confirm('voulez vous supprimer')) {
       this.Service.deleteClub(id).subscribe(
@@ -103,26 +122,22 @@ export class ClubsComponent implements OnInit {
       );
     }
   }
+
+  //like function
   like(id: string) {
     let aa = this.userConect._id;
     this.seviceUser.like(aa, id).subscribe(
       (res: any) => {
         this.userConect = res;
-        this.Service.getClub().subscribe(
-          (res: any) => {
-            this.clubs = res;
-            this.charger = true;
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+        this.getClubs();
       },
       (err) => {
         console.log(err);
       }
     );
   }
+
+  //Dislike function
   dislike(id: string) {
     let aa = this.userConect._id;
     this.seviceUser.dislike(aa, id).subscribe(
@@ -142,10 +157,5 @@ export class ClubsComponent implements OnInit {
         console.log(err);
       }
     );
-  }
-
-  totop() {
-    console.log('tesssssst');
-    window.scrollTo(0, 0);
   }
 }

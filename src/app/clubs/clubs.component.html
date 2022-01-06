@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-header></app-header>
 <div class="section-navbar"></div>
-
+<i class="fas fa-heart"></i>
 <div class="text-center acceil col-md" id="acceil-1">
   <h2 class="title mb-5">Achetez vos produits avec le chariot intelligent</h2>
   <a
@@ -13,24 +13,25 @@
   >
 </div>
 <!-- end section acceil -->
+
 <!-- begin section  a propos-->
 <div class="Apropos container-fluid" id="Apropos-1">
   <div class="text my-5 text-center">
     <h1>A propos Fitness</h1>
   </div>
-  <div class="row d-flex justify-content-evenly">
+  <div class="row d-flex justify-content-evenly my-5">
     <img
-      class="col-md-2 img-apropos mx-5 rounded-circle"
+      class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub"
       src="../../assets/images/cardio.png"
       alt=""
     />
     <img
-      class="col-md-2 img-apropos mx-5 rounded-circle"
+      class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub"
       src="../../assets/images/fitness.jpg"
       alt=""
     />
     <img
-      class="col-md-2 img-apropos mx-5 rounded-circle"
+      class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub"
       src="../../assets/images/images.jpg"
       alt=""
     />
@@ -71,37 +72,49 @@
 
   <div class="container-fluid my-5">
     <div class="row justify-content-md-center">
-      <div class="col-md-2 text-center border info">
-        <img src="../../assets/images/fitness1.jpg" alt="" class="w-100 h-75" />
-
-        <p>Cardio</p>
-      </div>
-      <div class="col-md-2 text-center border info mx-2">
+      <div class="card col-md-3 col-lg-3">
         <img
-          class="col-md-2 img-apropos mx-5"
+          src="../../assets/images/fitness1.jpg"
+          class="card-img-top"
+          height="180"
+          alt="..."
+        />
+        <div class="card-body">
+          <h1 class="card-text text-center">Cardio</h1>
+        </div>
+      </div>
+      <div class="card col-md-3 col-lg-3">
+        <img
           src="../../assets/images/fitness2.jpg"
-          alt=""
-          class="w-100 h-75"
+          class="card-img-top"
+          height="180"
+          alt="..."
         />
-        <p>Fitness</p>
+        <div class="card-body">
+          <h1 class="card-text text-center">Fitness</h1>
+        </div>
       </div>
-      <div class="col-md-2 text-center border info mx-2">
+      <div class="card col-md-3 col-lg-3">
         <img
-          class="col-md-2 img-apropos mx-5"
           src="../../assets/images/musculation.jpg"
-          alt=""
-          class="w-100 h-75"
+          class="card-img-top"
+          height="180"
+          alt="..."
         />
-        <p>Musculation</p>
+        <div class="card-body">
+          <h1 class="card-text text-center">Musculation</h1>
+        </div>
       </div>
-      <div class="col-md-2 text-center border info mx-2">
+      <div class="card col-md-3 col-lg-3">
         <img
-          class="col-md-2 img-apropos mx-5"
           src="../../assets/images/boxing.jpg"
-          alt=""
-          class="w-100 h-75"
+          class="card-img-top"
+          height="180"
+          alt="..."
         />
-        <p>Boxing</p>
+        <div class="card-body">
+          <h1 class="card-text text-center">Boxing</h1>
+        </div>
       </div>
     </div>
   </div>
@@ -123,67 +136,68 @@
   </div>
 
   <ng-template #listClubs>
-    <div class="container row">
+    <div class="container row d-flex justify-content-center">
       <div
-        *ngFor="let club of clubs; let i = index"
+        *ngFor="let club of clubs | filter: rechercher; let i = index"
         class="col-md-4 col-sm-4 my-3"
       >
-        <div class="card">
-          <div class="imgBx">
-            <img src="{{ 'http://localhost:3000/static/' + club.images[0] }}" />
-          </div>
-          <div class="contentBx">
-            <h2>{{ club.nom }}</h2>
-            <div class="address">
-              <h3>
-                <i class="bi bi-pin-map-fill"></i>
-                Address: {{ club.address }}
-              </h3>
+        <div class="border pubs">
+          <div class="card">
+            <div class="imgBx">
+              <img
+                src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
+              />
             </div>
-            <div class="tel">
-              <h3>{{ club?.likes }} personnes ont aimez cette club</h3>
-            </div>
+            <div class="contentBx">
+              <h2>{{ club.nom }}</h2>
+              <div class="address">
+                <h3>Address: {{ club.address }}</h3>
+              </div>
+              <div class="tel">
+                <h3>Tel: {{ club.tel }}</h3>
+              </div>
 
-            <a [routerLink]="['/club', club._id]">Voire plus</a>
+              <a [routerLink]="['/club', club._id]">Voire plus</a>
+            </div>
           </div>
+          <p class="d-flex justify-content-center">
+            <a
+              class="text-decoration-none text-dark mx-3"
+              (click)="like(club._id)"
+              *ngIf="!userConect?.mylikes.includes(club?._id)"
+              ><i class="bi bi-hand-thumbs-up-fill"></i>{{ club?.likes }}
+              <i class="fas fa-heart"></i
+            ></a>
+            <a
+              class="text-decoration-none text-dark mx-3"
+              (click)="dislike(club._id)"
+              *ngIf="userConect?.mylikes.includes(club?._id)"
+              ><i class="bi bi-hand-thumbs-down-fill"></i>{{ club?.likes }}</a
+            >
+
+            <a
+              class="text-decoration-none text-dark mx-3"
+              [routerLink]="['/add-club', club._id]"
+              *ngIf="user.role == 'admin'"
+            >
+              <i class="bi bi-pencil-square"></i>Modifier</a
+            >
+            <a
+              class="text-decoration-none text-dark mx-3"
+              (click)="delete(club._id)"
+              *ngIf="user.role == 'admin'"
+            >
+              <i class="bi bi-trash-fill"></i>Supprimer</a
+            >
+          </p>
         </div>
-
-        <p class="d-flex justify-content-center">
-          <a
-            class="text-decoration-none text-dark mx-3"
-            (click)="like(club._id)"
-            *ngIf="!userConect?.mylikes.includes(club?._id)"
-            ><i class="bi bi-hand-thumbs-up-fill"></i>{{ club?.likes }}</a
-          >
-          <a
-            class="text-decoration-none text-dark mx-3"
-            (click)="dislike(club._id)"
-            *ngIf="userConect?.mylikes.includes(club?._id)"
-            ><i class="bi bi-hand-thumbs-down-fill"></i>{{ club?.likes }}</a
-          >
-
-          <a
-            class="text-decoration-none text-dark mx-3"
-            [routerLink]="['/add-club', club._id]"
-            *ngIf="user.role == 'admin'"
-          >
-            <i class="bi bi-pencil-square"></i>Modifier</a
-          >
-          <a
-            class="text-decoration-none text-dark mx-3"
-            (click)="delete(club._id)"
-            *ngIf="user.role == 'admin'"
-          >
-            <i class="bi bi-trash-fill"></i>Supprimer</a
-          >
-        </p>
       </div>
     </div>
   </ng-template>
 </div>
 
-<div class="d-flex justify-content-center bg-light mt-4" id="connect-1">
-  <div class="contact p-4 my-5">
+<div class="d-flex justify-content-center bg-light mt-4">
+  <div class="contact my-5">
     <h3 class="text-center">Conectez Nous</h3>
     <form
       method="post"
