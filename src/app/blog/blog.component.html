@@ -50,7 +50,7 @@
     <h1 class="text-center fs-1 my-5 fst-italic">
       <b>Nos blogueuses préférées</b>
     </h1>
-    <div class="">
+    <div class="" *ngIf="user.role == 'admin'">
       <a href="/add-blog" class="btn btn-danger">Ajouter un blog</a>
     </div>
     <div *ngFor="let blog of blogs; let i = index" class="my-5 border p-3">

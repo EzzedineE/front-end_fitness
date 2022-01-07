@@ -1,237 +1,263 @@
-<app-header></app-header>
-<app-header></app-header>
-<div class="section-navbar"></div>
-<i class="fas fa-heart"></i>
-<div class="text-center acceil col-md" id="acceil-1">
-  <h2 class="title mb-5">Achetez vos produits avec le chariot intelligent</h2>
-  <a
-    class="btn btn-light btn-acceil"
-    aria-current="page"
-    href="/add-club"
-    *ngIf="user.role == 'admin'"
-    >Ajouter une salle</a
-  >
-</div>
-<!-- end section acceil -->
+<div>
+  <app-header></app-header>
 
-<!-- begin section  a propos-->
-<div class="Apropos container-fluid" id="Apropos-1">
-  <div class="text my-5 text-center">
-    <h1>A propos Fitness</h1>
+  <div class="text-center acceil col-md" id="acceil-1">
+    <h2 class="title mb-5">Achetez vos produits avec le chariot intelligent</h2>
+    <a
+      class="btn btn-light btn-acceil"
+      aria-current="page"
+      href="/add-club"
+      *ngIf="user.role == 'admin'"
+      >Ajouter une salle</a
+    >
   </div>
-  <div class="row d-flex justify-content-evenly my-5">
-    <img
-      class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub"
-      src="../../assets/images/cardio.png"
-      alt=""
-    />
-    <img
-      class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub"
-      src="../../assets/images/fitness.jpg"
-      alt=""
-    />
-    <img
-      class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub"
-      src="../../assets/images/images.jpg"
-      alt=""
-    />
-  </div>
-  <div class="container text-center">
-    <p>
-      Il s'agit d'un chariot intelligent a ecran integre dedie pour les clients
-      Beaucoup de Perssone sautent le pas et veulent pratiquer une activité
-      sportive, pour se sentir bien moralement et physiquement. Cependant, il
-      est difficile de faire son choix avec les nombreuses salles de sport qui
-      ouvrent chaque année : plus de 4 000 clubs en France ! Certaines proposent
-      des concepts innovants, des disciplines originales, des prix attractifs,
-      etc. de quoi trouver son bonheur.
-    </p>
-    <p>
-      Que vous soyez un grand ou petit sportif, la plupart des salles de sport
-      ne nécessitent pas une condition physique particulière.
-    </p>
-    <p>
-      Si vous n’êtes pas sûr de votre choix, vous pouvez prendre une salle de
-      sport avec un forfait sans engagement. De plus, en dehors du prix du
-      forfait, n’oubliez pas de prendre en compte les frais d’inscription qui
-      peuvent grimper pour certaines salles.
-    </p>
-    <p>
-      D’ailleurs, tous les forfaits n’incluent pas toutes les prestations et des
-      coûts supplémentaires peuvent être demandés, notamment pour l’accès aux
-      douches, l'accès aux zones bien-être, etc.
-    </p>
-    <p>
-      Le plus important est que vous devez vous demander ce que vous souhaitez
-      car toutes les salles ne proposent pas les mêmes prestations : coachs,
-      cours collectifs, cours de fitness, remise en forme, espace cardio, salle
-      de musculation, gym, pilates, zumba, boxe, crossfit, yoga, piscine, sauna,
-      hammam, etc.
-    </p>
-  </div>
+  <!-- end section acceil -->
 
-  <div class="container-fluid my-5">
-    <div class="row justify-content-md-center">
-      <div class="card col-md-3 col-lg-3">
-        <img
-          src="../../assets/images/fitness1.jpg"
-          class="card-img-top"
-          height="180"
-          alt="..."
-        />
-        <div class="card-body">
-          <h1 class="card-text text-center">Cardio</h1>
-        </div>
-      </div>
-      <div class="card col-md-3 col-lg-3">
-        <img
-          src="../../assets/images/fitness2.jpg"
-          class="card-img-top"
-          height="180"
-          alt="..."
-        />
-        <div class="card-body">
-          <h1 class="card-text text-center">Fitness</h1>
-        </div>
-      </div>
-      <div class="card col-md-3 col-lg-3">
-        <img
-          src="../../assets/images/musculation.jpg"
-          class="card-img-top"
-          height="180"
-          alt="..."
-        />
-        <div class="card-body">
-          <h1 class="card-text text-center">Musculation</h1>
-        </div>
-      </div>
-      <div class="card col-md-3 col-lg-3">
-        <img
-          src="../../assets/images/boxing.jpg"
-          class="card-img-top"
-          height="180"
-          alt="..."
-        />
-        <div class="card-body">
-          <h1 class="card-text text-center">Boxing</h1>
-        </div>
-      </div>
+  <!-- begin section  a propos-->
+  <div class="Apropos container-fluid" id="Apropos-1">
+    <div class="text p-5 text-center">
+      <b> <h1 class="display-2 m-5 text-black-50">A propos Fitness</h1></b>
+    </div>
+    <div class="row d-flex justify-content-evenly m-5">
+      <img
+        class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub loisir"
+        src="../../assets/images/cardio.png"
+        alt=""
+      />
+      <img
+        class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub loisir"
+        src="../../assets/images/fitness.jpg"
+        alt=""
+      />
+      <img
+        class="col-md-2 img-apropos rounded-circle border border-5 border-dark pub loisir"
+        src="../../assets/images/images.jpg"
+        alt=""
+      />
+    </div>
+    <div class="container text-center">
+      <p>
+        Il s'agit d'un chariot intelligent a ecran integre dedie pour les
+        clients Beaucoup de Perssone sautent le pas et veulent pratiquer une
+        activité sportive, pour se sentir bien moralement et physiquement.
+        Cependant, il est difficile de faire son choix avec les nombreuses
+        salles de sport qui ouvrent chaque année : plus de 4 000 clubs en France
+        ! Certaines proposent des concepts innovants, des disciplines
+        originales, des prix attractifs, etc. de quoi trouver son bonheur.
+      </p>
+      <p>
+        Que vous soyez un grand ou petit sportif, la plupart des salles de sport
+        ne nécessitent pas une condition physique particulière.
+      </p>
+      <p>
+        Si vous n’êtes pas sûr de votre choix, vous pouvez prendre une salle de
+        sport avec un forfait sans engagement. De plus, en dehors du prix du
+        forfait, n’oubliez pas de prendre en compte les frais d’inscription qui
+        peuvent grimper pour certaines salles.
+      </p>
+      <p>
+        D’ailleurs, tous les forfaits n’incluent pas toutes les prestations et
+        des coûts supplémentaires peuvent être demandés, notamment pour l’accès
+        aux douches, l'accès aux zones bien-être, etc.
+      </p>
+      <p>
+        Le plus important est que vous devez vous demander ce que vous souhaitez
+        car toutes les salles ne proposent pas les mêmes prestations : coachs,
+        cours collectifs, cours de fitness, remise en forme, espace cardio,
+        salle de musculation, gym, pilates, zumba, boxe, crossfit, yoga,
+        piscine, sauna, hammam, etc.
+      </p>
     </div>
   </div>
-</div>
-<!-- end section  a propos-->
-<div class="d-flex justify-content-center container m-5">
-  <input
-    type="text"
-    placeholder="Rechercher"
-    class="rounded-pill form-control border"
-    [(ngModel)]="rechercher"
-  />
-</div>
-<div class="d-flex justify-content-center">
-  <div *ngIf="!charger; else listClubs">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
+  <!-- end section  a propos-->
+  <section class="">
+    <div class="text p-5 text-center">
+      <b> <h1 class="display-2 m-5 text-black-25">NOS ESPACES</h1></b>
     </div>
-  </div>
+    <div class="d-flex justify-content-center container m-5">
+      <input
+        type="text"
+        placeholder="Rechercher"
+        class="rounded-pill form-control border"
+        [(ngModel)]="rechercher"
+      />
+    </div>
+    <div class="d-flex justify-content-center">
+      <div *ngIf="!charger; else listClubs">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
 
-  <ng-template #listClubs>
-    <div class="container row d-flex justify-content-center">
-      <div
-        *ngFor="let club of clubs | filter: rechercher; let i = index"
-        class="col-md-4 col-sm-4 my-3"
-      >
-        <div class="border pubs">
-          <div class="card">
-            <div class="imgBx">
-              <img
-                src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
-              />
-            </div>
-            <div class="contentBx">
-              <h2>{{ club.nom }}</h2>
-              <div class="address">
-                <h3>Address: {{ club.address }}</h3>
-              </div>
-              <div class="tel">
-                <h3>Tel: {{ club.tel }}</h3>
-              </div>
+      <ng-template #listClubs>
+        <div class="container row d-flex justify-content-center">
+          <div
+            *ngFor="let club of clubs | filter: rechercher; let i = index"
+            class="col-md-4 col-lg-4 my-3"
+          >
+            <div class="border bg-dark pubs">
+              <div class="card">
+                <div class="imgBx">
+                  <img
+                    src="{{ 'http://localhost:3000/static/' + club.images[0] }}"
+                  />
+                </div>
+                <div class="contentBx">
+                  <h2>{{ club.nom }}</h2>
+                  <div class="address">
+                    <h3>Address: {{ club.address }}</h3>
+                  </div>
+                  <div class="tel">
+                    <h3>Tel: {{ club.tel }}</h3>
+                  </div>
 
-              <a [routerLink]="['/club', club._id]">Voire plus</a>
+                  <a [routerLink]="['/club', club._id]">Voire plus</a>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center py-1">
+                <a
+                  class="text-decoration-none mx-3"
+                  (click)="like(club._id)"
+                  *ngIf="!userConect?.mylikes.includes(club?._id)"
+                  ><i class="bi bi-hand-thumbs-up-fill"></i>{{ club?.likes }}
+                </a>
+                <a
+                  class="text-decoration-none mx-3"
+                  (click)="dislike(club._id)"
+                  *ngIf="userConect?.mylikes.includes(club?._id)"
+                  ><i class="bi bi-hand-thumbs-down-fill"></i
+                  >{{ club?.likes }}</a
+                >
+
+                <a
+                  class="text-decoration-none mx-3"
+                  [routerLink]="['/add-club', club._id]"
+                  *ngIf="user.role == 'admin'"
+                >
+                  <i class="bi bi-pencil-square"></i>Modifier</a
+                >
+                <a
+                  class="text-decoration-none mx-3"
+                  (click)="delete(club._id)"
+                  *ngIf="user.role == 'admin'"
+                >
+                  <i class="bi bi-trash-fill"></i>Supprimer</a
+                >
+              </div>
             </div>
           </div>
-          <p class="d-flex justify-content-center">
-            <a
-              class="text-decoration-none text-dark mx-3"
-              (click)="like(club._id)"
-              *ngIf="!userConect?.mylikes.includes(club?._id)"
-              ><i class="bi bi-hand-thumbs-up-fill"></i>{{ club?.likes }}
-              <i class="fas fa-heart"></i
-            ></a>
-            <a
-              class="text-decoration-none text-dark mx-3"
-              (click)="dislike(club._id)"
-              *ngIf="userConect?.mylikes.includes(club?._id)"
-              ><i class="bi bi-hand-thumbs-down-fill"></i>{{ club?.likes }}</a
-            >
-
-            <a
-              class="text-decoration-none text-dark mx-3"
-              [routerLink]="['/add-club', club._id]"
-              *ngIf="user.role == 'admin'"
-            >
-              <i class="bi bi-pencil-square"></i>Modifier</a
-            >
-            <a
-              class="text-decoration-none text-dark mx-3"
-              (click)="delete(club._id)"
-              *ngIf="user.role == 'admin'"
-            >
-              <i class="bi bi-trash-fill"></i>Supprimer</a
-            >
+        </div>
+      </ng-template>
+    </div>
+  </section>
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-3 col-lg-3 text-center">
+        <img
+          src="../../assets/images/h1-icon-3.png"
+          class="card-img-top w-25 mb-5 loisir"
+          alt="..."
+        />
+        <div class="">
+          <h3 class="card-text text-center text-secondary">FITNESS</h3>
+          <p class="text-secondary text-center">
+            Permettre aux adeptes de sport, et à ceux qui le sont un peu moins,
+            de profiter d’un lieu d’exception où la sophistication de nos
+            matériaux et équipements de dernier cri, de la prestigieuse marque
+            MATRIX T7, se côtoient dans un vaste espace lumineux.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 text-center">
+        <img
+          src="../../assets/images/pilates-icon2.png"
+          class="card-img-top w-25 mb-5 loisir"
+          alt="..."
+        />
+        <div class="">
+          <h3 class="card-text text-center text-secondary">PILATES</h3>
+          <p class="text-secondary text-center">
+            Des cours collectifs de Pilates machine et Fly Pilates sont proposés
+            pour allonger, tonifier, renforcer vos muscles et transformer votre
+            corps en profondeur. Un matériel haut de gamme a été choisit afin de
+            vous faire vivre la meilleure expérience Pilates possible et assurer
+            des prestations de grande qualité dans des conditions idéales.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 text-center">
+        <img
+          src="../../assets/images/muscu-icon.png"
+          class="card-img-top w-25 mb-5 loisir"
+          alt="..."
+        />
+        <div class="">
+          <h3 class="card-text text-center text-secondary">COURS COLLECTIFS</h3>
+          <p class="text-secondary text-center">
+            Des cours collectifs dernière génération avec lesmills, haut de
+            gamme, chorégraphié en musique avec des coachs survoltés et
+            professionnels : BodyPump, BodyAttack, BodyCombat, CxWorx, Boxe,
+            Kickboxing, Zumba, Cycling, Crossfit et Grit.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 col-lg-3 text-center">
+        <img
+          src="../../assets/images/h1-icon-2.png"
+          class="card-img-top w-25 mb-5 loisir"
+          alt="..."
+        />
+        <div class="">
+          <h3 class="card-text text-center text-secondary">COACHING PRIVÉ</h3>
+          <p class="text-secondary text-center">
+            Le service de coach privé est proposé afin de vous donner un
+            programme adapté à votre agenda et surtout être source de motivation
+            pour atteindre votre corps de rêve. Nous disposons d'une équipe de
+            coachs certifiés avec une expertise et un savoir-faire qui vous
+            accompagnera en tenant compte de votre niveau, votre hygiène de vie
+            et la fréquence de vos activités physiques.
           </p>
         </div>
       </div>
     </div>
-  </ng-template>
-</div>
-
-<div class="d-flex justify-content-center bg-light mt-4">
-  <div class="contact my-5">
-    <h3 class="text-center">Conectez Nous</h3>
-    <form
-      method="post"
-      class="pirate_forms"
-      [formGroup]="send"
-      (ngSubmit)="sendEmail()"
-    >
-      <div class="pirate_forms_three_inputs_wrap row">
-        <div
-          class="col-sm-12 col-lg-12 form_field_wrap contact_subject_wrap pirate_forms_three_inputs"
-        >
-          <label for="pirate-forms-contact-subject"></label>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Objet"
-            formControlName="object"
-          />
-        </div>
-        <div
-          class="col-sm-12 col-lg-12 form_field_wrap contact_message_wrap mt-3"
-        >
-          <textarea
-            class="form-control"
-            placeholder="Message"
-            formControlName="message"
-          ></textarea>
-        </div>
-      </div>
-      <button class="btn btn-contact" type="submit">envyer</button>
-    </form>
   </div>
-</div>
-<!-- end contact -->
-<!-- begin footer -->
+  <div class="d-flex justify-content-center bg-light mt-4">
+    <div class="contact my-5">
+      <h3 class="text-center">Conectez Nous</h3>
+      <form
+        method="post"
+        class="pirate_forms"
+        [formGroup]="send"
+        (ngSubmit)="sendEmail()"
+      >
+        <div class="pirate_forms_three_inputs_wrap row">
+          <div
+            class="col-sm-12 col-lg-12 form_field_wrap contact_subject_wrap pirate_forms_three_inputs"
+          >
+            <label for="pirate-forms-contact-subject"></label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Objet"
+              formControlName="object"
+            />
+          </div>
+          <div
+            class="col-sm-12 col-lg-12 form_field_wrap contact_message_wrap mt-3"
+          >
+            <textarea
+              class="form-control"
+              placeholder="Message"
+              formControlName="message"
+            ></textarea>
+          </div>
+        </div>
+        <button class="btn btn-contact" type="submit">envyer</button>
+      </form>
+    </div>
+  </div>
+  <!-- end contact -->
+  <!-- begin footer -->
 
-<app-footer></app-footer> -->
+  <app-footer></app-footer> -->
+</div>

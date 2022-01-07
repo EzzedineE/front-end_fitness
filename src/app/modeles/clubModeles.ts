@@ -9,8 +9,10 @@ export class Club {
   email: string;
   tel: number;
   cours: [];
-  toutJour: string;
-  weekend: string;
+  ouverture: Date;
+  fermiture: Date;
+  ouvertureWeekend: Date;
+  fermitureWeekend: Date;
   likes: number;
   constructor(
     _id: string = '',
@@ -23,8 +25,10 @@ export class Club {
     email: string = '',
     tel: number = 0,
     cours: [] = [],
-    toutJour: string = '',
-    weekend: string = '',
+    ouverture: Date = new Date(),
+    fermiture: Date = new Date(),
+    ouvertureWeekend: Date = new Date(),
+    fermitureWeekend: Date = new Date(),
     likes: number = 0
   ) {
     (this.nom = nom), (this.description = description);
@@ -36,26 +40,10 @@ export class Club {
       (this.email = email),
       (this.tel = tel),
       (this.cours = cours),
-      (this.toutJour = toutJour),
-      (this.weekend = weekend),
+      (this.ouverture = ouverture),
+      (this.fermiture = fermiture),
+      (this.ouvertureWeekend = ouvertureWeekend),
+      (this.fermitureWeekend = fermitureWeekend),
       (this.likes = likes);
   }
 }
-// export class Cours {
-//   titre: string;
-//   date: string;
-//   heure: string;
-//   description: string;
-
-//   constructor(
-//     titre: string = '',
-//     date: string = '',
-//     heure: string = '',
-//     description: string = ''
-//   ) {
-//     this.titre = titre;
-//     this.date = date;
-//     this.heure = heure;
-//     this.description = description;
-//   }
-// }

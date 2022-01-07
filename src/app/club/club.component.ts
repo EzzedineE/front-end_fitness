@@ -64,7 +64,8 @@ export class ClubComponent implements OnInit {
   formCour = new FormGroup({
     titre: new FormControl(''),
     date: new FormControl(''),
-    heure: new FormControl(''),
+    heureDebut: new FormControl(''),
+    heureFin: new FormControl(''),
     description: new FormControl(''),
   });
 

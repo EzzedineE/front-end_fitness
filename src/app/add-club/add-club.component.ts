@@ -39,8 +39,10 @@ export class AddClubComponent implements OnInit {
       description: new FormControl(this.club.description),
       cours: new FormArray([new FormControl('')]),
       images: new FormControl(null, { validators: [Validators.required] }),
-      toutJour: new FormControl(this.club.toutJour),
-      weekend: new FormControl(this.club.weekend),
+      ouverture: new FormControl(this.club.ouverture),
+      fermiture: new FormControl(this.club.fermiture),
+      ouvertureWeekend: new FormControl(this.club.ouvertureWeekend),
+      fermitureWeekend: new FormControl(this.club.fermitureWeekend),
     });
     if (this.id) {
       this.services.getOneClub(this.id).subscribe(
@@ -84,9 +86,10 @@ export class AddClubComponent implements OnInit {
     upload.append('instagram', newPub.instagram);
     upload.append('email', newPub.email);
     upload.append('tel', newPub.tel);
-
-    upload.append('toutJour', newPub.toutJour);
-    upload.append('weekend', newPub.weekend);
+    upload.append('ouvertureWeekend', newPub.ouvertureWeekend);
+    upload.append('fermitureWeekend', newPub.fermitureWeekend);
+    upload.append('fermiture', newPub.fermiture);
+    upload.append('ouverture', newPub.ouverture);
     if (this.selectedFiles) {
       for (let file of this.selectedFiles) {
         upload.append('images', file);

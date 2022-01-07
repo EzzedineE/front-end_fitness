@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlogsComponent } from './add-blogs/blogs.component';
 import { AddClubComponent } from './add-club/add-club.component';
-import { AddProduitComponent } from './add-produit/add-produit.component';
+
 import { BlogComponent } from './blog/blog.component';
 import { ClubComponent } from './club/club.component';
 import { ClubsComponent } from './clubs/clubs.component';
@@ -10,7 +10,7 @@ import { AdminGuard } from './gardes/admin.guard';
 import { GardeGuard } from './gardes/garde.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { ProduitComponent } from './produit/produit.component';
+
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -51,18 +51,8 @@ const routes: Routes = [
   // afficher les blogs
   { path: 'blogs', component: BlogComponent, canActivate: [GardeGuard] },
   // ajouter produit
-  {
-    path: 'add-Produit',
-    component: AddProduitComponent,
-    canActivate: [GardeGuard],
-  },
+
   // modifier produit
-  {
-    path: 'add-Produit/:id',
-    component: AddProduitComponent,
-    canActivate: [GardeGuard],
-  },
-  { path: 'produit', component: ProduitComponent, canActivate: [GardeGuard] },
 ];
 
 @NgModule({

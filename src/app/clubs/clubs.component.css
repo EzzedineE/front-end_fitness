@@ -77,20 +77,20 @@ html {
   color: black;
 }
 .menu:hover {
-  color: rgb(202, 41, 116);
+  color: rgb(248, 211, 4);
   text-decoration: none;
 }
 .btn-connect {
-  color: rgb(202, 41, 116);
-  border-color: rgb(202, 41, 116);
+  color: rgb(248, 211, 4);
+  border-color: rgb(248, 211, 4);
 }
 .btn-connect:hover {
   color: white;
-  background-color: rgb(202, 41, 116);
+  background-color: rgb(248, 211, 4);
 }
 .btn-insc {
   color: white;
-  background-color: rgb(202, 41, 116);
+  background-color: rgb(248, 211, 4);
 }
 .btn-insc:hover {
   color: white;
@@ -105,15 +105,15 @@ html {
   color: white;
 }
 .btn-acceil {
-  color: rgb(202, 41, 116);
+  color: rgb(248, 211, 4);
   width: 200px;
 }
 .info {
-  background-color: rgb(202, 41, 116);
+  background-color: rgb(248, 211, 4);
   color: white;
 }
 .title-service {
-  background-color: rgb(202, 41, 116);
+  background-color: rgb(248, 211, 4);
   height: 100px;
   color: white;
 }
@@ -124,7 +124,7 @@ html {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgb(202, 41, 116);
+  background-color: rgb(248, 211, 4);
   color: white;
 }
 .stat-service {
@@ -144,7 +144,7 @@ html {
 }
 .btn-contact {
   color: white;
-  background-color: rgb(202, 41, 116);
+  background-color: rgb(248, 211, 4);
 }
 .menu-footer {
   color: white;
@@ -161,7 +161,7 @@ html {
 }
 .btn-con {
   width: 100%;
-  background-color: rgb(202, 41, 116);
+  background-color: rgb(248, 211, 4);
   color: white;
 }
 .oublier {
@@ -206,7 +206,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #9bdc28;
+  background: rgb(248, 211, 4);
   clip-path: circle(150px at 80% 20%);
   transition: 0.5s ease-in-out;
 }
@@ -216,7 +216,7 @@ body {
 }
 
 .container .card:after {
-  content: "Nike";
+  content: "YOUR GYM";
   position: absolute;
   top: 30%;
   left: -20%;
@@ -323,20 +323,20 @@ body {
 }
 
 .container .card .contentBx .address span:hover {
-  background: #9bdc28;
+  background: rgb(248, 211, 4);
 }
 
 .container .card .contentBx .tel span {
   width: 20px;
   height: 20px;
-  background: #ff0;
+  background: rgb(248, 211, 4);
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;
 }
 
 .container .card .contentBx .tel span:nth-child(2) {
-  background: #9bdc28;
+  background: rgb(248, 211, 4);
 }
 
 .container .card .contentBx .tel span:nth-child(3) {
@@ -366,4 +366,9 @@ body {
   opacity: 1;
   transform: translateY(0px);
   transition-delay: 0.75s;
+}
+.loisir:hover {
+  background-size: 90%;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }

@@ -1,5 +1,5 @@
 <div class="body1">
-  <app-header></app-header>
+  <!-- <app-header></app-header> -->
   <div class="body">
     <div>
       <div class="bg-dark text-white">
@@ -16,90 +16,6 @@
           <h3 class="text-warning text-center fs-1 mt-5">
             Salle de sport et de Fitness
           </h3>
-          <div>
-            <button
-              *ngIf="user.role == 'admin'"
-              class="btn btn-outline-warning w-100 container"
-              (click)="open(content)"
-            >
-              Les forfait
-            </button>
-            <div class="">
-              <ng-template #content let-modal>
-                <div class="modal-header">
-                  <h1 class="modal-title" id="modal-basic">Nos forfait</h1>
-                  <button
-                    type="button"
-                    class="close"
-                    aria-label="Close"
-                    (click)="modal.dismiss('Cross click')"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form [formGroup]="forfaitForm">
-                    <div class="form-group">
-                      <div>
-                        <label>titre</label>
-                        <input
-                          formControlName="titre"
-                          class="form-control"
-                          type="text"
-                          ngbDatepicker
-                        />
-                      </div>
-                      <div>
-                        <label>prix</label>
-                        <input
-                          formControlName="prix"
-                          class="form-control"
-                          type="number"
-                          ngbDatepicker
-                        />
-                      </div>
-                      <div>
-                        <label for="dateOfBirth">periode</label>
-                        <input
-                          formControlName="période"
-                          class="form-control"
-                          type="number"
-                          ngbDatepicker
-                        />
-                      </div>
-                      <div>
-                        <label for="dateOfBirth">description</label>
-                        <input
-                          formControlName="description"
-                          class="form-control"
-                          type="text"
-                          ngbDatepicker
-                        />
-                      </div>
-                      <div>
-                        <label for="dateOfBirth">machine</label>
-                        <textarea
-                          formControlName="machine"
-                          class="form-control"
-                          type="text"
-                          ngbDatepicker
-                        ></textarea>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-outline-dark"
-                    (click)="testmodal()"
-                  >
-                    Save
-                  </button>
-                </div>
-              </ng-template>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -133,15 +49,33 @@
         </ng-template>
       </ngb-carousel>
     </div>
-    <div class="container mb-5">
-      <h2 class="text-center text-warning mt-5">Ajout cours</h2>
+    <div class="container my-5">
+      <h1>{{ club?.nom }}</h1>
+      <p>{{ club?.description }}</p>
+    </div>
+    <div class="container mb-5 forfait-card" *ngIf="user.role == 'admin'">
+      <h2 class="text-center fs-1 m-5">Ajout cours</h2>
       <form [formGroup]="formCour" (ngSubmit)="addCour()" class="row">
         <div class="col-6">
-          <label class=""> Titre</label>
-          <input type="text" class="form-control" formControlName="titre" />
+          <label class=""> Cour</label>
+
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            formControlName="titre"
+          >
+            <option value="RPM">RPM</option>
+            <option value="BOXE">BOXE</option>
+            <option value="DANSE">DANSE</option>
+            <option value="ZUMBA">ZUMBA</option>
+            <option value="TRX">TRX</option>
+            <option value="HBX BOXING">HBX BOXING</option>
+            <option value="GRIT">GRIT</option>
+            <option value="B.BALANCE">B.BALANCE</option>
+          </select>
         </div>
         <div class="col-6">
-          <label class=""> Titre</label>
+          <label class=""> Jour</label>
           <select
             class="form-select"
             aria-label="Default select example"
@@ -157,9 +91,17 @@
           </select>
         </div>
 
-        <div class="col-6">
-          <label class="">Heure</label>
-          <input type="text" class="form-control" formControlName="heure" />
+        <div class="col-3">
+          <label class="">Heure De Debut</label>
+          <input
+            type="time"
+            class="form-control"
+            formControlName="heureDebut"
+          />
+        </div>
+        <div class="col-3">
+          <label class="">Heure De Fin</label>
+          <input type="time" class="form-control" formControlName="heureFin" />
         </div>
         <div class="col-6">
           <label class="">Description</label>
@@ -169,64 +111,70 @@
             formControlName="description"
           />
         </div>
-
-        <button class="btn btn-outline-warning w-25 mt-4">Ajouter</button>
+        <div class="text-center">
+          <button class="btn btn-outline-warning w-25 mt-4">Ajouter</button>
+        </div>
       </form>
     </div>
     <!-- horair -->
     <section class="bg-dark text-white containe">
       <div class="d-flex justify-content-center row">
-        <div class="col-md-4 col-sm-4 col-lg-4">
+        <div class="col-md-4 col-sm-12 col-lg-4">
           <h1 class="text-center fs-1">HORAIRES DE TRAVAIL</h1>
 
           <ul class="jour container pt-5">
             <li class="row">
-              <p class="col-2"></p>
-              <p class="col-4">Lundi</p>
-              <p class="col-4">{{ club?.toutJour }}</p>
-              <p class="col-2"></p>
-            </li>
-            <li class="row">
-              <p class="col-2"></p>
-              <p class="col-4">Mardi</p>
-              <p class="col-4">{{ club?.toutJour }}</p>
-              <p class="col-2"></p>
-            </li>
-            <li class="row">
-              <p class="col-2"></p>
-              <p class="col-4">Mercredi</p>
-              <p class="col-4">{{ club?.toutJour }}</p>
-              <p class="col-2"></p>
-            </li>
-            <li class="row">
-              <p class="col-2"></p>
-              <p class="col-4">Jeudi</p>
-              <p class="col-4">{{ club?.toutJour }}</p>
-              <p class="col-2"></p>
+              <p class="col-1"></p>
+              <p class="col-5">Lundi</p>
+              <p class="col-5">{{ club?.ouverture }} - {{ club?.fermiture }}</p>
+              <p class="col-1"></p>
             </li>
 
             <li class="row">
-              <p class="col-2"></p>
-              <p class="col-4">Vendredi</p>
-              <p class="col-4">{{ club?.toutJour }}</p>
-              <p class="col-2"></p>
+              <p class="col-1"></p>
+              <p class="col-5">Mardi</p>
+              <p class="col-5">{{ club?.ouverture }} - {{ club?.fermiture }}</p>
+              <p class="col-1"></p>
             </li>
             <li class="row">
-              <p class="col-2"></p>
-              <p class="col-4">Samedi</p>
-              <p class="col-4">{{ club?.toutJour }}</p>
-              <p class="col-2"></p>
+              <p class="col-1"></p>
+              <p class="col-5">Mercredi</p>
+              <p class="col-5">{{ club?.ouverture }} - {{ club?.fermiture }}</p>
+              <p class="col-1"></p>
             </li>
             <li class="row">
-              <p class="col-2"></p>
-              <p class="col-4">Dimanche</p>
-              <p class="col-4">{{ club?.toutJour }}</p>
-              <p class="col-2"></p>
+              <p class="col-1"></p>
+              <p class="col-5">Jeudi</p>
+              <p class="col-5">{{ club?.ouverture }} - {{ club?.fermiture }}</p>
+              <p class="col-1"></p>
+            </li>
+
+            <li class="row">
+              <p class="col-1"></p>
+              <p class="col-5">Vendredi</p>
+              <p class="col-5">{{ club?.ouverture }} - {{ club?.fermiture }}</p>
+              <p class="col-1"></p>
+            </li>
+            <li class="row">
+              <p class="col-1"></p>
+              <p class="col-5">Samedi</p>
+              <p class="col-5">
+                {{ club?.ouvertureWeekend }} - {{ club?.fermitureWeekend }}
+              </p>
+              <p class="col-1"></p>
+            </li>
+            <li class="row">
+              <p class="col-1"></p>
+              <p class="col-5">Dimanche</p>
+              <p class="col-5">
+                {{ club?.ouvertureWeekend }} - {{ club?.fermitureWeekend }}
+              </p>
+              <p class="col-1"></p>
             </li>
           </ul>
         </div>
 
-        <div class="col-md-8 col-sm-8 col-lg-8">
+        <div class="col-md-8 col-sm-12 col-lg-8">
           <h1 class="container text-center fs-1 container">Planing</h1>
           <div class="d-flex justify-content-center pt-5">
             <table class="table">
@@ -245,12 +193,26 @@
                 <tr>
                   <td>
                     <tr
-                      *ngFor="let obj of semaines?.LUNDI"
+                      *ngFor="let obj of semaines?.LUNDI | ordre"
                       class="lh-1 d-flex justify-content-center"
                     >
-                      <div class="badge bg-primary mt-1 w-100">
+                      <div
+                        class="badge mt-1 w-100"
+                        [ngClass]="{
+                          'bg-secondary': obj?.titre == 'RPM',
+                          'bg-primary': obj?.titre == 'BOXE',
+                          'bg-success': obj?.titre == 'DANSE',
+                          'bg-info': obj?.titre == 'ZUMBA',
+                          'bg-warning': obj?.titre == 'TRX',
+                          'bg-danger': obj?.titre == 'HBX BOXING',
+                          'bg-light': obj?.titre == 'GRIT',
+                          'bg-dark': obj?.titre == 'B.BALANCE'
+                        }"
+                      >
                         <p class="text-center">{{ obj?.titre }}</p>
-                        <small>{{ obj?.heure }}</small>
+                        <small
+                          >{{ obj?.heureDebut }} - {{ obj?.heureFin }}</small
+                        >
                       </div>
                     </tr>
                   </td>
@@ -259,9 +221,23 @@
                       *ngFor="let obj of semaines?.MARDI"
                       class="lh-1 d-flex justify-content-center"
                     >
-                      <div class="badge bg-primary mt-1 w-100">
+                      <div
+                        class="badge mt-1 w-100"
+                        [ngClass]="{
+                          'bg-secondary': obj?.titre == 'RPM',
+                          'bg-primary': obj?.titre == 'BOXE',
+                          'bg-success': obj?.titre == 'DANSE',
+                          'bg-info': obj?.titre == 'ZUMBA',
+                          'bg-warning': obj?.titre == 'TRX',
+                          'bg-danger': obj?.titre == 'HBX BOXING',
+                          'bg-light': obj?.titre == 'GRIT',
+                          'bg-dark': obj?.titre == 'B.BALANCE'
+                        }"
+                      >
                         <p class="text-center">{{ obj?.titre }}</p>
-                        <small>{{ obj?.heure }}</small>
+                        <small
+                          >{{ obj?.heureDebut }} - {{ obj?.heureFin }}</small
+                        >
                       </div>
                     </tr>
                   </td>
@@ -271,9 +247,23 @@
                       *ngFor="let obj of semaines?.MERCREDI"
                       class="lh-1 d-flex justify-content-center"
                     >
-                      <div class="badge bg-primary mt-1 w-100">
+                      <div
+                        class="badge mt-1 w-100"
+                        [ngClass]="{
+                          'bg-secondary': obj?.titre == 'RPM',
+                          'bg-primary': obj?.titre == 'BOXE',
+                          'bg-success': obj?.titre == 'DANSE',
+                          'bg-info': obj?.titre == 'ZUMBA',
+                          'bg-warning': obj?.titre == 'TRX',
+                          'bg-danger': obj?.titre == 'HBX BOXING',
+                          'bg-light': obj?.titre == 'GRIT',
+                          'bg-dark': obj?.titre == 'B.BALANCE'
+                        }"
+                      >
                         <p class="text-center">{{ obj?.titre }}</p>
-                        <small>{{ obj?.heure }}</small>
+                        <small
+                          >{{ obj?.heureDebut }} - {{ obj?.heureFin }}</small
+                        >
                       </div>
                     </tr>
                   </td>
@@ -283,9 +273,23 @@
                       *ngFor="let obj of semaines?.JEUDI"
                       class="lh-1 d-flex justify-content-center"
                     >
-                      <div class="badge bg-primary mt-1 w-100">
+                      <div
+                        class="badge mt-1 w-100"
+                        [ngClass]="{
+                          'bg-secondary': obj?.titre == 'RPM',
+                          'bg-primary': obj?.titre == 'BOXE',
+                          'bg-success': obj?.titre == 'DANSE',
+                          'bg-info': obj?.titre == 'ZUMBA',
+                          'bg-warning': obj?.titre == 'TRX',
+                          'bg-danger': obj?.titre == 'HBX BOXING',
+                          'bg-light': obj?.titre == 'GRIT',
+                          'bg-dark': obj?.titre == 'B.BALANCE'
+                        }"
+                      >
                         <p class="text-center">{{ obj?.titre }}</p>
-                        <small>{{ obj?.heure }}</small>
+                        <small
+                          >{{ obj?.heureDebut }} - {{ obj?.heureFin }}</small
+                        >
                       </div>
                     </tr>
                   </td>
@@ -295,9 +299,23 @@
                       *ngFor="let obj of semaines?.VENDREDI"
                       class="lh-1 d-flex justify-content-center"
                     >
-                      <div class="badge bg-primary mt-1 w-100">
+                      <div
+                        class="badge mt-1 w-100"
+                        [ngClass]="{
+                          'bg-secondary': obj?.titre == 'RPM',
+                          'bg-primary': obj?.titre == 'BOXE',
+                          'bg-success': obj?.titre == 'DANSE',
+                          'bg-info': obj?.titre == 'ZUMBA',
+                          'bg-warning': obj?.titre == 'TRX',
+                          'bg-danger': obj?.titre == 'HBX BOXING',
+                          'bg-light': obj?.titre == 'GRIT',
+                          'bg-dark': obj?.titre == 'B.BALANCE'
+                        }"
+                      >
                         <p class="text-center">{{ obj?.titre }}</p>
-                        <small>{{ obj?.heure }}</small>
+                        <small
+                          >{{ obj?.heureDebut }} - {{ obj?.heureFin }}</small
+                        >
                       </div>
                     </tr>
                   </td>
@@ -307,9 +325,23 @@
                       *ngFor="let obj of semaines?.SAMEDI"
                       class="lh-1 d-flex justify-content-center"
                     >
-                      <div class="badge bg-primary mt-1 w-100">
+                      <div
+                        class="badge mt-1 w-100"
+                        [ngClass]="{
+                          'bg-secondary': obj?.titre == 'RPM',
+                          'bg-primary': obj?.titre == 'BOXE',
+                          'bg-success': obj?.titre == 'DANSE',
+                          'bg-info': obj?.titre == 'ZUMBA',
+                          'bg-warning': obj?.titre == 'TRX',
+                          'bg-danger': obj?.titre == 'HBX BOXING',
+                          'bg-light': obj?.titre == 'GRIT',
+                          'bg-dark': obj?.titre == 'B.BALANCE'
+                        }"
+                      >
                         <p class="text-center">{{ obj?.titre }}</p>
-                        <small>{{ obj?.heure }}</small>
+                        <small
+                          >{{ obj?.heureDebut }} - {{ obj?.heureFin }}</small
+                        >
                       </div>
                     </tr>
                   </td>
@@ -319,9 +351,24 @@
                       *ngFor="let obj of semaines?.DIMANCHE"
                       class="lh-1 d-flex justify-content-center"
                     >
-                      <div class="badge bg-primary mt-1 w-100">
+                      <div
+                        class="badge mt-1 w-100"
+                        [ngClass]="{
+                          'bg-secondary': obj?.titre == 'RPM',
+                          'bg-primary': obj?.titre == 'BOXE',
+                          'bg-success': obj?.titre == 'DANSE',
+                          'bg-info': obj?.titre == 'ZUMBA',
+                          'bg-warning': obj?.titre == 'TRX',
+                          'bg-danger': obj?.titre == 'HBX BOXING',
+                          'bg-light': obj?.titre == 'GRIT',
+                          'text-dark': obj?.titre == 'GRIT',
+                          'bg-dark': obj?.titre == 'B.BALANCE'
+                        }"
+                      >
                         <p class="text-center">{{ obj?.titre }}</p>
-                        <small>{{ obj?.heure }}</small>
+                        <small
+                          >{{ obj?.heureDebut }} - {{ obj?.heureFin }}</small
+                        >
                       </div>
                     </tr>
                   </td>
@@ -334,74 +381,146 @@
     </section>
 
     <section>
-      <h1 class="text-center mt-5 text-warning">Nos Forfaits</h1>
-      <div class="row d-flex justify-content-center">
-        <div
-          class="card text-white bg-dark m-3 col-md-4 col-lg-4 forfait-card"
-          *ngFor="let forfait of club?.forfaits"
-          style="max-width: 19rem"
+      <div class="text-center">
+        <button
+          *ngIf="user.role == 'admin'"
+          class="btn btn-outline-warning w-100 container"
+          (click)="open(content)"
         >
-          <h1 class="card-header text-center">Forfait {{ forfait.titre }}</h1>
-          <div class="card-body">
-            <h5 class="card-title">
-              prix:{{ forfait.prix }}<sup class="">TND</sup>
-            </h5>
-            <h6>Periode: {{ forfait["période"] }} mois</h6>
-            <h6>Accès illimité à {{ forfait.machine }}</h6>
-            <p class="card-text">
-              {{ forfait.description }}
-            </p>
-          </div>
-          <div>
-            <ng-template #content2 let-modal>
-              <div class="modal-header">
-                <ul>
-                  <li>
-                    <h1 class="modal-title">Valider votre opperation</h1>
-                  </li>
-                  <li class="d-flex">
-                    <h4>nom :</h4>
-                    <p>{{ user.nom }} {{ user.prenom }}</p>
-                  </li>
-                  <li class="d-flex">
-                    <h4>Club</h4>
-                    <p>{{ club?.nom }}</p>
-                  </li>
-                  <li class="d-flex">
-                    <h4>forfait</h4>
-                    <p>{{ user.nom }}</p>
-                  </li>
-                </ul>
-
-                <button
-                  type="button"
-                  class="close"
-                  aria-label="Close"
-                  (click)="modal.dismiss('Cross click')"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body"></div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-outline-dark"
-                  (click)="validation(user, forfait)"
-                >
-                  Save
-                </button>
-              </div>
-            </ng-template>
-            <button
-              class="btn btn-outline-warning w-100"
-              (click)="makePayment(user, forfait, content2, club)"
-            >
-              Inscription
-            </button>
-          </div>
+          Ajouter forfait
+        </button>
+        <div class="">
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h1 class="modal-title" id="modal-basic">Nos forfait</h1>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="forfaitForm">
+                <div class="form-group">
+                  <div>
+                    <label>titre</label>
+                    <input
+                      formControlName="titre"
+                      class="form-control"
+                      type="text"
+                      ngbDatepicker
+                    />
+                  </div>
+                  <div>
+                    <label>prix</label>
+                    <input
+                      formControlName="prix"
+                      class="form-control"
+                      type="number"
+                      ngbDatepicker
+                    />
+                  </div>
+                  <div>
+                    <label for="dateOfBirth">periode</label>
+                    <input
+                      formControlName="période"
+                      class="form-control"
+                      type="number"
+                      ngbDatepicker
+                    />
+                  </div>
+                  <div>
+                    <label for="dateOfBirth">description</label>
+                    <input
+                      formControlName="description"
+                      class="form-control"
+                      type="text"
+                      ngbDatepicker
+                    />
+                  </div>
+                  <div>
+                    <label for="dateOfBirth">machine</label>
+                    <textarea
+                      formControlName="machine"
+                      class="form-control"
+                      type="text"
+                      ngbDatepicker
+                    ></textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                (click)="testmodal()"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')"
+              >
+                Save
+              </button>
+            </div>
+          </ng-template>
         </div>
       </div>
+      <section>
+        <h1 class="text-center fs-1 m-5">Nos Forfaits</h1>
+        <div class="row d-flex justify-content-center">
+          <div
+            class="card text-white bg-dark m-3 col-md-4 col-lg-4 forfait-card"
+            *ngFor="let forfait of club?.forfaits"
+            style="max-width: 19rem"
+          >
+            <h1 class="card-header text-center">Forfait {{ forfait.titre }}</h1>
+            <div class="card-body">
+              <h5 class="card-title">
+                prix:{{ forfait.prix }}<sup class="">TND</sup>
+              </h5>
+              <h6>Periode: {{ forfait["période"] }} mois</h6>
+              <h6>Accès illimité à {{ forfait.machine }}</h6>
+              <p class="card-text">
+                {{ forfait.description }}
+              </p>
+            </div>
+            <div>
+              <ng-template #content2 let-modal class="w-100">
+                <div class="modal-header">
+                  <ul>
+                    <li>
+                      <h1 class="modal-title">Valider votre opperation</h1>
+                    </li>
+                    <li class="d-flex">
+                      <h4>nom :</h4>
+                      <p>{{ user.nom }} {{ user.prenom }}</p>
+                    </li>
+                    <li class="d-flex">
+                      <h4>Club</h4>
+                      <p>{{ club?.nom }}</p>
+                    </li>
+                    <li class="d-flex">
+                      <h4>forfait</h4>
+                      <p>{{ user.nom }}</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark"
+                    (click)="validation(user, forfait)"
+                    (click)="modal.dismiss('Cross click')"
+                  >
+                    Save
+                  </button>
+                </div>
+              </ng-template>
+              <button
+                class="btn btn-outline-warning w-100"
+                (click)="makePayment(user, forfait, content2, club)"
+              >
+                Inscription
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="border container my-5 rounded">
         <div class="container">
           <form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">
@@ -432,7 +551,6 @@
               <div class="card-body">
                 <div *ngFor="let comment of commentaires; let k = index">
                   <div class="row">
-                    <div class="col-2"></div>
                     <div class="col-8">
                       <h1>{{ comment.nom }} {{ comment.prenom }}</h1>
                       <p *ngIf="!commentaires[k].answered">
@@ -534,21 +652,23 @@
         <h1 class="text-white text-uppercase fs-1">
           <b>{{ club?.nom }}</b>
         </h1>
-        <p class="text-white"><b>Info</b></p>
-        <div class="row">
-          <a class="text-white col-md-3 col-lg-3" href="club?.facebook! ">
+        <p class="text-white col-md-2 col-lg-2"><b>Info</b></p>
+        <div class="row d-flex justify-content-between">
+          <a class="text-white col-md-6 col-lg-6" href="{{ club?.facebook! }}">
             <i class="bi bi-facebook"></i> {{ club?.facebook! }} </a
           ><br />
-          <a class="text-white col-md-3 col-lg-3" href="{{ club?.instagram! }}">
+          <a class="text-white col-md-6 col-lg-6" href="{{ club?.instagram! }}">
             <i class="bi bi-instagram"></i> {{ club?.instagram! }}
           </a>
-          <a class="text-white col-md-3 col-lg-3"
+
+          <a class="text-white col-md-6 col-lg-6" href="tel:{{ club?.tel! }}"
             ><i class="bi bi-telephone"></i> {{ club?.tel! }}</a
           >
-          <a class=". text-white col-md-3 col-lg-3">
+          <a class=". text-white col-md-6 col-lg-6">
             <i class="bi bi-geo-alt-fill"></i> {{ club?.address! }}
           </a>
         </div>
+        <div class="col-10"></div>
       </div>
     </section>
   </div>

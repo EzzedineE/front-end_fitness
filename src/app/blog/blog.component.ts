@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Blog } from '../modeles/blogModele';
+import { User } from '../modeles/userModele';
 import { BlogService } from '../service/blog.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-blog',
@@ -9,10 +11,15 @@ import { BlogService } from '../service/blog.service';
   styleUrls: ['./blog.component.css'],
 })
 export class BlogComponent implements OnInit {
+  user: User = this.ServiceUser.getuser();
   blogs: Blog[];
   rechercher: string = '';
   charger: boolean;
-  constructor(private Service: BlogService, private toastr: ToastrService) {}
+  constructor(
+    private Service: BlogService,
+    private toastr: ToastrService,
+    private ServiceUser: UserService
+  ) {}
 
   ngOnInit(): void {
     this.charger = false;

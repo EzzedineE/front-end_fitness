@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       Validators.required,
     ]),
     password: new FormControl('', [Validators.required]),
-    role: new FormControl('user'),
+    role: new FormControl('admin'),
   });
   constructor(
     private services: AuthService,

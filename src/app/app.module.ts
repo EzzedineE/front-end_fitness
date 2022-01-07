@@ -19,10 +19,10 @@ import { BlogsComponent } from './add-blogs/blogs.component';
 import { RegisterComponent } from './register/register.component';
 import { BlogComponent } from './blog/blog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProduitComponent } from './produit/produit.component';
-import { AddProduitComponent } from './add-produit/add-produit.component';
+
 import { RouterModule } from '@angular/router';
 import { CategoriePipe } from './pipes/categorie.pipe';
+import { OrdrePipe } from './pipes/ordre.pipe';
 
 @NgModule({
   declarations: [
@@ -38,9 +38,9 @@ import { CategoriePipe } from './pipes/categorie.pipe';
     FilterPipe,
     BlogsComponent,
     BlogComponent,
-    ProduitComponent,
-    AddProduitComponent,
+
     CategoriePipe,
+     OrdrePipe,
   ],
   imports: [
     RouterModule,
