@@ -6,6 +6,7 @@ import { AddClubComponent } from './add-club/add-club.component';
 import { BlogComponent } from './blog/blog.component';
 import { ClubComponent } from './club/club.component';
 import { ClubsComponent } from './clubs/clubs.component';
+import { ContactComponent } from './contact/contact.component';
 import { AdminGuard } from './gardes/admin.guard';
 import { GardeGuard } from './gardes/garde.guard';
 import { HomeComponent } from './home/home.component';
@@ -50,9 +51,7 @@ const routes: Routes = [
   },
   // afficher les blogs
   { path: 'blogs', component: BlogComponent, canActivate: [GardeGuard] },
-  // ajouter produit
-
-  // modifier produit
+  { path: 'contact', component: ContactComponent, canActivate: [GardeGuard] },
 ];
 
 @NgModule({

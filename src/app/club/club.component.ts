@@ -136,6 +136,8 @@ export class ClubComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    console.log(this.dateINS);
+
     this.date = moment(this.newDate).format('DD/MM/YYYY');
     this.dateINS = moment(this.user.dateInscription).format('DD/MM/YYYY');
     this.invokeStripe();
@@ -175,6 +177,14 @@ export class ClubComponent implements OnInit {
     this.ServiceCommentaire.getCommentaire().subscribe(
       (res: any) => {
         this.commentaires = res;
+        this.Service.getOneClub(this.id).subscribe(
+          (res: any) => {
+            this.club = res;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       },
       (err) => {
         console.log(err);
@@ -184,6 +194,14 @@ export class ClubComponent implements OnInit {
     this.Service.getForfait().subscribe(
       (res: any) => {
         this.forfaits = res;
+        this.Service.getOneClub(this.id).subscribe(
+          (res: any) => {
+            this.club = res;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       },
       (err) => {
         console.log(err);
@@ -225,12 +243,6 @@ export class ClubComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
-  }
-  salle() {
-    window.scrollTo(0, 500);
-  }
-  contact() {
-    window.scrollTo(0, 1200);
   }
   // send email
   sendEmail() {

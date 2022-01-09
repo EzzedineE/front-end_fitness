@@ -1,0 +1,64 @@
+<p *ngFor="let club of clubs"></p>
+<app-header></app-header>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <h1 class="text-center fs-1 my-5 fst-italic">
+      <b>les contactes des salles</b>
+    </h1>
+    <div *ngFor="let club of clubs" class="my-5 border p-3">
+      <div class="bg-danger px-3 d-flex justify-content-between">
+        <h1 class="text-white fst-italic fs-2">{{ club?.nom }}</h1>
+      </div>
+      <ul>
+        <li>
+          E-mail:
+          <a
+            href="{{ club?.email! }}"
+            class="rounded-top my-1 fs-4 text-dark"
+            >{{ club?.email! }}</a
+          >
+        </li>
+        <li>
+          Tel:
+          <a
+            href="tel:{{ club?.tel! }}"
+            class="rounded-top my-1 fs-4 text-dark"
+          >
+            {{ club?.tel! }}</a
+          >
+        </li>
+        <li>
+          Address:
+          <a
+            href="http://maps.google.com/?q=1200 {{ club?.address! }}"
+            class="rounded-top my-1 fs-4 text-dark"
+          >
+            {{ club?.address! }}</a
+          >
+        </li>
+        <li>
+          Facebook:
+          <a
+            href="{{ club?.facebook! }}"
+            class="rounded-top my-1 fs-4 text-dark"
+          >
+            {{ club?.facebook! }}</a
+          >
+        </li>
+        <li>
+          Instagram:
+          <a
+            href="{{ club?.instagram! }}"
+            class="rounded-top my-1 fs-4 text-dark"
+          >
+            {{ club?.instagram! }}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-2"></div>
+</div>
+
+<app-footer></app-footer>

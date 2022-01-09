@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { CategoriePipe } from './pipes/categorie.pipe';
 import { OrdrePipe } from './pipes/ordre.pipe';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { OrdrePipe } from './pipes/ordre.pipe';
 
     CategoriePipe,
      OrdrePipe,
+     ContactComponent,
   ],
   imports: [
     RouterModule,
