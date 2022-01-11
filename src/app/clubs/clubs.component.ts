@@ -143,15 +143,7 @@ export class ClubsComponent implements OnInit {
     this.seviceUser.dislike(aa, id).subscribe(
       (res: any) => {
         this.userConect = res;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-    this.Service.getClub().subscribe(
-      (res: any) => {
-        this.clubs = res;
-        this.charger = true;
+        this.getClubs();
       },
       (err) => {
         console.log(err);

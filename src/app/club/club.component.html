@@ -41,7 +41,7 @@
             <img
               src="{{ 'http://localhost:3000/static/' + img }}"
               height="500"
-              class="container w-100"
+              class="container w-75 p-4"
             />
           </div>
         </a>
@@ -165,7 +165,7 @@
         </ul>
       </div>
 
-      <div class="col-md-8 col-sm-12 col-lg-8">
+      <div class="col-md-8 col-sm-12 col-lg-8 wm-75">
         <h1 class="container text-center fs-1 container">Planing</h1>
         <div class="d-flex justify-content-center pt-5">
           <table class="table">
@@ -372,7 +372,11 @@
             <h1 class="modal-title" id="modal-basic">Nos forfait</h1>
           </div>
           <div class="modal-body">
-            <form [formGroup]="forfaitForm">
+            <form
+              [formGroup]="forfaitForm"
+              (ngSubmit)="modal.dismiss('Cross click')"
+              (ngSubmit)="testmodal()"
+            >
               <div class="form-group">
                 <div>
                   <label>titre</label>
@@ -420,22 +424,20 @@
                   ></textarea>
                 </div>
               </div>
+              <button
+                type="submit"
+                class="btn btn-outline-dark"
+                aria-label="Close"
+              >
+                Save
+              </button>
             </form>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-outline-dark"
-              (click)="testmodal()"
-              aria-label="Close"
-              (click)="modal.dismiss('Cross click')"
-            >
-              Save
-            </button>
-          </div>
+          <div class="modal-footer"></div>
         </ng-template>
       </div>
     </div>
+
     <section>
       <h1 class="text-center fs-1 m-5">Nos Forfaits</h1>
       <div class="row d-flex justify-content-center">
@@ -464,7 +466,7 @@
                   </li>
                   <li class="d-flex">
                     <h4>nom :</h4>
-                    <p>{{ user.nom }} {{ user.prenom }}</p>
+                    <p>{{ user?.nom }} {{ user?.prenom }}</p>
                   </li>
                   <li class="d-flex">
                     <h4>Club</h4>
@@ -472,7 +474,7 @@
                   </li>
                   <li class="d-flex">
                     <h4>forfait</h4>
-                    <p>{{ user.nom }}</p>
+                    <p>{{ user?.nom }}</p>
                   </li>
                 </ul>
               </div>
@@ -481,7 +483,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-dark"
-                  (click)="validation(user, forfait)"
+                  (click)="validation(forfait)"
                   (click)="modal.dismiss('Cross click')"
                 >
                   Save
@@ -489,6 +491,7 @@
               </div>
             </ng-template>
             <button
+              *ngIf="date - dateINS < 0 || !user.dateInscription"
               class="btn btn-outline-warning w-100"
               (click)="makePayment(user, forfait, content2, club)"
             >
@@ -498,6 +501,7 @@
         </div>
       </div>
     </section>
+
     <section class="border container my-5 rounded">
       <div class="container">
         <form [formGroup]="commentaireForm" (ngSubmit)="envoyer()">

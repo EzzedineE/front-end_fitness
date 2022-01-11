@@ -117,28 +117,28 @@
               </div>
               <div class="d-flex justify-content-center py-1">
                 <a
-                  class="text-decoration-none mx-3"
+                  class="text-decoration-none mx-3 text-white"
                   (click)="like(club._id)"
                   *ngIf="!userConect?.mylikes.includes(club?._id)"
-                  ><i class="bi bi-hand-thumbs-up-fill"></i>{{ club?.likes }}
+                  ><i class="bi bi-hand-thumbs-up-fill"></i> {{ club?.likes }}
                 </a>
                 <a
-                  class="text-decoration-none mx-3"
+                  class="text-decoration-none mx-3 text-white"
                   (click)="dislike(club._id)"
                   *ngIf="userConect?.mylikes.includes(club?._id)"
-                  ><i class="bi bi-hand-thumbs-down-fill"></i
+                  ><i class="bi bi-hand-thumbs-down-fill"> </i
                   >{{ club?.likes }}</a
                 >
 
                 <a
-                  class="text-decoration-none mx-3"
+                  class="text-decoration-none mx-3 text-white"
                   [routerLink]="['/add-club', club._id]"
                   *ngIf="user.role == 'admin'"
                 >
                   <i class="bi bi-pencil-square"></i>Modifier</a
                 >
                 <a
-                  class="text-decoration-none mx-3"
+                  class="text-decoration-none mx-3 text-white"
                   (click)="delete(club._id)"
                   *ngIf="user.role == 'admin'"
                 >
@@ -224,7 +224,7 @@
   </div>
   <div class="d-flex justify-content-center bg-light mt-4">
     <div class="contact my-5">
-      <h3 class="text-center">Conectez Nous</h3>
+      <h3 class="text-center">Contacter Nous</h3>
       <form
         method="post"
         class="pirate_forms"

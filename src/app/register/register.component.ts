@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       Validators.required,
     ]),
     password: new FormControl('', [Validators.required]),
-    role: new FormControl('admin'),
+    role: new FormControl('user'),
   });
   constructor(
     private services: AuthService,
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   register() {
     const newUser = this.userForm.value;
-    newUser.role = 'admin';
+    newUser.role = 'user';
     this.services.register(newUser).subscribe(
       (res) => {
         let message = this.toastr.success('inscription valide').onHidden;

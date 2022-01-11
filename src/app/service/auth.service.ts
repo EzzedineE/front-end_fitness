@@ -23,7 +23,7 @@ export class AuthService {
     return this.http.get('http://localhost:3000/api/user/');
   }
   getOneUserBd(id: string) {
-    return this.http.get(`http://localhost:4000/api/user/${id}`);
+    return this.http.get(`http://localhost:3000/api/user/${id}`);
   }
 
   setUser(user: User) {

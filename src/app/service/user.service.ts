@@ -26,4 +26,9 @@ export class UserService {
       body,
     });
   }
+  updateUser(id: string, body: any) {
+    return this.http.put(`http://localhost:3000/api/user/update/${id}`, {
+      body,
+    });
+  }
 }

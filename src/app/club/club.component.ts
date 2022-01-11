@@ -24,6 +24,8 @@ import * as moment from 'moment';
   styleUrls: ['./club.component.scss'],
 })
 export class ClubComponent implements OnInit {
+  disabled: boolean;
+  payem = false;
   cours: any;
   images = [62, 83, 466, 965, 982, 1043, 738].map(
     (n) => `https://picsum.photos/id/${n}/900/500`
@@ -51,35 +53,15 @@ export class ClubComponent implements OnInit {
   paymentHandler: any = null;
   closeResult = '';
   public isCollapsed = true;
-  user: User = this.ServiceUser.getuser();
   aaa: any;
 
-  commentaireForm = new FormGroup({
-    commentaire: new FormControl(''),
-    nom: new FormControl(this.user.nom),
-    prenom: new FormControl(this.user.prenom),
-    answered: new FormControl(false),
-  });
+  commentaireForm = new FormGroup({});
 
-  formCour = new FormGroup({
-    titre: new FormControl(''),
-    date: new FormControl(''),
-    heureDebut: new FormControl(''),
-    heureFin: new FormControl(''),
-    description: new FormControl(''),
-  });
+  formCour = new FormGroup({});
 
-  forfaitForm = new FormGroup({
-    titre: new FormControl(''),
-    prix: new FormControl(''),
-    période: new FormControl(''),
-    description: new FormControl(''),
-    machine: new FormControl(''),
-  });
-  send = new FormGroup({
-    object: new FormControl(''),
-    message: new FormControl(''),
-  });
+  forfaitForm = new FormGroup({});
+
+  send = new FormGroup({});
   modifForm: FormGroup;
   club: any;
   id: string;
@@ -88,6 +70,9 @@ export class ClubComponent implements OnInit {
   commen: Commentaire;
   id1: string;
   strCopy: any;
+  moment = moment;
+  user: any;
+
   constructor(
     private Service: ClubService,
     private ServiceUser: AuthService,
@@ -97,6 +82,49 @@ export class ClubComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: NgbModal
   ) {}
+
+  ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('userConecter'));
+    this.getUser();
+    this.date = moment(this.newDate).format('DD/MM/YYYY');
+    this.dateINS = moment(this.user.dateInscription).format('DD/MM/YYYY');
+
+    this.commentaireForm = new FormGroup({
+      commentaire: new FormControl(''),
+      nom: new FormControl(this.user.nom),
+      prenom: new FormControl(this.user.prenom),
+      answered: new FormControl(false),
+    });
+
+    this.formCour = new FormGroup({
+      titre: new FormControl(''),
+      date: new FormControl(''),
+      heureDebut: new FormControl(''),
+      heureFin: new FormControl(''),
+      description: new FormControl(''),
+    });
+
+    this.forfaitForm = new FormGroup({
+      titre: new FormControl(''),
+      prix: new FormControl(''),
+      période: new FormControl(''),
+      description: new FormControl(''),
+      machine: new FormControl(''),
+    });
+
+    this.send = new FormGroup({
+      object: new FormControl(''),
+      message: new FormControl(''),
+    });
+
+    this.invokeStripe();
+    this.id = this.route.snapshot.params['id'];
+
+    this.getOneClub();
+    this.getCommentaire();
+    this.getForfait();
+  }
+
   addCour() {
     let mybody = this.formCour.value;
     let myclub = this.route.snapshot.params['id'];
@@ -135,15 +163,11 @@ export class ClubComponent implements OnInit {
       this.togglePaused();
     }
   }
-  ngOnInit(): void {
-    console.log(this.dateINS);
 
-    this.date = moment(this.newDate).format('DD/MM/YYYY');
-    this.dateINS = moment(this.user.dateInscription).format('DD/MM/YYYY');
-    this.invokeStripe();
-    this.id = this.route.snapshot.params['id'];
+  getOneClub() {
     this.Service.getOneClub(this.id).subscribe(
       (res: any) => {
+        console.log(res);
         this.club = res;
         this.club.cours.forEach((c) => {
           if (c.date.toUpperCase() == 'LUNDI') {
@@ -173,6 +197,20 @@ export class ClubComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  getUser() {
+    this.serviceUsers.getOneUser(this.user._id).subscribe(
+      (res: any) => {
+        this.user = res;
+        console.log('haw luser ', this.user);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  getCommentaire() {
     // get commentaire
     this.ServiceCommentaire.getCommentaire().subscribe(
       (res: any) => {
@@ -190,6 +228,9 @@ export class ClubComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  getForfait() {
     // get forfait
     this.Service.getForfait().subscribe(
       (res: any) => {
@@ -221,6 +262,7 @@ export class ClubComponent implements OnInit {
         }
       );
   }
+
   // add forfait
   testmodal() {
     let mybody = this.forfaitForm.value;
@@ -228,6 +270,14 @@ export class ClubComponent implements OnInit {
     this.Service.addForfait(myclub, mybody).subscribe(
       (res) => {
         console.log(res);
+        this.Service.getOneClub(this.id).subscribe(
+          (res: any) => {
+            this.club = res;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       },
       (err) => {
         console.log(err);
@@ -244,6 +294,7 @@ export class ClubComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   // send email
   sendEmail() {
     console.log(this.club.email);
@@ -260,6 +311,7 @@ export class ClubComponent implements OnInit {
       }
     );
   }
+
   // send commentaire
   envoyer() {
     let comment = this.commentaireForm.value;
@@ -272,6 +324,7 @@ export class ClubComponent implements OnInit {
       }
     );
   }
+
   // delete comentaire
   delete(id: string) {
     if (confirm('voulez vous supprimer')) {
@@ -290,6 +343,7 @@ export class ClubComponent implements OnInit {
       );
     }
   }
+
   // modif commentaire
   modifier(j: number) {
     this.commentaires[j].answered = true;
@@ -321,13 +375,17 @@ export class ClubComponent implements OnInit {
       }
     );
   }
+
   //  payment
   makePayment(myuser: any, forfait: any, content: any, club: any) {
+    console.log('aaa');
+
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title ' })
       .result.then(
         (result) => {
           this.closeResult = `Closed with: ${result}`;
+          console.log('aaaa');
         },
         (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -339,21 +397,24 @@ export class ClubComponent implements OnInit {
       locale: 'auto',
       token: function (stripeToken: any) {
         console.log(stripeToken.card);
+        console.log('aaa');
       },
     });
+
     paymentHandler.open({
-      name: 'Technicall Adda',
+      name: forfait.nom,
       description: '4 products Added',
-      prix: forfait.frais * 100,
+      prix: forfait.prix * 1000,
     });
   }
-  validation(myuser: any, forfait: Forfait) {
-    var res = this.newDate;
 
+  //validation
+  validation(forfait: Forfait) {
+    var res = this.newDate;
     res.setDate(res.getDate() + forfait.période * 30);
     let myclub = this.route.snapshot.params['id'];
-    console.log(this.user);
 
+    this.updateUser(res);
     let mybody = {
       nomClub: myclub,
       nomForfait: forfait.titre,
@@ -361,7 +422,7 @@ export class ClubComponent implements OnInit {
       dateInscription: res,
     };
 
-    this.serviceUsers.abonnement(myuser._id, mybody).subscribe(
+    this.serviceUsers.abonnement(this.user._id, mybody).subscribe(
       (res: any) => {
         this.aaa = res;
         this.ServiceUser.setUser(this.aaa);
@@ -383,6 +444,22 @@ export class ClubComponent implements OnInit {
       }
     );
   }
+
+  updateUser(date) {
+    this.serviceUsers
+      .updateUser(this.user._id, { dateInscription: date })
+      .subscribe(
+        (res: any) => {
+          localStorage.setItem('userConecter', JSON.stringify(res.user));
+          this.date = moment(this.newDate).format('DD/MM/YYYY');
+          this.dateINS = moment(this.user.dateInscription).format('DD/MM/YYYY');
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+
   // paiment
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
